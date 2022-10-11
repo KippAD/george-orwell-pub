@@ -5,22 +5,22 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Model for events
-class Events(models.Model):
+class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
-    # description = models.TextField(blank=True)
-    # time = models.TimeField()
-    # date = models.DateTimeField()
-    # price = models.IntegerField()
-    # repeating = models.BooleanField(default=False)
-    # capacity = models.IntegerField(
-    #     validators=[
-    #         MaxValueValidator(64),
-    #         MinValueValidator(1)
-    #     ]
-    # )
+    description = models.TextField(blank=True)
+    time = models.TimeField()
+    date = models.DateTimeField()
+    price = models.IntegerField()
+    repeating = models.BooleanField(default=False)
+    capacity = models.IntegerField(
+        validators=[
+            MaxValueValidator(64),
+            MinValueValidator(1)
+        ]
+    )
 
-    # def __str__(self):
-    #     return self.title
+    def __str__(self):
+        return self.title
 
 
