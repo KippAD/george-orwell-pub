@@ -9,9 +9,9 @@ class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
     description = models.TextField(blank=True)
-    time = models.TimeField()
     date = models.DateTimeField()
     price = models.IntegerField()
+    date_created = models.DateTimeField(auto_now_add=True)
     repeating = models.BooleanField(default=False)
     capacity = models.IntegerField(
         validators=[
