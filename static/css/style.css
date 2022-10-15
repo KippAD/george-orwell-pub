@@ -32,49 +32,65 @@ p {
 /* Overwrites bootstrap FS text size classes */
 
 .fs-1 {
-    font-size: 6rem!important;
-}
-.fs-2 {
-    font-size: 5rem!important;
-}
-.fs-3 {
-    font-size: 4rem!important;
-}
-.fs-4 {
-    font-size: 3rem!important;
-}
-.fs-5 {
-    font-size: 2rem!important;
-}
-.fs-6 {
-    font-size: 1rem!important;
+    font-size: 6rem !important;
 }
 
-/* Custom navbar styles */
+.fs-2 {
+    font-size: 5rem !important;
+}
+
+.fs-3 {
+    font-size: 4rem !important;
+}
+
+.fs-4 {
+    font-size: 3rem !important;
+}
+
+.fs-5 {
+    font-size: 2rem !important;
+}
+
+.fs-6 {
+    font-size: 1rem !important;
+}
+
+/* Custom navbar styles for index */
 
 header {
     height: 75%;
 }
 
-.nav-item > a, .social-media a {
+#homeNav a,
+#blackNav a,
+#social-media-container a {
     font-family: Chivo;
     font-weight: 900;
     font-size: 3rem;
-    color: white;
     padding: 0;
     margin: 0;
 }
 
-.social-media > ul {
-    list-style-type: none;
+#homeNav a {
+    color: white;
 }
 
-.nav-item > a:hover {
-    color: white;
+.social-media i {
+    margin-left: 15px;
+}
+
+.nav-item>a,
+.social-media i  {
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item>a:hover,
+.social-media i:hover {
     transition: all ease 0.2s;
     border-bottom: 3px solid #D3B04D;
 }
 
+/* Custom styles for burger menu */
 .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8, %3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 254, 254)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
     width: 50px;
@@ -85,8 +101,18 @@ header {
     border: 5px solid white;
 }
 
+/* Custom navstyles for all other templates */
+
+#blackNav a {
+    color: black;
+}
+
+#blackNav h1 {
+    border-bottom: 3px solid #D3B04D;
+}
+
 /* Hero image and overlay */
-#hero-image { 
+#hero-image {
     background: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/hero-img_vxz8ul.jpg") center;
     background-size: cover;
     z-index: -1;
@@ -117,7 +143,15 @@ h2 {
 .logo {
     width: 150px;
     height: 150px;
-    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/logo_neaeuz.png");
+    background-image: url("../images/logo.png");
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.logo-sm {
+    width: 75px;
+    height: 75px;
+    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/blind_vqlvfo.jpg");
     background-size: cover;
     border-radius: 50%;
 }
@@ -147,7 +181,7 @@ h2 {
     background-size: cover;
 }
 
-.card-body > h5 {
+.card-body>h5 {
     font-family: Heebo, sans-serif;
     font-weight: 700;
 }
@@ -163,45 +197,44 @@ h2 {
 /* Footer */
 
 footer {
-    height: 100px;
-    width: 100vw;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #000000;
 }
 
 /* Breakpoints */
 
 /* XX-Large devices (larger desktops, 1400px and up) */
-@media screen and (max-width: 1400px) { 
-    #about-text{
-        width: 75%!important;
+@media screen and (max-width: 1400px) {
+    #about-text {
+        width: 75% !important;
     }
- }
-
- /* X-Large devices (large desktops, 1200px and up) */
-@media screen and (max-width: 1200px) { 
-
 }
 
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (max-width: 1200px) {}
+
 /* Large devices (desktops, 992px and up) */
-@media screen and (max-width: 992px) { 
+@media screen and (max-width: 992px) {
     #about-picture {
         display: none;
     }
 
-    #about-text{
-        width: 50%!important;
+    #about-text {
+        width: 50% !important;
     }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media screen and (max-width: 768px) { 
-    #about-text{
-        width: 60%!important;
+@media screen and (max-width: 768px) {
+    #about-text {
+        width: 60% !important;
         padding: 25px 0;
     }
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media screen and (max-width: 576px) {  
-
-}
+@media screen and (max-width: 576px) {}
