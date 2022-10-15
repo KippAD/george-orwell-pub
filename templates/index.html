@@ -33,8 +33,8 @@
 
                             <!-- Collapse toggle -->
                             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#indexNavbar" aria-controls="indexNavbar"
-                                aria-expanded="false" aria-label="Toggle navigation">
+                                data-bs-target="#indexNavbar" aria-controls="indexNavbar" aria-expanded="false"
+                                aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon">
                                 </span>
                             </button>
@@ -51,16 +51,25 @@
                                     <li class="nav-item me-3">
                                         <a class="nav-link" aria-current="page" href="#">menu</a>
                                     </li>
+                                    <!-- Adjusts the link to login/logout depending on user authentication -->
+                                    {% if user.is_authenticated %}
                                     <li class="nav-item me-3">
-                                        <a class="nav-link" href="#">sign-in</a>
+                                        <a class="nav-link" href="{% url 'account_logout' %}">sign-out</a>
                                     </li>
+                                    {% else %}
+                                    <li class="nav-item me-3">
+                                        <a class="nav-link" href="{% url 'account_login' %}">sign-in</a>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </div>
 
                             <div id="socialMedia" class="col-6 col-lg-2 text-end social-media">
-                                <a class="d-inline-block" aria-current="page" href="#"><i class="fa-brands fa-square-twitter"></i></a>
+                                <a class="d-inline-block" aria-current="page" href="#"><i
+                                        class="fa-brands fa-square-twitter"></i></a>
                                 <a class="d-inline-block" href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                                <a class="d-inline-block" aria-current="page" href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                                <a class="d-inline-block" aria-current="page" href="#"><i
+                                        class="fa-brands fa-square-instagram"></i></a>
                             </div>
 
                         </div>
@@ -78,7 +87,8 @@
                             <div class="logo mx-auto"></div>
                         </div>
                         <nav class="nav">
-                            <a class="fs-1 py-5 mb-5 text-white mx-auto" href="#about-text"><i class="fa-regular fa-circle-down"></i></a>
+                            <a class="fs-1 py-5 mb-5 text-white mx-auto" href="#about-text"><i
+                                    class="fa-regular fa-circle-down"></i></a>
                         </nav>
                     </div>
 
@@ -100,8 +110,10 @@
                     <span class="w-75 golden-line"></span>
 
                     <p class="fs-5 py-2 text-white">Welcome to the George Orwell. We are an English styled pub based in
-                        Montpellier in the beautiful south of France. Join us in our l'ecusson premises for a ice cold beverage in the Herault heat. 
-                        Our beer garden is a perfect place to kick back and relax and enjoy the our popular ciders imported from the UK.</p>
+                        Montpellier in the beautiful south of France. Join us in our l'ecusson premises for a ice cold
+                        beverage in the Herault heat.
+                        Our beer garden is a perfect place to kick back and relax and enjoy the our popular ciders
+                        imported from the UK.</p>
                     <button type="button" class="btn btn-primary btn-lg">More Info</button>
                 </div>
             </div>
@@ -111,73 +123,85 @@
 
     <!-- Card panels section -->
     <div class="container-fluid p-5">
-        
+
         <div class="row w-75 mx-auto">
             <h2 class="text-black subheading">Our Offer</h2>
             <span class="w-50 golden-line mb-5"></span>
         </div>
-        
+
         <div class="row h-100 justify-content-center">
-            
+
             <div class="col-9 col-lg-3 mb-5">
                 <div class="card h-100">
-                    <div class="card-img" style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831152/George%20Orwell%20Pub/beer-tap_k598in.jpg');"></div>
+                    <div class="card-img"
+                        style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831152/George%20Orwell%20Pub/beer-tap_k598in.jpg');">
+                    </div>
                     <div class="card-body p-4">
-                      <h5 class="card-title fs-4">Artisinal Beer</h5>
-                      <p class="card-text fs-5 lh-sm">We serve a selection of artisinal beers and ciders from our parent brewery Animal Farm. We extreme take pride in the quality of our products crafted by the Master Brewers at the Animal Farm Brewery in nearby Pouzolles.</p>
-                      <button type="button" class="btn btn-primary btn-lg">View Drinks</button>
+                        <h5 class="card-title fs-4">Artisinal Beer</h5>
+                        <p class="card-text fs-5 lh-sm">We serve a selection of artisinal beers and ciders from our
+                            parent brewery Animal Farm. We extreme take pride in the quality of our products crafted by
+                            the Master Brewers at the Animal Farm Brewery in nearby Pouzolles.</p>
+                        <button type="button" class="btn btn-primary btn-lg">View Drinks</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-9 col-lg-3 mb-5">
                 <div class="card h-100">
-                    <div class="card-img" style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/burger_siyzit.jpg');"></div>
+                    <div class="card-img"
+                        style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/burger_siyzit.jpg');">
+                    </div>
                     <div class="card-body p-4">
-                      <h5 class="card-title fs-4">Authentic Food</h5>
-                      <p class="card-text fs-5 lh-sm">Join us at the George Orwell to enjoy our award winning food - a modern twist on english classics. Lunch and dinner served every day inside or out in the to our beer garden. Sunday roast is not to be missed.</p>
-                      <button type="button" class="btn btn-primary btn-lg">View Menu</button>
+                        <h5 class="card-title fs-4">Authentic Food</h5>
+                        <p class="card-text fs-5 lh-sm">Join us at the George Orwell to enjoy our award winning food - a
+                            modern twist on english classics. Lunch and dinner served every day inside or out in the to
+                            our beer garden. Sunday roast is not to be missed.</p>
+                        <button type="button" class="btn btn-primary btn-lg">View Menu</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-9 col-lg-3 mb-5">
                 <div class="card h-100">
-                    <div class="card-img" style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/cheers_nb8tan.jpg');"></div>
+                    <div class="card-img"
+                        style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/cheers_nb8tan.jpg');">
+                    </div>
                     <div class="card-body p-4">
-                      <h5 class="card-title fs-4">Weekly Events</h5>
-                      <p class="card-text fs-5 lh-sm">Check our events schedule to find out whats's happening at the pub. Pub quiz, blind test, language exchanges and poker nights every week. If you're new to the area then there is no better way to meet new people!</p>
-                      <button type="button" class="btn btn-primary btn-lg">View Events</button>
+                        <h5 class="card-title fs-4">Weekly Events</h5>
+                        <p class="card-text fs-5 lh-sm">Check our events schedule to find out whats's happening at the
+                            pub. Pub quiz, blind test, language exchanges and poker nights every week. If you're new to
+                            the area then there is no better way to meet new people!</p>
+                        <button type="button" class="btn btn-primary btn-lg">View Events</button>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
     <!-- Events carousel from bootstrap -->
     <div id="carouselEvent" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div>
-                <p>Example</p>
+            <div class="carousel-item active">
+                <div>
+                    <p>Example</p>
+                </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div>
-                <p>Example</p>
+            <div class="carousel-item">
+                <div>
+                    <p>Example</p>
+                </div>
             </div>
-          </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvent" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselEvent" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
         </button>
-      </div>
+    </div>
 
     <!-- Footer -->
     <footer></footer>
