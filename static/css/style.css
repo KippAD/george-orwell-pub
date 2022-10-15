@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Heebo:wght@700&family=Istok+Web:wght@400;700&family=Montserrat:wght@600;700;800;900&display=swap');
+
+/* Global styles */
+
+html {
+    font-size: 62.5%;
+}
+
+p {
+    font-family: Istok Web, sans-serif;
+}
+
+.btn-lg {
+    font-size: 2rem;
+    background-color: #D3B04D;
+    color: #000000;
+    border: 2px solid #D3B04D;
+}
+
+.subheading {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+}
+
+/* Overwrites bootstrap hover colors for button */
+.btn-lg:hover {
+    background-color: transparent;
+    color: #D3B04D;
+    border: 2px solid #D3B04D;
+}
+
+/* Overwrites bootstrap FS text size classes */
+
+.fs-1 {
+    font-size: 6rem!important;
+}
+.fs-2 {
+    font-size: 5rem!important;
+}
+.fs-3 {
+    font-size: 4rem!important;
+}
+.fs-4 {
+    font-size: 3rem!important;
+}
+.fs-5 {
+    font-size: 2rem!important;
+}
+.fs-6 {
+    font-size: 1rem!important;
+}
+
+/* Custom navbar styles */
+
+header {
+    height: 75%;
+}
+
+.nav-item > a, .social-media a {
+    font-family: Chivo;
+    font-weight: 900;
+    font-size: 3rem;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media > ul {
+    list-style-type: none;
+}
+
+.nav-item > a:hover {
+    color: white;
+    transition: all ease 0.2s;
+    border-bottom: 3px solid #D3B04D;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8, %3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 254, 254)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    width: 50px;
+    height: 50px;
+}
+
+.custom-toggler.navbar-toggler {
+    border: 5px solid white;
+}
+
+/* Hero image and overlay */
+#hero-image { 
+    background: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/hero-img_vxz8ul.jpg") center;
+    background-size: cover;
+    z-index: -1;
+}
+
+#hero-overlay {
+    background-color: rgba(77, 77, 77, 0.6);
+}
+
+h1 {
+    font-family: Chivo, sans-serif;
+    color: white;
+    font-weight: 900;
+}
+
+h2 {
+    font-family: Chivo, sans-serif;
+    color: white;
+    font-size: 5rem;
+}
+
+.golden-line {
+    display: inline-block;
+    border-bottom: #D3B04D solid 5px;
+    width: 15%;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/logo_neaeuz.png");
+    background-size: cover;
+    border-radius: 50%;
+}
+
+/* About us panel */
+
+#about-panel {
+    background-color: #7A8450;
+}
+
+#about-text {
+    padding: 10% 0;
+}
+
+#about-picture {
+    background: #ffffff url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831619/George%20Orwell%20Pub/about-image_djdvfd.jpg") no-repeat center;
+    background-size: cover;
+}
+
+/* Our offer card panel */
+
+.card-img {
+    height: 200px;
+    background-color: #ffffff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-body > h5 {
+    font-family: Heebo, sans-serif;
+    font-weight: 700;
+}
+
+/* Carousel events */
+
+.carousel-item {
+    height: 600px;
+    background: #7A8450 url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/blind_vqlvfo.jpg") no-repeat center;
+    background-size: cover;
+}
+
+/* Footer */
+
+footer {
+    height: 100px;
+    width: 100vw;
+    background-color: #000000;
+}
+
+/* Breakpoints */
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (max-width: 1400px) { 
+    #about-text{
+        width: 75%!important;
+    }
+ }
+
+ /* X-Large devices (large desktops, 1200px and up) */
+@media screen and (max-width: 1200px) { 
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (max-width: 992px) { 
+    #about-picture {
+        display: none;
+    }
+
+    #about-text{
+        width: 50%!important;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 768px) { 
+    #about-text{
+        width: 60%!important;
+        padding: 25px 0;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (max-width: 576px) {  
+
+}
