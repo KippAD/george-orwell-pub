@@ -175,7 +175,7 @@ footer {
     background-color: #000000;
 }
 
-/* Custom form styles */
+/* Custom form styles for allauth templates */
 .form-container {
     height: 90vh;
     padding: 50px;
@@ -185,7 +185,7 @@ footer {
     background-color: #F0F0F0;
 }
 
-.signin-form {
+.user-form {
     width: 40%;
     margin: 10vh auto 0;
     border: 1px solid grey;
@@ -203,7 +203,7 @@ footer {
     border-bottom: 2px solid #D3B04D;
 }
 
-.signin-form label {
+.user-form label {
     font-size: 2rem;
     font-family: Montserrat, sans-serif;
     font-weight: 600;
@@ -212,7 +212,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.signin-form button {
+.user-form button {
     font-size: 2rem;
     background-color: #D3B04D;
     border: 2px solid #D3B04D;
@@ -220,20 +220,19 @@ footer {
     margin-top: 10px;
 }
 
-.signin-form label, 
-.signin-form input,
-.signin-form button {
+.user-form label, 
+.user-form input,
+.user-form button {
     display: block;
 }
 
-/* Custom styling on default allauth classes */
-#id_login, #id_password {
+.user-form input {
     width: 100%;
     padding: 7.5px;
     border: none;
     font-size: 2rem;
-    font-weight: 700;
     font-family: Istok web, sans-serif;
+    background-color:rgb(232, 240, 254);
 }
 
 /* Overwrites bootstrap FS text size classes */
