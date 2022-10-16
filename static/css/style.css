@@ -29,32 +29,6 @@ p {
     border: 2px solid #D3B04D;
 }
 
-/* Overwrites bootstrap FS text size classes */
-
-.fs-1 {
-    font-size: 6rem !important;
-}
-
-.fs-2 {
-    font-size: 5rem !important;
-}
-
-.fs-3 {
-    font-size: 4rem !important;
-}
-
-.fs-4 {
-    font-size: 3rem !important;
-}
-
-.fs-5 {
-    font-size: 2rem !important;
-}
-
-.fs-6 {
-    font-size: 1rem !important;
-}
-
 /* Custom navbar styles for index */
 
 header {
@@ -62,13 +36,12 @@ header {
 }
 
 #homeNav a,
-#blackNav a,
-#social-media-container a {
+#blackNav a {
     font-family: Chivo;
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0;
-    margin: 0;
+    margin: 0 15px 0 0;
 }
 
 #homeNav a {
@@ -77,6 +50,7 @@ header {
 
 .social-media i {
     margin-left: 15px;
+    font-size: 3rem;
 }
 
 .nav-item>a,
@@ -143,7 +117,7 @@ h2 {
 .logo {
     width: 150px;
     height: 150px;
-    background-image: url("../images/logo.png");
+    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/logo_neaeuz.png");
     background-size: cover;
     border-radius: 50%;
 }
@@ -151,7 +125,7 @@ h2 {
 .logo-sm {
     width: 75px;
     height: 75px;
-    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/blind_vqlvfo.jpg");
+    background-image: url("https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/logo_neaeuz.png");
     background-size: cover;
     border-radius: 50%;
 }
@@ -197,12 +171,94 @@ h2 {
 /* Footer */
 
 footer {
-    height: 50px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    height: 10vh;
     background-color: #000000;
+}
+
+/* Custom form styles */
+.form-container {
+    height: 90vh;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F0F0;
+}
+
+.signin-form {
+    width: 40%;
+    margin: 10vh auto 0;
+    border: 1px solid grey;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.form-header {
+    width: 100%;
+    background-color: #002043;
+}
+
+.form-header > h1 {
+    border-bottom: 2px solid #D3B04D;
+}
+
+.signin-form label {
+    font-size: 2rem;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    border-bottom: 2px solid #D3B04D;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+.signin-form button {
+    font-size: 2rem;
+    background-color: #D3B04D;
+    border: 2px solid #D3B04D;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.signin-form label, 
+.signin-form input,
+.signin-form button {
+    display: block;
+}
+
+/* Custom styling on default allauth classes */
+#id_login, #id_password {
+    width: 100%;
+    padding: 7.5px;
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: Istok web, sans-serif;
+}
+
+/* Overwrites bootstrap FS text size classes */
+.fs-1 {
+    font-size: 6rem !important;
+}
+
+.fs-2 {
+    font-size: 5rem !important;
+}
+
+.fs-3 {
+    font-size: 4rem !important;
+}
+
+.fs-4 {
+    font-size: 3rem !important;
+}
+
+.fs-5 {
+    font-size: 2rem !important;
+}
+
+.fs-6 {
+    font-size: 1rem !important;
 }
 
 /* Breakpoints */
