@@ -3,16 +3,18 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+POST = ((0, "Draft"), (1, "Post"))
 
 # Model for events
 class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    image = CloudinaryField('image', default='placeholder')
     description = models.TextField(blank=True)
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
     price = models.IntegerField()
     date_created = models.DateTimeField(auto_now_add=True)
     repeating = models.BooleanField(default=False)
+    post = models.IntegerField(choices=POST, default=0)
     capacity = models.IntegerField(
         validators=[
             MaxValueValidator(64),

@@ -6,6 +6,10 @@ html {
     font-size: 62.5%;
 }
 
+a {
+    text-decoration: none;
+}
+
 p {
     font-family: Istok Web, sans-serif;
 }
@@ -233,6 +237,53 @@ footer {
     font-size: 2rem;
     font-family: Istok web, sans-serif;
     background-color:rgb(232, 240, 254);
+}
+
+/* Accordion in events schedule */
+.events-section {
+    height: 90vh;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    background-color: #F0F0F0;
+}
+
+.event {
+    width: 60%;
+    margin-top: 15vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.event-title {
+    font-weight: 700;
+    border-bottom: 3px solid #D3B04D;
+}
+
+.event-date {
+    width: 25%;
+    font-family: Montserrat;
+    background-color: #002043;
+}
+
+.card-text > * {
+    font-size: 2-rem!important;
+}
+
+.event-date span:last-of-type {
+    color:#D3B04D;
+}
+
+.event-address {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    color: #454242;
+}
+
+.schedule-icons > * {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
 }
 
 /* Overwrites bootstrap FS text size classes */
