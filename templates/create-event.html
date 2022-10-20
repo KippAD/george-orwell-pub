@@ -2,7 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
 <section class="form-container">
+    {% if user.is_superuser %}
     <div class="user-form w-50">
         <div class="form-header ">
             <h2 class="text-center w-75 mx-auto">Create an Event:</h2>
@@ -15,7 +17,14 @@
             </form>
         </div>
     </div>
-</section>
+    {% else %}
+    <!-- Msg when url is accessed by a non super user -->
+    <div style="height: 80vh; padding: 30vh;">
+        <h2 class="text-black">We're sorry...</h2>
+        <p>This page can only be accessed by the site admin</p>
+    </div>
 
+    {% endif %}
+</section>
 
 {% endblock %}

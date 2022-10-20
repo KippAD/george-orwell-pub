@@ -5,14 +5,14 @@
 
 <section class="events-section">
 
-    <!-- {% if user.is_superuser %} -->
+    {% if user.is_superuser %}
 
     <div class="d-grid gap-2 col-6 mx-auto">
         <a href="{% url 'create-event' %}"><button class="btn btn-primary" type="button">Create Event <i
                     class="fa-solid fa-plus"></i></button></a>
     </div>
 
-    <!-- {% endif %} -->
+    {% endif %}
 
     {% for event in object_list %}
     <div class="event card">
