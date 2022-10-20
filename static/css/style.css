@@ -2,8 +2,9 @@
 
 /* Global styles */
 
-html {
+html,body {
     font-size: 62.5%;
+    min-height: 100vh;
 }
 
 a {
@@ -244,18 +245,14 @@ footer {
 
 /* Accordion in events schedule */
 .events-section {
-    height: 90vh;
-    padding: 15vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    min-height: 100vh;
+    padding-top: 15vh;
     background-color: #F0F0F0;
 }
 
 .event {
     width: 60%;
-    margin-top: 1=0px;
+    margin-top: 20px;
     border-radius: 10px;
     overflow: hidden;
 }

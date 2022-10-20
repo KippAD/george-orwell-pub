@@ -8,3 +8,4 @@ class EventPost(SummernoteModelAdmin):
     list_display = ('title', 'date', 'price', 'date_created')
     search_fields = ['title', 'description']
     list_filter = ('price', 'date_created')
+    prepopulated_fields = {'slug': ('title',)}
