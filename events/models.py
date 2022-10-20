@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 POST = ((0, "Draft"), (1, "Post"))
 
+
 # Model for events
 class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)

@@ -5,6 +5,15 @@
 
 <section class="events-section">
 
+    <!-- {% if user.is_superuser %} -->
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="{% url 'create-event' %}"><button class="btn btn-primary" type="button">Create Event <i
+                    class="fa-solid fa-plus"></i></button></a>
+    </div>
+
+    <!-- {% endif %} -->
+
     {% for event in object_list %}
     <div class="event card">
 
@@ -18,7 +27,7 @@
                     </div>
                 </div>
                 <div class="container p-3">
-                    <h3 class="event-title d-inline fs-4 pe-5">{{ event.title }}</h3>
+                    <h3 class="event-title d-inline fs-4">{{ event.title }}</h3>
                     <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                     <div class="collapse" id="collapseExample">
                         <div>
