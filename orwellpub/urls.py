@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from events import views
+from bookings import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('events/', views.EventList.as_view(), name='events'),
     path('events/create-event/', views.CreateEvent.as_view(), name='create-event'),
-    path('update/<slug:slug>', views.UpdateEvent.as_view(), name='update-event'),
-    path('delete/<slug:slug>', views.DeleteEvent.as_view(), name='delete-event'),
+    path('events/book/<slug:slug>', views.BookEvent.as_view(), name='book-event'),
+    path('events/update/<slug:slug>', views.UpdateEvent.as_view(), name='update-event'),
+    path('events/delete/<slug:slug>', views.DeleteEvent.as_view(), name='delete-event'),
 ]

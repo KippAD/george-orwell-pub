@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.template.defaultfilters import slugify
 
@@ -10,7 +8,7 @@ POST = ((0, "Draft"), (1, "Post"))
 # Model for events
 class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, null=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True)
     description = models.TextField(blank=True)
     date = models.DateField()
     time = models.TimeField()
