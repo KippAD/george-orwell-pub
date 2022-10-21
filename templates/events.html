@@ -15,7 +15,7 @@
     {% endif %}
 
     {% for event in object_list %}
-    <div class="event card" data-bs-toggle="collapse" id="event-collapse" href="#collapseExample" role="button" aria-expanded="false"
+    <div class="event card" data-bs-toggle="collapse" id="event-collapse" href="#collapse-{{ event.slug }}" role="button" aria-expanded="false"
             aria-controls="collapseExample">
             <div class="card-body d-flex p-0 text-black">
                 <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
@@ -27,14 +27,20 @@
                 <div class="container p-3">
                     <h3 class="event-title d-inline fs-4">{{ event.title }}</h3>
                     <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapse-{{ event.slug }}">
                         <div>
                             <div>
                                 <p class="card-text fs-5">{{ event.description | striptags }}</p>
                                 <button type="button" class="btn btn-lg">Book Now</button>
+                            </div>
+                            <div>
                                 {% if user.is_superuser %}
-                                <a href="{% url 'update-event' slug=event.slug%}"><button type="button" class="btn btn-warning"><i
-                                        class="fa-solid fa-pen-to-square"></i></button></a>
+                                    <a href="{% url 'update-event' slug=event.slug%}"><button type="button" class="event-button ignore-collapse btn btn-warning"><i
+                                            class="fa-solid fa-pen-to-square"></i></button></a>
+
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </button>
                                 {% endif %}
                             </div>
                         </div>
@@ -47,7 +53,35 @@
                 </div>
             </div>
     </div>
-    
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content user-form w-100">
+            <div class="modal-header form-header text-center">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p class="fs-5">
+                Are you sure that you would like to delete this event permanently? Remember that you can change the 
+                post to a draft in the edit menu to remove it from the events display.
+            </p>
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <form method="post" action="{% url 'delete-event' slug=event.slug %}">{% csrf_token %}
+                {{ form }}
+                <button type="submit" value="confirm" class="btn btn-primary">Delete</button>
+            </form>
+            
+            
+            </div>
+        </div>
+        </div>
+    </div>
+        
     {% endfor %}
 </section>
 
