@@ -15,20 +15,18 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
     template_name = "book-event.html"
     form_class = BookingForm
     success_url = "/events/"
-    # Fix total count exceeding capacity
     # Allow repeatable names for different events
     # Only allow one booking per event per account
-    def form_valid(self, form):
+    # Pre fill event from button clicked on
 
-        total_count = 0
-        bookings = Booking.objects.values_list('booking_count', flat=True)
+    # Ensures that total booking is less than capacity of event
+    def form_valid(self, form):
+        total_bookings = sum(Booking.objects.values_list('booking_count', flat=True))
+        booking = form.instance.booking_count
         capacity = form.instance.event.capacity
-       
-        for booking in bookings:
-            total_count += booking
-            
-            if total_count <= capacity:
-                form.instance.user = self.request.user
-                return super().form_valid(form)
-            else:
-                print("Error")
+
+        if total_bookings <= capacity and booking <= (capacity - total_bookings):
+            form.instance.user = self.request.user
+            return super().form_valid(form)
+        else:
+            print("Error")
