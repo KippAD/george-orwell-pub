@@ -5,12 +5,12 @@ from .models import Event
 from .forms import EventForm
 
 
-class HomePage(View):
+class HomePage(generic.ListView):
     """
     Renders the home page index.html
     """
-    def get(self, request):
-        return render(request, "index.html")
+    model = Event
+    template_name = "index.html"
 
 
 class EventList(generic.ListView):
