@@ -290,7 +290,50 @@ footer {
 /* Account page */
 .account-section {
     margin-top: 15vh;
-    
+}
+
+.bookings-titles {
+    font-family: Montserrat, sans-serif;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    background-color: #002043;
+}
+
+.bookings {
+   padding: 10px 0;
+   border-bottom: #F0F0F0 1px solid;
+}
+
+.bookings h5 {
+    font-family: Istok Web, sans-serif;
+    font-size: 1.5rem;
+    padding-left: 10px;
+}
+
+#contact-tab-pane input,
+#contact-tab-pane textarea {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    padding: 7.5px;
+    border: none;
+    font-size: 2rem;
+    font-family: Istok web, sans-serif;
+    background-color:rgb(232, 240, 254);
+}
+
+#contact-tab-pane label {
+    margin-left: 10%;
+    font-size: 2rem;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    border-bottom: 2px solid #D3B04D;
+    padding: 10px 20px 0 0;
+    margin-bottom: 10px;
+}
+
+#contact-tab-pane button {
+    margin-left: 10%;
 }
 
 /* Overwrites bootstrap FS text size classes */

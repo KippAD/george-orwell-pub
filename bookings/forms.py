@@ -8,9 +8,12 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ('event', 'first_name', 'last_name', 'booking_count',)
 
-
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('msg_subject', 'msg_content',)
+        labels = {
+            "msg_subject":  "Subject",
+            "msg_content": "Message Content",
+    }
 
