@@ -53,6 +53,16 @@
                                     <li class="nav-item me-3">
                                         <a class="nav-link" aria-current="page" href="#">menu</a>
                                     </li>
+                                    <!-- Adjusts the account link text if user is admin -->
+                                    {% if user.is_superuser %}
+                                    <li class="nav-item me-3">
+                                        <a class="nav-link" href="{% url 'account' %}">admin</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item me-3">
+                                        <a class="nav-link" href="{% url 'account' %}">account</a>
+                                    </li>
+                                    {% endif %}
                                     <!-- Adjusts the link to login/logout depending on user authentication -->
                                     {% if user.is_authenticated %}
                                     <li class="nav-item me-3">

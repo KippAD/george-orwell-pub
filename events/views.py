@@ -18,7 +18,6 @@ class EventList(generic.ListView):
     Renders the events schedule list
     """
     model = Event
-    queryset = Event.objects.filter(post=1).order_by('date_created')
     template_name = "events.html"
     paginate_by = 6
 

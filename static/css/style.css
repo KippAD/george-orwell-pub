@@ -287,6 +287,12 @@ footer {
     font-weight: 700;
 }
 
+/* Account page */
+.account-section {
+    margin-top: 15vh;
+    
+}
+
 /* Overwrites bootstrap FS text size classes */
 .fs-1 {
     font-size: 6rem !important;

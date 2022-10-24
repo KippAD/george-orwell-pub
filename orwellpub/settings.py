@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'events',
     'bookings',
+    'myaccount',
 ]
 
 SITE_ID = 1

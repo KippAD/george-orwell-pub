@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container account-section w-50">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="text-black">My Account</h2>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs text-center mt-5" id="profileTab" role="tablist">
+        <li class="nav-item col-4" role="presentation">
+            <button class="nav-link active fs-5 w-100" id="bookings-tab" data-bs-toggle="tab"
+                data-bs-target="#booking-tab-pane" type="button" role="tab" aria-controls="booking-tab-pane"
+                aria-selected="true">Booking</button>
+        </li>
+        <li class="nav-item col-4" role="presentation">
+            <button class="nav-link fs-5 w-100" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane"
+                type="button" role="tab" aria-controls="account-tab-pane" aria-selected="false">Account</button>
+        </li>
+        <li class="nav-item col-4" role="presentation">
+            <button class="nav-link fs-5 w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+
+        <!-- Booking content for user -->
+        <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
+            tabindex="0">
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col-3">
+                        <h4>Event:</h4>
+                    </div>
+                    <div class="col-3">
+                        <h4>Number of People:</h4>
+                    </div>
+                    <div class="col-3">
+                        <h4>Username:</h4>
+                    </div>
+                </div>
+                {% for booking in bookings %}
+                <div class="row">
+                    <div class="col-3">
+                        <h5>{{ booking.event.title }}</h5>
+                    </div>
+                    <div class="col-3">
+                        <h5>{{ booking.booking_count }}</h5>
+                    </div>
+                    <div class="col-3">
+                        <h5>{{ booking.user }}</h5>
+                    </div>
+                    <div class="col-3">
+                        <a href="{% url 'update-booking' pk=booking.pk %}"><i class="fa-solid fa-pen"></i></a>
+                        <a href="" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"><i class=" fa-solid fa-xmark"></i></a>
+                    </div>
+                </div>
+
+                <!-- Bootstrap Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content user-form w-100">
+                            <div class="modal-header form-header text-center">
+                                <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="fs-5">
+                                    Are you sure that you would like to cancel your booking?
+                                </p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form method="post" action="{% url 'delete-booking' pk=booking.pk %}">{% csrf_token %}
+                                    {{ form }}
+                                    <button type="submit" value="confirm" class="btn btn-primary" name="delete-booking">Delete</button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Account info tab -->
+        <div class="text-black tab-pane fade p-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab" tabindex="0">
+            <h4>Username: {{ user.username }}</h4>
+            <h4>First Name: {{ user.first_name }}</h4>
+            <h4>Second Name: {{ user.last_name }}</h4>
+            <h4>Email: {{ user.email }}</h4>
+            <h4>Password: ***********</h4>
+            <a href="{% url 'account_change_password' %}">Change Password</a>
+        </div>
+            
+        <!-- Contact admin tab -->
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            <form method="POST">
+                {% csrf_token %}
+                {{ contact.as_p }}
+                <button type="submit" value="confirm" class="btn btn-primary" name="send-message">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

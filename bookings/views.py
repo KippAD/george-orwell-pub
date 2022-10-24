@@ -1,10 +1,69 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from .models import Booking
-from .forms import BookingForm
+from .forms import BookingForm, ContactForm
 from events.views import HomePage, EventList, CreateEvent, UpdateEvent, DeleteEvent
+
+
+# class AccountPage(View):
+#     """
+#     Account page
+#     """
+#     template_name = "account.html"
+    
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['user'] = self.request.user
+#         return context
+
+#     def get_queryset(self):
+#         return Booking.objects.filter(user=self.request.user)
+
+
+class AccountPage(View):
+    template_name = 'account.html'
+    contact_form = ContactForm
+
+    def get(self, request):
+        user = self.request.user
+        bookings = Booking.objects.filter(user=user)
+        contact = self.contact_form(None)
+        return render(request, self.template_name, {'bookings': bookings, 'contact': contact, 'user': user, })
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        bookings = Booking.objects.filter(user=user)
+        
+        contact_form = ContactForm(data=request.POST)
+        if request.method == 'POST' and 'send-message' in request.POST:
+            if contact_form.is_valid():
+                contact_form.instance.msg_sender = self.request.user
+                contact_form.save()
+            else:
+                self.contact_form = ContactForm()
+
+            return render(request, self.template_name, {'bookings': bookings, 'contact': contact_form, 'user': user, })
+
+
+class UpdateBooking(generic.UpdateView):
+    """
+    Updates event
+    """
+    model = Booking
+    template_name = "book-event.html"
+    form_class = BookingForm
+    success_url = "/accounts/myaccount/"
+
+
+class DeleteBooking(generic.DeleteView):
+    """
+    Deletes booking
+    """
+    model = Booking
+    success_url = reverse_lazy("account")
 
 
 class BookEvent(LoginRequiredMixin, generic.CreateView):
