@@ -347,6 +347,34 @@ footer {
     margin-left: 10%;
 }
 
+/* Sorting tables */
+
+.data-table {
+    font-size: 1.5rem;
+}
+
+.data-table th {
+    background-color: #002043;
+    color: white;
+}
+
+#user-table_filter input,
+#user-table_length select {
+    height: 25px;
+}
+
+#user-table_filter label,
+#user-table_length label, 
+#user-table_info,
+#user-table_paginate li {
+    font-size: 1.5rem;
+}
+
+/* Admin messages */
+#v-pills-tab > button {
+    
+}
+
 /* Overwrites bootstrap FS text size classes */
 .fs-1 {
     font-size: 6rem !important;

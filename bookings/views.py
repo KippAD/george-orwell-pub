@@ -3,32 +3,7 @@ from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Booking
-from .forms import BookingForm, ContactForm
-
-
-class AccountPage(View):
-    template_name = 'account.html'
-    contact_form = ContactForm
-
-    def get(self, request):
-        user = self.request.user
-        bookings = Booking.objects.filter(user=user)
-        contact = self.contact_form(None)
-        return render(request, self.template_name, {'bookings': bookings, 'contact': contact, 'user': user, })
-
-    def post(self, request, *args, **kwargs):
-        user = self.request.user
-        bookings = Booking.objects.filter(user=user)
-        
-        contact_form = ContactForm(data=request.POST)
-        if request.method == 'POST' and 'send-message' in request.POST:
-            if contact_form.is_valid():
-                contact_form.instance.msg_sender = self.request.user
-                contact_form.save()
-            else:
-                self.contact_form = ContactForm()
-
-            return render(request, self.template_name, {'bookings': bookings, 'contact': contact_form, 'user': user, })
+from .forms import BookingForm
 
 
 class UpdateBooking(generic.UpdateView):

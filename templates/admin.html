@@ -2,106 +2,276 @@
 
 {% block content %}
 
-<section class="container account-section w-50">
+<section class="container account-section w-">
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="text-black">My Account</h2>
+            <h2 class="text-black">Admin</h2>
         </div>
     </div>
 
-    <ul class="nav nav-tabs text-center mt-5" id="profileTab" role="tablist">
-        <li class="nav-item col-4" role="presentation">
-            <button class="nav-link active fs-5 w-100" id="events-tab" data-bs-toggle="tab"
-                data-bs-target="#events-tab-pane" type="button" role="tab" aria-controls="events-tab-pane"
+    <ul class="nav nav-tabs text-center mt-5" id="bookingTab" role="tablist">
+        <li class="nav-item col-3" role="presentation">
+            <button class="nav-link active fs-5 w-100 text-black" id="event-tab" data-bs-toggle="tab"
+                data-bs-target="#event-tab-pane" type="button" role="tab" aria-controls="event-tab-pane"
                 aria-selected="true">Events</button>
         </li>
-        <li class="nav-item col-4" role="presentation">
-            <button class="nav-link fs-5 w-100" id="user-tab" data-bs-toggle="tab" data-bs-target="#user-tab-pane"
-                type="button" role="tab" aria-controls="user-tab-pane" aria-selected="false">Users</button>
+        <li class="nav-item col-3" role="presentation">
+            <button class="nav-link fs-5 w-100 text-black" id="bookings-tab" data-bs-toggle="tab"
+                data-bs-target="#booking-tab-pane" type="button" role="tab" aria-controls="booking-tab-pane"
+                aria-selected="false">Bookings</button>
         </li>
-        <li class="nav-item col-4" role="presentation">
-            <button class="nav-link fs-5 w-100" id="messaget-tab" data-bs-toggle="tab" data-bs-target="#message-tab-pane"
-                type="button" role="tab" aria-controls="message-tab-pane" aria-selected="false">Messages</button>
+        <li class="nav-item col-3" role="presentation">
+            <button class="nav-link fs-5 w-100 text-black" id="user-tab" data-bs-toggle="tab"
+                data-bs-target="#user-tab-pane" type="button" role="tab" aria-controls="user-tab-pane"
+                aria-selected="false">Users</button>
+        </li>
+        <li class="nav-item col-3" role="presentation">
+            <button class="nav-link fs-5 w-100 text-black" id="message-tab" data-bs-toggle="tab"
+                data-bs-target="#message-tab-pane" type="button" role="tab" aria-controls="message-tab-pane"
+                aria-selected="false">Messages</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
 
-        <!-- Booking content for user -->
-        <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
+        <div class="tab-pane fade show active" id="event-tab-pane" role="tabpanel" aria-labelledby="event-tab"
             tabindex="0">
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-3">
-                        <h4>Event:</h4>
-                    </div>
-                    <div class="col-3">
-                        <h4>Number of People:</h4>
-                    </div>
-                    <div class="col-3">
-                        <h4>Username:</h4>
-                    </div>
-                </div>
-                {% for booking in bookings %}
-                <div class="row">
-                    <div class="col-3">
-                        <h5>{{ booking.event.title }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>{{ booking.booking_count }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>{{ booking.user }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <a href="{% url 'myaccount/update-booking' pk=booking.pk %}"><i class="fa-solid fa-pen"></i></a>
-                        <a href="" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"><i class=" fa-solid fa-xmark"></i></a>
-                    </div>
-                </div>
 
-                <!-- Bootstrap Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content user-form w-100">
-                            <div class="modal-header form-header text-center">
-                                <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+            {% for event in events %}
+            <div class="event card w-75 mx-auto" data-bs-toggle="collapse" id="event-collapse"
+                href="#collapse-{{ event.slug }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="card-body d-flex p-0 text-black">
+                    <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
+                        <div>
+                            {{ event.date | date:"d M y" }}
+                            <!-- <span>8 </span><span>Nov </span><span>22</span> -->
+                        </div>
+                    </div>
+                    <div class="container p-3">
+                        <h3 class="event-title d-inline fs-4">{{ event.title }}</h3>
+                        <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
+                        <div class="collapse" id="collapse-{{ event.slug }}">
+                            <div>
+                                <div>
+                                    <p class="card-text fs-5">{{ event.description | striptags }}</p>
+                                    <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button"
+                                            class="btn btn-lg">Book Now</button></a>
+                                </div>
+                                <div>
+                                    {% if user.is_superuser %}
+                                    <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button"
+                                            class="event-button ignore-collapse btn btn-warning"><i
+                                                class="fa-solid fa-pen-to-square"></i></button></a>
+
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </button>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <p class="fs-5">
-                                    Are you sure that you would like to cancel your booking?
-                                </p>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <form method="post" action="{% url 'myaccount:delete-booking' pk=booking.pk %}">{% csrf_token %}
-                                    {{ form }}
-                                    <button type="submit" value="confirm" class="btn btn-primary" name="delete-booking">Delete</button>
-                                </form>
-
-
-                            </div>
+                        </div>
+                        <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
+                            <p class="m-0 fs-5"><i class="fa-solid fa-euro-sign"></i> {{ event.price }}</p>
+                            <p class="m-0 fs-5"><i class="fa-solid fa-clock"></i> {{ event.time }}</p>
+                            <p class="m-0 fs-5"><i class="fa-solid fa-user"></i> 32/{{ event.capacity }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content user-form w-100">
+                        <div class="modal-header form-header text-center">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="fs-5">
+                                Are you sure that you would like to delete this event permanently? Remember that you can
+                                change the
+                                post to a draft in the edit menu to remove it from the events display.
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form method="post" action="{% url 'events:delete-event' slug=event.slug %}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <button type="submit" value="confirm" class="btn btn-primary">Delete</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Booking content for user -->
+        <div class="tab-pane fade" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab" tabindex="0">
+            <table id="user-table" class="display data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>First Name:</th>
+                        <th>Last Name:</th>
+                        <th>Username:</th>
+                        <th>Event:</th>
+                        <th>Booking Count:</th>
+                        <th>Modify:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.first_name }}</td>
+                        <td>{{ booking.last_name }}</td>
+                        <td>{{ booking.user }}</td>
+                        <td>{{ booking.event }}</td>
+                        <td>{{ booking.booking_count }}</td>
+                        <td>
+                            <a href="{% url 'myaccount:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
+                                    class="fa-solid fa-pen"></i></a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Bootstrap Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content user-form w-100">
+                                <div class="modal-header form-header text-center">
+                                    <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="fs-5">
+                                        Are you sure that you would like to cancel your booking?
+                                    </p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <form method="post" action="{% url 'myaccount:delete-booking' pk=booking.pk %}">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                        <button type="submit" value="confirm" class="btn btn-primary"
+                                            name="delete-booking">Delete</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Continuation of table after modal and loop -->
+                <tfoot>
+                    <tr>
+                        <th>First Name:</th>
+                        <th>Last Name:</th>
+                        <th>Username:</th>
+                        <th>Event:</th>
+                        <th>Booking Count:</th>
+                        <th>Modify:</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+        <!-- User info tab -->
+        <div class="text-black tab-pane fade" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab"
+            tabindex="0">
+            <table id="user-table" class="display data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Username:</th>
+                        <th>First Name:</th>
+                        <th>Last Name:</th>
+                        <th>Email</th>
+                        <th>Staff:</th>
+                        <th>Last Login:</th>
+                        <th>Modify:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.is_email }}</td>
+                        <td>{{ user.is_staff }}</td>
+                        <td>{{ user.last_login | date:"d/m/y"}}</td>
+                        <td> <a href="" class="text-black fs-5"><i class="fa-solid fa-pen"></i></a>
+                            <a href="" class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                <tfoot>
+                    <tr>
+                        <th>Username:</th>
+                        <th>First Name:</th>
+                        <th>Last Name:</th>
+                        <th>Email</th>
+                        <th>Staff:</th>
+                        <th>Last Login:</th>
+                        <th>Modify:</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Message tab -->
+        <div class="tab-pane fade" id="message-tab-pane" role="tabpanel" aria-labelledby="message-tab" tabindex="0">
+            <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3 w-25" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {% for message in messages %}
+                {% if forloop.counter == 0 %}
+                    <button class="nav-link active fs-5 p-5" id="v-pills-{{ message.message.id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab" aria-controls="v-pills-{{ message.id }}"aria-selected="true">{{ message.msg_subject }}</button>
+                {% else %}
+                    <button class="nav-link fs-5 p-5" id="v-pills-{{ message.message.id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab" aria-controls="v-pills-{{ message.id }}"aria-selected="true">{{ message.msg_subject }}</button>
+                {% endif %}
                 {% endfor %}
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                {% for message in messages %}
+                {% if forloop.counter == 0 %}
+
+                    <div class="card tab-pane fade show active grow-1" id="v-pills-{{ message.id }}" role="tabpanel" aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ message.msg_subject }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}/h6>
+                        <p class="card-text">{{ message.msg_content }}</p>
+                        <a href="#" class="card-link">Reply</a>
+                        <a href="#" class="card-link">Delete</a>
+                        </div>
+                    </div>
+
+                {% else %}
+                <div class="card tab-pane fade grow-1" id="v-pills-{{ message.id }}" role="tabpanel" aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ message.msg_subject }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}/h6>
+                    <p class="card-text">{{ message.msg_content }}</p>
+                    <a href="#" class="card-link">Reply</a>
+                    <a href="#" class="card-link">Delete</a>
+                    </div>
+                </div>                
+                {% endif %}
+                {% endfor %}
+                </div>
             </div>
         </div>
 
-        <!-- User list tab -->
-        <div class="text-black tab-pane fade p-5" id="user-tab-pane" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
-            <a href="">Change Password</a>
-        </div>
-            
-        <!-- Admin message tab -->
-        <div class="tab-pane fade" id="message-tab-pane" role="tabpanel" aria-labelledby="messages-tab">
-            
-        </div>
-    </div>
-
 </section>
-
 {% endblock %}
