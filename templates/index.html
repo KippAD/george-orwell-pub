@@ -48,7 +48,7 @@
                                         <a class="nav-link pr-5" aria-current="page" href="#">home</a>
                                     </li>
                                     <li class="nav-item me-3">
-                                        <a class="nav-link pr-5" href="{% url 'events' %}">events</a>
+                                        <a class="nav-link pr-5" href="{% url 'events:events' %}">events</a>
                                     </li>
                                     <li class="nav-item me-3">
                                         <a class="nav-link" aria-current="page" href="#">menu</a>
@@ -56,11 +56,11 @@
                                     <!-- Adjusts the account link text if user is admin -->
                                     {% if user.is_superuser %}
                                     <li class="nav-item me-3">
-                                        <a class="nav-link" href="{% url 'account' %}">admin</a>
+                                        <a class="nav-link" href="{% url 'admin' %}">admin</a>
                                     </li>
                                     {% else %}
                                     <li class="nav-item me-3">
-                                        <a class="nav-link" href="{% url 'account' %}">account</a>
+                                        <a class="nav-link" href="{% url 'myaccount:account' %}">account</a>
                                     </li>
                                     {% endif %}
                                     <!-- Adjusts the link to login/logout depending on user authentication -->
@@ -201,8 +201,8 @@
                     <p class="text-white fs-5">{{ event.description | striptags }}</p>
                     <p class="text-white fs-5">Date: {{ event.date }}</p>
                     <p class="text-white fs-5">Capacity: {{ event.capacity }}</p>
-                    <a href="{% url 'book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
-                    <a href="{% url 'events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
+                    <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
+                    <a href="{% url 'events:events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
                 </div>
             </div>
             {% endfor %}

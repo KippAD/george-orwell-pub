@@ -4,23 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Booking
 from .forms import BookingForm, ContactForm
-from events.views import HomePage, EventList, CreateEvent, UpdateEvent, DeleteEvent
-
-
-# class AccountPage(View):
-#     """
-#     Account page
-#     """
-#     template_name = "account.html"
-    
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['user'] = self.request.user
-#         return context
-
-#     def get_queryset(self):
-#         return Booking.objects.filter(user=self.request.user)
 
 
 class AccountPage(View):

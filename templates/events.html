@@ -8,7 +8,7 @@
     {% if user.is_superuser %}
 
     <div class="d-grid gap-2 col-6 mx-auto">
-        <a href="{% url 'create-event' %}"><button class="btn btn-primary" type="button">Create Event <i
+        <a href="{% url 'events:create-event' %}"><button class="btn btn-primary" type="button">Create Event <i
                     class="fa-solid fa-plus"></i></button></a>
     </div>
 
@@ -31,11 +31,11 @@
                         <div>
                             <div>
                                 <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                <a href="{% url 'book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
+                                <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
                             </div>
                             <div>
                                 {% if user.is_superuser %}
-                                    <a href="{% url 'update-event' slug=event.slug%}"><button type="button" class="event-button ignore-collapse btn btn-warning"><i
+                                    <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button" class="event-button ignore-collapse btn btn-warning"><i
                                             class="fa-solid fa-pen-to-square"></i></button></a>
 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <form method="post" action="{% url 'delete-event' slug=event.slug %}">{% csrf_token %}
+            <form method="post" action="{% url 'events:delete-event' slug=event.slug %}">{% csrf_token %}
                 {{ form }}
                 <button type="submit" value="confirm" class="btn btn-primary">Delete</button>
             </form>
