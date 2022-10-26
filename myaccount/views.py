@@ -7,7 +7,6 @@ from django.views import View
 from django.shortcuts import render, get_object_or_404
 
 
-
 class AccountPage(View):
     template_name = 'account.html'
     contact_form = ContactForm

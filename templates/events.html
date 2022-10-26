@@ -7,8 +7,8 @@
 
     {% if user.is_superuser %}
 
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <a href="{% url 'events:create-event' %}"><button class="btn btn-primary" type="button">Create Event <i
+    <div class="mx-auto">
+        <a href="{% url 'events:create-event' %}"><button class="btn btn-lg" type="button">Create Event <i
                     class="fa-solid fa-plus"></i></button></a>
     </div>
 
@@ -21,7 +21,6 @@
                 <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
                     <div>
                         {{ event.date | date:"d M y" }}
-                        <!-- <span>8 </span><span>Nov </span><span>22</span> -->
                     </div>
                 </div>
                 <div class="container p-3">
@@ -29,16 +28,16 @@
                     <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                     <div class="collapse" id="collapse-{{ event.slug }}">
                         <div>
-                            <div>
+                            <div class="d-inline">
                                 <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
+                                <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button" id="bookingBtn" class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
                             </div>
-                            <div>
+                            <div class="d-inline">
                                 {% if user.is_superuser %}
-                                    <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button" class="event-button ignore-collapse btn btn-warning"><i
+                                    <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button" class="event-button ignore-collapse btn btn-warning fs-5" data-bs-toggle="collapse" data-bs-target><i
                                             class="fa-solid fa-pen-to-square"></i></button></a>
 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <button type="button" class="btn btn-danger fs-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                     </button>
                                 {% endif %}

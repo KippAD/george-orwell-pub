@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
 from .models import Event
+from bookings.models import Booking
 from .forms import EventForm
 
 
@@ -29,7 +30,7 @@ class CreateEvent(generic.CreateView):
     model = Event
     template_name = "create-event.html"
     form_class = EventForm
-    success_url = "/events/"
+    success_url = reverse_lazy("events")
 
 
 class UpdateEvent(generic.UpdateView):
@@ -37,9 +38,9 @@ class UpdateEvent(generic.UpdateView):
     Updates event
     """
     model = Event
-    template_name = "create-event.html"
+    template_name = "edit-event.html"
     form_class = EventForm
-    success_url = "/events/"
+    success_url = reverse_lazy("events")
 
 
 class DeleteEvent(generic.DeleteView):
