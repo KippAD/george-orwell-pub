@@ -7,4 +7,3 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ('event', 'first_name', 'last_name', 'booking_count',)
 
-
