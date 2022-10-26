@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.views import generic, View
 from .models import Event
 from bookings.models import Booking
@@ -30,7 +30,9 @@ class CreateEvent(generic.CreateView):
     model = Event
     template_name = "create-event.html"
     form_class = EventForm
-    success_url = reverse_lazy("events")
+
+    def get_success_url(self):
+        return reverse("events:events")
 
 
 class UpdateEvent(generic.UpdateView):
@@ -40,7 +42,9 @@ class UpdateEvent(generic.UpdateView):
     model = Event
     template_name = "edit-event.html"
     form_class = EventForm
-    success_url = reverse_lazy("events")
+
+    def get_success_url(self):
+        return reverse("events:events")
 
 
 class DeleteEvent(generic.DeleteView):
@@ -48,4 +52,8 @@ class DeleteEvent(generic.DeleteView):
     Deletes event
     """
     model = Event
-    success_url = reverse_lazy("events")
+
+    def get_success_url(self):
+        return reverse("events:events")
+
+

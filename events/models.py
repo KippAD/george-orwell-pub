@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.template.defaultfilters import slugify
 
+# Post will ensure that the model is posted onto the events page
 POST = ((0, "Draft"), (1, "Post"))
 
 
@@ -22,6 +23,9 @@ class Event(models.Model):
             MinValueValidator(1)
         ]
     )
+
+    class Meta:
+        ordering = ["date"]
 
     def __str__(self):
         return self.title
