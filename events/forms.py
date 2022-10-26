@@ -18,6 +18,7 @@ class EventForm(forms.ModelForm):
             'post': forms.widgets.Select(attrs={'class': 'form-select' ' form-select-lg' ' fs-5'}),
             }
 
+
     def clean_date(self):
         date = self.cleaned_data['date']
         if date < datetime.date.today():

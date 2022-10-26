@@ -256,6 +256,14 @@ footer {
     background-color:rgb(232, 240, 254);
 }
 
+.errorlist {
+    color: red;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    list-style-type: square;
+    font-size: 1.5rem;
+}
+
 /* Accordion in events schedule */
 .events-section {
     min-height: 100vh;
