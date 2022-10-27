@@ -1,9 +1,10 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import Booking
 from .forms import BookingForm
+from django.http import HttpResponseRedirect
 
 
 class UpdateBooking(generic.UpdateView):
@@ -31,19 +32,42 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
     model = Booking
     template_name = "book-event.html"
     form_class = BookingForm
-    success_url = "/events/"
-    # Allow repeatable names for different events
-    # Only allow one booking per event per account
-    # Pre fill event from button clicked on
+
+    def get_success_url(self):
+        return reverse("events:events")
 
     # Ensures that total booking is less than capacity of event
     def form_valid(self, form):
+
+        user = self.request.user
+        event = form.instance.event
+
         total_bookings = sum(Booking.objects.values_list('booking_count', flat=True))
         booking = form.instance.booking_count
         capacity = form.instance.event.capacity
 
         if total_bookings <= capacity and booking <= (capacity - total_bookings):
-            form.instance.user = self.request.user
+            for b in Booking.objects.all():
+                if b.user == user and b.event == event:
+                    return HttpResponseRedirect(reverse('events:existing-booking'))
+
+            form.instance.user = user
             return super().form_valid(form)
+
         else:
-            print("Error")
+            return HttpResponseRedirect(reverse('events:event-full'))
+
+
+class BookingSuccessful(generic.TemplateView):
+    """Displays success page for booking form"""
+    template_name = "booking-successful.html"
+
+
+class ExistingBookingError(generic.TemplateView):
+    """Displays error page for booking form"""
+    template_name = "existing-booking-error.html"
+
+
+class FullEventError(generic.TemplateView):
+    """Displays error page for booking form"""
+    template_name = "event-full-error.html"

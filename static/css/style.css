@@ -194,6 +194,7 @@ footer {
 
 /* Custom form styles for allauth templates */
 .form-container {
+    min-height: 90vh;
     padding: 50px;
     display: flex;
     justify-content: center;

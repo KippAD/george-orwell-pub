@@ -13,4 +13,3 @@ class BookingForm(forms.ModelForm):
             'last_name': forms.widgets.TextInput(attrs={'placeholder': 'Enter your last name'}),
             'booking_count': forms.widgets.NumberInput(attrs={'placeholder': 'How many people are you booking for? (Max: 5)'}),
             }
-
