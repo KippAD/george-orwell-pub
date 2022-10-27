@@ -43,7 +43,6 @@
                     <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
                         <div>
                             {{ event.date | date:"d M y" }}
-                            <!-- <span>8 </span><span>Nov </span><span>22</span> -->
                         </div>
                     </div>
                     <div class="container p-3">
@@ -51,21 +50,24 @@
                         <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                         <div class="collapse" id="collapse-{{ event.slug }}">
                             <div>
-                                <div>
+                                <!-- Empty data bs target prevents collapsible from being triggered-->
+                                <div class="d-inline">
                                     <p class="card-text fs-5">{{ event.description | striptags }}</p>
                                     <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button"
-                                            class="btn btn-lg">Book Now</button></a>
+                                            class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
                                 </div>
-                                <div>
+                                <!-- Buttons only displayed if superuser is logged in  -->
+                                <div class="d-inline">
                                     {% if user.is_superuser %}
                                     <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button"
-                                            class="event-button ignore-collapse btn btn-warning"><i
+                                            class="event-button ignore-collapse btn btn-warning fs-5"
+                                            data-bs-toggle="collapse" data-bs-target><i
                                                 class="fa-solid fa-pen-to-square"></i></button></a>
-
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop">
-                                        <i class="fa-regular fa-circle-xmark"></i>
-                                    </button>
+                                    <!-- Anchor link without href prevents collapsible from being triggered -->
+                                    <a class="text-black" data-bs-toggle="collapse" data-bs-target><button type="button"
+                                            class="btn btn-danger fs-5" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">
+                                            <i class="fa-regular fa-circle-xmark"></i></a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -234,41 +236,48 @@
         <!-- Message tab -->
         <div class="tab-pane fade" id="message-tab-pane" role="tabpanel" aria-labelledby="message-tab" tabindex="0">
             <div class="d-flex align-items-start p-5">
-                <div class="nav flex-column nav-pills me-3 w-25" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                {% for message in messages %}
-                {% if forloop.counter == 0 %}
-                    <button class="nav-link active fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab" aria-controls="v-pills-{{ message.id }}"aria-selected="true">{{ message.msg_subject }}</button>
-                {% else %}
-                    <button class="nav-link fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab" aria-controls="v-pills-{{ message.id }}"aria-selected="true">{{ message.msg_subject }}</button>
-                {% endif %}
-                {% endfor %}
+                <div class="nav flex-column nav-pills me-3 w-25" id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    {% for message in messages %}
+                    {% if forloop.counter == 0 %}
+                    <button class="nav-link active fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab"
+                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab"
+                        aria-controls="v-pills-{{ message.id }}" aria-selected="true">{{ message.msg_subject }}</button>
+                    {% else %}
+                    <button class="nav-link fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab"
+                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab"
+                        aria-controls="v-pills-{{ message.id }}" aria-selected="true">{{ message.msg_subject }}</button>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
-                {% for message in messages %}
-                {% if forloop.counter == 0 %}
+                    {% for message in messages %}
+                    {% if forloop.counter == 0 %}
 
-                <div class="card tab-pane fade show active w-50" id="v-pills-{{ message.id }}" role="tabpanel" aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ message.msg_subject }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}</h6>
-                    <p class="card-text">{{ message.msg_content | striptags }}</p>
-                    <a href="#" class="card-link">Reply</a>
-                    <a href="#" class="card-link">Delete</a>
+                    <div class="card tab-pane fade show active w-50" id="v-pills-{{ message.id }}" role="tabpanel"
+                        aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ message.msg_subject }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}</h6>
+                            <p class="card-text">{{ message.msg_content | striptags }}</p>
+                            <a href="#" class="card-link">Reply</a>
+                            <a href="#" class="card-link">Delete</a>
+                        </div>
                     </div>
-                </div>
 
-                {% else %}
-                <div class="card tab-pane fade grow-1" id="v-pills-{{ message.id }}" role="tabpanel" aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ message.msg_subject }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}/h6>
-                    <p class="card-text">{{ message.msg_content }}</p>
-                    <a href="#" class="card-link">Reply</a>
-                    <a href="#" class="card-link">Delete</a>
+                    {% else %}
+                    <div class="card tab-pane fade grow-1" id="v-pills-{{ message.id }}" role="tabpanel"
+                        aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ message.msg_subject }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}/h6>
+                                <p class="card-text">{{ message.msg_content }}</p>
+                                <a href="#" class="card-link">Reply</a>
+                                <a href="#" class="card-link">Delete</a>
+                        </div>
                     </div>
-                </div>                
-                {% endif %}
-                {% endfor %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
