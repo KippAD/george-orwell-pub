@@ -1,1 +1,1 @@
-web: gunicorn orwellpub.Wsgi
+web: gunicorn orwellpub.wsgi:application
