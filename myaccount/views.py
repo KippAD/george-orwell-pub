@@ -1,10 +1,12 @@
 from .forms import ContactForm
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from bookings.models import Booking
 from events.models import Event
 from .models import Message
 from django.views import View
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
 
 
 class AccountPage(View):
@@ -29,7 +31,7 @@ class AccountPage(View):
             else:
                 self.contact_form = ContactForm()
 
-            return render(request, self.template_name, {'bookings': bookings, 'contact': contact_form, 'user': user, })
+            return render(request, 'account.html', {'bookings': bookings, 'contact': contact_form, 'user': user, })
 
 
 class AdminPage(View):
@@ -43,10 +45,17 @@ class AdminPage(View):
         users = User.objects.all()
         return render(
             request, 
-            self.template_name, 
+            'admin.html',
             {
                 'bookings': bookings,
                 'events': events,
                 'messages': messages,
                 'users': users,
                 })
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect("home")

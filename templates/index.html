@@ -245,12 +245,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <form method="post" action="">
-                {% csrf_token %}
-                {{ logout_form }}
-                <button type="submit" value="confirm" class="btn btn-primary">Sign-out</button>
-            </form>
-
+            <a href="{% url 'myaccount:logout' %}"><button type="submit" value="confirm" class="btn btn-primary">Sign-out</button></a>                
 </body>
 
 </html>
