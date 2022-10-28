@@ -10,7 +10,6 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 
 
-
 class AccountPage(View):
     template_name = 'account.html'
     contact_form = ContactForm
@@ -20,20 +19,6 @@ class AccountPage(View):
         bookings = Booking.objects.filter(user=user)
         contact = self.contact_form(None)
         return render(request, self.template_name, {'bookings': bookings, 'contact': contact, 'user': user, })
-
-    # def post(self, request, *args, **kwargs):
-    #     user = self.request.user
-    #     bookings = Booking.objects.filter(user=user)
-        
-    #     contact_form = ContactForm(data=request.POST)
-    #     if request.method == 'POST' and 'send-message' in request.POST:
-    #         if contact_form.is_valid():
-    #             contact_form.instance.msg_sender = self.request.user
-    #             contact_form.save()
-    #         else:
-    #             self.contact_form = ContactForm()
-
-    #         return render(request, 'account.html', {'bookings': bookings, 'contact': contact_form, 'user': user, })
 
 
 class AdminPage(View):
@@ -75,7 +60,7 @@ def contact(request):
             message = "\n".join(body.values())
 
             try:
-                send_mail(subject, message, 'georgeorwellpub@gmail.com', ['georgeorwellpub@gmail.com']) 
+                send_mail(subject, message, 'georgeorwellpub@outlook.com', ['georgeorwellpub@outlook.com']) 
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 

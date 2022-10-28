@@ -348,11 +348,17 @@ footer {
     color: white;
 }
 
+#booking-table_filter input,
+#booking-table_length select,
 #user-table_filter input,
 #user-table_length select {
     height: 25px;
 }
 
+#booking-table_filter label,
+#booking-table_length label, 
+#booking-table_info,
+#booking-table_paginate li
 #user-table_filter label,
 #user-table_length label, 
 #user-table_info,

@@ -166,8 +166,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_SES_REGION_NAME = 'us-east-2'
-AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
+AWS_SES_REGION_NAME = 'eu-west-2'
+AWS_SES_REGION_ENDPOINT = 'email.eu-west-2.amazonaws.com'
 
 # Email recipient
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS')

@@ -10,17 +10,17 @@
     </div>
 
     <ul class="nav nav-tabs text-center mt-5" id="bookingTab" role="tablist">
-        <li class="nav-item col-3" role="presentation">
+        <li class="nav-item col-4" role="presentation">
             <button class="nav-link active fs-5 w-100 text-black" id="event-tab" data-bs-toggle="tab"
                 data-bs-target="#event-tab-pane" type="button" role="tab" aria-controls="event-tab-pane"
                 aria-selected="true">Events</button>
         </li>
-        <li class="nav-item col-3" role="presentation">
+        <li class="nav-item col-4" role="presentation">
             <button class="nav-link fs-5 w-100 text-black" id="bookings-tab" data-bs-toggle="tab"
                 data-bs-target="#booking-tab-pane" type="button" role="tab" aria-controls="booking-tab-pane"
                 aria-selected="false">Bookings</button>
         </li>
-        <li class="nav-item col-3" role="presentation">
+        <li class="nav-item col-4" role="presentation">
             <button class="nav-link fs-5 w-100 text-black" id="user-tab" data-bs-toggle="tab"
                 data-bs-target="#user-tab-pane" type="button" role="tab" aria-controls="user-tab-panel"
                 aria-selected="false">Users</button>
@@ -61,7 +61,7 @@
                                     <!-- Anchor link without href prevents collapsible from being triggered -->
                                     <a class="text-black" data-bs-toggle="collapse" data-bs-target><button type="button"
                                             class="btn btn-danger fs-5" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">
+                                            data-bs-target="#eventModal">
                                             <i class="fa-regular fa-circle-xmark"></i></a>
                                     {% endif %}
                                 </div>
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Bootstrap Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="eventModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content user-form w-100">
@@ -135,12 +135,12 @@
                         <td>
                             <a href="{% url 'myaccount:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
                                     class="fa-solid fa-pen"></i></a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            <a href="" data-bs-toggle="modal" data-bs-target="#bookingModal"
                                 class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
                         </td>
                     </tr>
                     <!-- Bootstrap Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    <div class="modal fade" id="bookingModal" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content user-form w-100">
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="fs-5">
-                                        Are you sure that you would like to cancel your booking?
+                                        Are you sure that you would like to cancel this booking?
                                     </p>
 
                                 </div>
