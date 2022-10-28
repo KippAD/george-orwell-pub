@@ -5,6 +5,8 @@ from django.urls import reverse_lazy, reverse
 from .models import Booking
 from .forms import BookingForm
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 class UpdateBooking(generic.UpdateView):
@@ -49,6 +51,13 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
             for b in Booking.objects.all():
                 if b.user == user and b.event == event:
                     return HttpResponseRedirect(reverse('events:existing-booking'))
+
+            send_mail(
+                subject="Test Subject",
+                message="Test Email",
+                from_email=[settings.EMAIL_HOST_USER],
+                recipient_list=[settings.RECIPIENT_ADDRESS],
+            )
 
             form.instance.user = user
             return super().form_valid(form)
