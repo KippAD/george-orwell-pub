@@ -38,7 +38,6 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
 
     # Ensures that total booking is less than capacity of event
     def form_valid(self, form):
-
         user = self.request.user
         event = form.instance.event
 
@@ -54,7 +53,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
             form.instance.user = user
             return super().form_valid(form)
 
-        else:
+        elif total_bookings <= capacity and booking <= (capacity - total_bookings):
             return HttpResponseRedirect(reverse('events:event-full'))
 
 
