@@ -15,7 +15,7 @@ class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
     Updates event
     """
     model = Booking
-    template_name = "book-event.html"
+    template_name = "update-booking.html"
     form_class = BookingForm
     success_message = "Booking Updated!"
 

@@ -44,7 +44,7 @@ class UpdateEvent(SuccessMessageMixin, generic.UpdateView):
     Updates event
     """
     model = Event
-    template_name = "edit-event.html"
+    template_name = "update-event.html"
     form_class = EventForm
     success_message = "Event Updated!"
 
