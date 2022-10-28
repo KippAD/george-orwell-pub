@@ -3,6 +3,13 @@
 {% block content %}
 
 <section class="container account-section w-50">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="text-black">My Account</h2>
@@ -16,8 +23,9 @@
                 aria-selected="true">My Bookings</button>
         </li>
         <li class="nav-item col-6" role="presentation">
-            <button class="nav-link fs-5 w-100 text-black" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane"
-                type="button" role="tab" aria-controls="account-tab-pane" aria-selected="false">Account Info</button>
+            <button class="nav-link fs-5 w-100 text-black" id="account-tab" data-bs-toggle="tab"
+                data-bs-target="#account-tab-pane" type="button" role="tab" aria-controls="account-tab-pane"
+                aria-selected="false">Account Info</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -49,9 +57,10 @@
                         <h5>{{ booking.user }}</h5>
                     </div>
                     <div class="col-3">
-                        <a href="{% url 'myaccount:update-booking' pk=booking.pk %}" class="text-black fs-5"><i class="fa-solid fa-pen"></i></a>
-                        <a href="" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop" class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+                        <a href="{% url 'myaccount:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
+                                class="fa-solid fa-pen"></i></a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
                     </div>
                 </div>
 
@@ -76,7 +85,8 @@
                                 <form method="post" action="{% url 'myaccount:delete-booking' pk=booking.pk %}">
                                     {% csrf_token %}
                                     {{ form }}
-                                    <button type="submit" value="confirm" class="btn btn-primary" name="delete-booking">Delete</button>
+                                    <button type="submit" value="confirm" class="btn btn-primary"
+                                        name="delete-booking">Delete</button>
                                 </form>
 
 
@@ -89,7 +99,8 @@
         </div>
 
         <!-- Account info tab -->
-        <div class="text-black tab-pane fade p-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab" tabindex="0">
+        <div class="text-black tab-pane fade p-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab"
+            tabindex="0">
             <h4>Username: {{ user.username }}</h4>
             <h4>First Name: {{ user.first_name }}</h4>
             <h4>Second Name: {{ user.last_name }}</h4>
@@ -98,8 +109,8 @@
 
             <a href="{% url 'account_change_password' %}">Change Password</a>
         </div>
-            
-       
+
+
     </div>
 
 </section>

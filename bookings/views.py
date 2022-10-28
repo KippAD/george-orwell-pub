@@ -1,30 +1,41 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
 from .models import Booking
 from .forms import BookingForm
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from orwellpub import settings
 
 
-class UpdateBooking(generic.UpdateView):
+class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
     """
     Updates event
     """
     model = Booking
     template_name = "book-event.html"
     form_class = BookingForm
-    success_url = "/accounts/myaccount/"
+    success_message = "Booking Updated!"
+
+    def get_success_url(self):
+        return reverse("myaccount:account")
 
 
-class DeleteBooking(generic.DeleteView):
+class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
     """
     Deletes booking
     """
     model = Booking
-    success_url = reverse_lazy("account")
+    success_message = "Booking Deleted!"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeleteBooking, self).delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse("myaccount:account")
 
 
 class BookEvent(LoginRequiredMixin, generic.CreateView):
@@ -36,7 +47,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
     form_class = BookingForm
 
     def get_success_url(self):
-        return reverse("events:booking-success")
+        return reverse("events:booking-successful")
 
     # Ensures that total booking is less than capacity of event
     def form_valid(self, form):

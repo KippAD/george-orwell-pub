@@ -65,4 +65,5 @@ def contact(request):
                 return HttpResponse('Invalid header found.')
 
     form = ContactForm()
-    return render(request, "contact.html", {'form':form})
+    return render(request, "contact-success.html", {'form':form})
+

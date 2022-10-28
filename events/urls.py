@@ -10,7 +10,7 @@ urlpatterns = [
     path('book/<slug:slug>', BookEvent.as_view(), name='book-event'),
     path('error/existing-booking', ExistingBookingError.as_view(), name='existing-booking'),
     path('error/event-full', FullEventError.as_view(), name='event-full'),
-    path('booking-successful', BookingSuccessful.as_view(), name='booking-success'),
+    path('booking-successful', BookingSuccessful.as_view(), name='booking-successful'),
     path('update/<slug:slug>', views.UpdateEvent.as_view(), name='update-event'),
     path('delete/<slug:slug>', views.DeleteEvent.as_view(), name='delete-event'),
 ]

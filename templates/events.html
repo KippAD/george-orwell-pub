@@ -2,6 +2,13 @@
 {% block content %}
 
 <section class="events-section d-flex flex-column justify-content-start align-items-center">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <!-- Button only displayed if superuser is logged in  -->
     {% if user.is_superuser %}
     <div class="mx-auto">

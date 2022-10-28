@@ -5,6 +5,8 @@ from .models import Event
 from bookings.models import Booking
 from .forms import EventForm
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class HomePage(generic.ListView):
@@ -13,7 +15,6 @@ class HomePage(generic.ListView):
     """
     model = Event
     template_name = "index.html"
-    
 
 
 class EventList(generic.ListView):
@@ -32,28 +33,35 @@ class CreateEvent(generic.CreateView):
     model = Event
     template_name = "create-event.html"
     form_class = EventForm
+    success_message = "Event Created!"
 
     def get_success_url(self):
         return reverse("events:events")
 
 
-class UpdateEvent(generic.UpdateView):
+class UpdateEvent(SuccessMessageMixin, generic.UpdateView):
     """
     Updates event
     """
     model = Event
     template_name = "edit-event.html"
     form_class = EventForm
+    success_message = "Event Updated!"
 
     def get_success_url(self):
         return reverse("events:events")
 
 
-class DeleteEvent(generic.DeleteView):
+class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
     """
     Deletes event
     """
     model = Event
+    success_message = "Booking Deleted!"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeleteEvent, self).delete(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse("events:events")

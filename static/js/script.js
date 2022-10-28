@@ -12,4 +12,7 @@ $(document).ready(function () {
   // Sets height of contact form charfield
   $('#id_message').attr("rows", "5");
 
+  // Fades out messages
+  $('.alert').delay(3000).fadeOut(400);
+
 });
