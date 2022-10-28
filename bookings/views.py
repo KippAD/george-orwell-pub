@@ -6,7 +6,7 @@ from .models import Booking
 from .forms import BookingForm
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from django.conf import settings
+from orwellpub import settings
 
 
 class UpdateBooking(generic.UpdateView):
@@ -36,7 +36,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
     form_class = BookingForm
 
     def get_success_url(self):
-        return reverse("events:events")
+        return reverse("events:booking-success")
 
     # Ensures that total booking is less than capacity of event
     def form_valid(self, form):
@@ -52,13 +52,6 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
                 if b.user == user and b.event == event:
                     return HttpResponseRedirect(reverse('events:existing-booking'))
 
-            form.send_mail(
-                subject="Test Subject",
-                message="Test Email",
-                from_email=[settings.EMAIL_HOST_USER],
-                recipient_list=['kippad@hotmail.co.uk'],
-            )
-
             form.instance.user = user
             return super().form_valid(form)
 
@@ -68,7 +61,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
 
 class BookingSuccessful(generic.TemplateView):
     """Displays success page for booking form"""
-    template_name = "booking-successful.html"
+    template_name = "successful-booking.html"
 
 
 class ExistingBookingError(generic.TemplateView):

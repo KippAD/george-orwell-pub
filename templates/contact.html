@@ -1,14 +1,13 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-
 {% block content %}
 
+<!--Contact form-->
 <section class="form-container">
-    {% if user.is_authenticated %}
     <div class="user-form w-50">
         <div class="form-header ">
-            <h2 class="text-center w-75 mx-auto fs-4">Create an Event:</h2>
+            <h2 class="text-center w-75 mx-auto fs-4">Contact Us:</h2>
         </div>
+        <p>Feel free to contact us with any questions you may have and we'll get back to you as soon as we can!</p>
         <div class="p-5">
             <form method="post">
                 {% csrf_token %}
@@ -17,14 +16,6 @@
             </form>
         </div>
     </div>
-    {% else %}
-    <!-- Msg when url is accessed by a non super user -->
-    <div style="height: 80vh; padding: 30vh;">
-        <h2 class="text-black">We're sorry...</h2>
-        <p>This page can only be accessed by the site admin</p>
-    </div>
-
-    {% endif %}
 </section>
 
 {% endblock %}

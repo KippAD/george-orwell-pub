@@ -62,6 +62,10 @@
                                 <a class="nav-link" href="{% url 'myaccount:account' %}">account</a>
                             </li>
                             {% endif %}
+                            <!-- Contact form -->
+                            <li class="nav-item me-3">
+                                <a class="nav-link pr-5" href="{% url 'myaccount:contact' %}">contact</a>
+                            </li>
                             <!-- Adjusts the link to login/logout depending on user authentication -->
                             {% if user.is_authenticated %}
                             <li class="nav-item me-3">

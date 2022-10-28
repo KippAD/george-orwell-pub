@@ -3,7 +3,18 @@
 {% block content %}
 
 <section class="form-container">
-   <h1>We're sorry this event is full</h1>
+   <div class="user-feedback-card card text-center w-50">
+      <div class="card-header bg-b">
+        <h4 class="fs-2 text-white">Sorry!</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title fs-4">This event is full</h5>
+        <p class="card-text fs-5">Keep your eyes on the events page to see if any spaces open up</p>
+        <a href="{% url 'events:events' %}" class="btn btn-lg">Return to Events</a>
+      </div>
+      <div class="card-footer text-muted bg-b">
+      </div>
+    </div>
 </section>
 
 {% endblock %}

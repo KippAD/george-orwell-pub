@@ -23,3 +23,12 @@ class EventForm(forms.ModelForm):
         if date < datetime.date.today():
             raise forms.ValidationError("The event date cannot be in the past!")
         return date
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        for c in title:
+            if c.isdigit():
+                raise forms.ValidationError("No numbers!")
+        return title
+
+    

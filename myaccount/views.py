@@ -4,9 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from bookings.models import Booking
 from events.models import Event
-from .models import Message
 from django.views import View
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+
 
 
 class AccountPage(View):
@@ -19,26 +21,25 @@ class AccountPage(View):
         contact = self.contact_form(None)
         return render(request, self.template_name, {'bookings': bookings, 'contact': contact, 'user': user, })
 
-    def post(self, request, *args, **kwargs):
-        user = self.request.user
-        bookings = Booking.objects.filter(user=user)
+    # def post(self, request, *args, **kwargs):
+    #     user = self.request.user
+    #     bookings = Booking.objects.filter(user=user)
         
-        contact_form = ContactForm(data=request.POST)
-        if request.method == 'POST' and 'send-message' in request.POST:
-            if contact_form.is_valid():
-                contact_form.instance.msg_sender = self.request.user
-                contact_form.save()
-            else:
-                self.contact_form = ContactForm()
+    #     contact_form = ContactForm(data=request.POST)
+    #     if request.method == 'POST' and 'send-message' in request.POST:
+    #         if contact_form.is_valid():
+    #             contact_form.instance.msg_sender = self.request.user
+    #             contact_form.save()
+    #         else:
+    #             self.contact_form = ContactForm()
 
-            return render(request, 'account.html', {'bookings': bookings, 'contact': contact_form, 'user': user, })
+    #         return render(request, 'account.html', {'bookings': bookings, 'contact': contact_form, 'user': user, })
 
 
 class AdminPage(View):
     template_name = 'admin.html'
 
     def get(self, request):
-        messages = Message.objects.all()
         events = Event.objects.all()
         bookings = Booking.objects.all()
         User = get_user_model()
@@ -49,7 +50,6 @@ class AdminPage(View):
             {
                 'bookings': bookings,
                 'events': events,
-                'messages': messages,
                 'users': users,
                 })
 
@@ -59,3 +59,25 @@ def logout_view(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect("home")
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry" 
+            body = {
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'email': form.cleaned_data['email_address'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+
+            try:
+                send_mail(subject, message, 'georgeorwellpub@gmail.com', ['georgeorwellpub@gmail.com']) 
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
+    form = ContactForm()
+    return render(request, "contact.html", {'form':form})

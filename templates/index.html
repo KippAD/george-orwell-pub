@@ -61,6 +61,10 @@
                                         <a class="nav-link" href="{% url 'myaccount:account' %}">account</a>
                                     </li>
                                     {% endif %}
+                                    <!-- Contact form -->
+                                    <li class="nav-item me-3">
+                                        <a class="nav-link pr-5" href="{% url 'myaccount:contact' %}">contact</a>
+                                    </li>
                                     <!-- Adjusts the link to login/logout depending on user authentication -->
                                     {% if user.is_authenticated %}
                                     <li class="nav-item me-3">
@@ -90,7 +94,7 @@
                     <div class="container d-flex flex-column justify-content-center h-75 mt-5">
                         <div class="row text-center">
                             <h1 class="fs-1 mt-l-5 pt-l-5">The George Orwell</h1>
-                            <h2>Montpellier</h2>
+                            <h2 class="fs-2">Montpellier</h2>
                             <span class="golden-line mx-auto"></span>
                         </div>
                         <div class="row py-5 mb-5">

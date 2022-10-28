@@ -1,12 +1,10 @@
 from django import forms
-from .models import Message
+from django.conf import settings
+from django.core.mail import send_mail
 
 
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Message
-        fields = ('msg_subject', 'msg_content',)
-        labels = {
-            "msg_subject":  "Subject",
-            "msg_content": "Message Content",
-    }
+class ContactForm(forms.Form):
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    email_address = forms.EmailField(max_length=150)
+    message = forms.CharField(widget=forms.Textarea, max_length=2000,)

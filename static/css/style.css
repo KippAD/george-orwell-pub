@@ -27,6 +27,12 @@ p {
     font-weight: 700;
 }
 
+/* Custom Backgrounds */
+
+.bg-b {
+    background-color: #002043;
+}
+
 /* Overwrites bootstrap hover colors for button */
 .btn-lg:hover {
     background-color: transparent;
@@ -111,7 +117,6 @@ h1 {
 h2 {
     font-family: Chivo, sans-serif;
     color: white;
-    font-size: 5rem;
 }
 
 .golden-line {
@@ -217,7 +222,6 @@ footer {
     background-color: #002043;
 }
 
-.form-header > h1,
 .form-header > h2 {
     font-family: Montserrat;
     font-weight: 700;
@@ -333,32 +337,6 @@ footer {
     padding-left: 10px;
 }
 
-#contact-tab-pane input,
-#contact-tab-pane textarea {
-    width: 80%;
-    margin: 0 auto;
-    display: block;
-    padding: 7.5px;
-    border: none;
-    font-size: 2rem;
-    font-family: Istok web, sans-serif;
-    background-color:rgb(232, 240, 254);
-}
-
-#contact-tab-pane label {
-    margin-left: 10%;
-    font-size: 2rem;
-    font-family: Montserrat, sans-serif;
-    font-weight: 600;
-    border-bottom: 2px solid #D3B04D;
-    padding: 10px 20px 0 0;
-    margin-bottom: 10px;
-}
-
-#contact-tab-pane button {
-    margin-left: 10%;
-}
-
 /* Sorting tables */
 
 .data-table {
@@ -380,6 +358,13 @@ footer {
 #user-table_info,
 #user-table_paginate li {
     font-size: 1.5rem;
+}
+
+/* User feedback pages */
+
+.user-feedback-card {
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 /* Admin messages */

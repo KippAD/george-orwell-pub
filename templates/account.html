@@ -10,18 +10,14 @@
     </div>
 
     <ul class="nav nav-tabs text-center mt-5" id="profileTab" role="tablist">
-        <li class="nav-item col-4" role="presentation">
+        <li class="nav-item col-6" role="presentation">
             <button class="nav-link active fs-5 w-100 text-black" id="bookings-tab" data-bs-toggle="tab"
                 data-bs-target="#booking-tab-pane" type="button" role="tab" aria-controls="booking-tab-pane"
                 aria-selected="true">My Bookings</button>
         </li>
-        <li class="nav-item col-4" role="presentation">
+        <li class="nav-item col-6" role="presentation">
             <button class="nav-link fs-5 w-100 text-black" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane"
                 type="button" role="tab" aria-controls="account-tab-pane" aria-selected="false">Account Info</button>
-        </li>
-        <li class="nav-item col-4" role="presentation">
-            <button class="nav-link fs-5 w-100 text-black" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact Us</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -103,14 +99,7 @@
             <a href="{% url 'account_change_password' %}">Change Password</a>
         </div>
             
-        <!-- Contact admin tab -->
-        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            <form method="POST">
-                {% csrf_token %}
-                {{ contact.as_p }}
-                <button type="submit" value="confirm" class="btn btn-primary p-2 my-3" name="send-message">Send Message</button>
-            </form>
-        </div>
+       
     </div>
 
 </section>

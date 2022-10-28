@@ -4,6 +4,7 @@ from django.views import generic, View
 from .models import Event
 from bookings.models import Booking
 from .forms import EventForm
+from django.http import HttpResponseRedirect
 
 
 class HomePage(generic.ListView):
@@ -12,6 +13,7 @@ class HomePage(generic.ListView):
     """
     model = Event
     template_name = "index.html"
+    
 
 
 class EventList(generic.ListView):

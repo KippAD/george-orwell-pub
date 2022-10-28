@@ -15,7 +15,6 @@ class Event(models.Model):
     time = models.TimeField()
     price = models.IntegerField()
     date_created = models.DateTimeField(auto_now_add=True)
-    repeating = models.BooleanField(default=False)
     post = models.IntegerField(choices=POST, default=0)
     capacity = models.IntegerField(
         validators=[

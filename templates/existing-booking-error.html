@@ -3,7 +3,18 @@
 {% block content %}
 
 <section class="form-container">
-   <h1>We're sorry you have already made a booking on this account</h1>
+   <div class="user-feedback-card card text-center w-50">
+      <div class="card-header bg-b">
+        <h4 class="fs-2 text-white">Sorry!</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title fs-4">A booking has already made with this account</h5>
+        <p class="card-text fs-5">Unfortunately a user is limited to one booking per account</p>
+        <a href="{% url 'events:events' %}" class="btn btn-lg">Return to Events</a>
+      </div>
+      <div class="card-footer text-muted bg-b">
+      </div>
+    </div>
 </section>
 
 {% endblock %}

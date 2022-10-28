@@ -3,7 +3,18 @@
 {% block content %}
 
 <section class="form-container">
-   <h1>Congratulations</h1>
+   <div class="user-feedback-card card text-center w-50">
+      <div class="card-header bg-b">
+        <h4 class="fs-2 text-white">Booking Successful!</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title fs-4">Your booking for event is confirmed</h5>
+        <p class="card-text fs-5">To manage your bookings head to you account page</p>
+        <a href="{% url 'myaccount:account' %}" class="btn btn-lg">Your Account</a>
+      </div>
+      <div class="card-footer text-muted bg-b">
+      </div>
+    </div>
 </section>
 
 {% endblock %}

@@ -25,7 +25,10 @@ class BookingForm(forms.ModelForm):
             elif (' ' in c):
                 raise forms.ValidationError({'first_name': 'Your first name cannot include spaces!'})
             elif not c.isalnum():
-                raise forms.ValidationError({'first_name': 'Your first name cannot include special characters!'})
+                if c == "-":
+                    pass
+                else:
+                    raise forms.ValidationError({'first_name': 'Your first name cannot include special characters!'})
 
         for c in last_name:
             if c.isdigit():
@@ -33,7 +36,10 @@ class BookingForm(forms.ModelForm):
             elif (' ' in c):
                 raise forms.ValidationError({'last_name': 'Your first name cannot include spaces!'})
             elif not c.isalnum():
-                raise forms.ValidationError({'last_name': 'Your last name cannot include special characters!'})
+                if c == "-":
+                    pass
+                else:
+                    raise forms.ValidationError({'last_name': 'Your last name cannot include special characters!'})
 
         return clean_booking
 

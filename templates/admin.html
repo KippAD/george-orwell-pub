@@ -25,11 +25,6 @@
                 data-bs-target="#user-tab-pane" type="button" role="tab" aria-controls="user-tab-panel"
                 aria-selected="false">Users</button>
         </li>
-        <li class="nav-item col-3" role="presentation">
-            <button class="nav-link fs-5 w-100 text-black" id="message-tab" data-bs-toggle="tab"
-                data-bs-target="#message-tab-pane" type="button" role="tab" aria-controls="message-tab-pane"
-                aria-selected="false">Messages</button>
-        </li>
     </ul>
     <div class="tab-content" id="myTabContent">
 
@@ -232,55 +227,5 @@
                 </tfoot>
             </table>
         </div>
-
-        <!-- Message tab -->
-        <div class="tab-pane fade" id="message-tab-pane" role="tabpanel" aria-labelledby="message-tab" tabindex="0">
-            <div class="d-flex align-items-start p-5">
-                <div class="nav flex-column nav-pills me-3 w-25" id="v-pills-tab" role="tablist"
-                    aria-orientation="vertical">
-                    {% for message in messages %}
-                    {% if forloop.counter == 0 %}
-                    <button class="nav-link active fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab"
-                        aria-controls="v-pills-{{ message.id }}" aria-selected="true">{{ message.msg_subject }}</button>
-                    {% else %}
-                    <button class="nav-link fs-5 p-5 text-black" id="v-pills-{{ message.message.id }}-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-{{ message.id }}" type="button" role="tab"
-                        aria-controls="v-pills-{{ message.id }}" aria-selected="true">{{ message.msg_subject }}</button>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="tab-content" id="v-pills-tabContent">
-                    {% for message in messages %}
-                    {% if forloop.counter == 0 %}
-
-                    <div class="card tab-pane fade show active w-50" id="v-pills-{{ message.id }}" role="tabpanel"
-                        aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ message.msg_subject }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}</h6>
-                            <p class="card-text">{{ message.msg_content | striptags }}</p>
-                            <a href="#" class="card-link">Reply</a>
-                            <a href="#" class="card-link">Delete</a>
-                        </div>
-                    </div>
-
-                    {% else %}
-                    <div class="card tab-pane fade grow-1" id="v-pills-{{ message.id }}" role="tabpanel"
-                        aria-labelledby="v-pills-{{ message.id }}-tab" tabindex="0">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ message.msg_subject }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ message.msg_sender }}/h6>
-                                <p class="card-text">{{ message.msg_content }}</p>
-                                <a href="#" class="card-link">Reply</a>
-                                <a href="#" class="card-link">Delete</a>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
 </section>
 {% endblock %}
