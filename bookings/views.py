@@ -52,11 +52,11 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
                 if b.user == user and b.event == event:
                     return HttpResponseRedirect(reverse('events:existing-booking'))
 
-            send_mail(
+            form.send_mail(
                 subject="Test Subject",
                 message="Test Email",
                 from_email=[settings.EMAIL_HOST_USER],
-                recipient_list=[settings.RECIPIENT_ADDRESS],
+                recipient_list=['kippad@hotmail.co.uk'],
             )
 
             form.instance.user = user
