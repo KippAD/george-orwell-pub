@@ -4,11 +4,11 @@
 
 <section class="container account-section w-50">
     {% if messages %}
-        {% for message in messages %}
-            <div class="text-center fs-5 alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    <div class="text-center fs-5 alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
     <div class="row">
         <div class="col-12 text-center">
@@ -31,84 +31,123 @@
     <div class="tab-content" id="myTabContent">
 
         <!-- Booking content for user -->
-        <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
+        <div class="tab-pane fade show active py-5" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
             tabindex="0">
-            <div class="container p-5">
-                <div class="row bookings-titles p-3">
-                    <div class="col-3">
-                        <h4 class="m-0">Event:</h4>
+
+            {% if bookings is not defined %}
+
+            <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel"
+                    aria-labelledby="booking-tab" tabindex="0">
+
+                    <div class="pt-5 mt-5">
+                        <p class="fs-4 text-center">You currently have no bookings</p>
                     </div>
-                    <div class="col-3">
-                        <h4 class="m-0">Number of People:</h4>
-                    </div>
-                    <div class="col-3">
-                        <h4 class="m-0">Username:</h4>
-                    </div>
-                </div>
-                {% for booking in bookings %}
-                <div class="row bookings">
-                    <div class="col-3">
-                        <h5>{{ booking.event.title }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>{{ booking.booking_count }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>{{ booking.user }}</h5>
-                    </div>
-                    <div class="col-3">
-                        <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
-                                class="fa-solid fa-pen"></i></a>
-                        <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                            class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+
+                    <div class="w-50 mx-auto text-center">
+                        <a href="{% url 'events:events' %}"><button class="btn btn-lg">View Events</button></a>
+                        <a href="{% url 'myaccount:logout' %}"><button class="btn btn-lg">Sign Out</button></a>
                     </div>
                 </div>
 
-                <!-- Bootstrap Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content user-form w-100">
-                            <div class="modal-header form-header text-center">
-                                <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="fs-5">
-                                    Are you sure that you would like to cancel your booking?
-                                </p>
+            {% endif %}
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <form method="post" action="{% url 'bookings:delete-booking' pk=booking.pk %}">
-                                    {% csrf_token %}
-                                    {{ form }}
-                                    <button type="submit" value="confirm" class="btn btn-primary"
-                                        name="delete-booking">Delete</button>
-                                </form>
+            {% for booking in bookings %}
+            <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
+                tabindex="0">
+
+                <table class="table fs-5 mb-5">
+                    <thead class="bg-b text-white">
+                        <tr>
+                            <th>Booking Name:</th>
+                            <th>Event:</th>
+                            <th>Booking Count:</th>
+                            <th>User:</th>
+                            <th>Manage:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ booking.first_name }}{{ user.last_name }}</td>
+                            <td>{{ booking.event.title }}</td>
+                            <td>{{ booking.booking_count }}</td>
+                            <td>{{ booking.user }}</td>
+                            <td>
+                                <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
+                                        class="fa-solid fa-pen"></i></a>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                    class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{% url 'events:events' %}"><button class="btn btn-lg">View Events</button></a>
+                <a href="{% url 'myaccount:logout' %}"><button class="btn btn-lg">Sign Out</button></a>
+            </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content user-form w-100">
+                        <div class="modal-header form-header text-center">
+                            <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="fs-5">
+                                Are you sure that you would like to cancel your booking?
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form method="post" action="{% url 'bookings:delete-booking' pk=booking.pk %}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <button type="submit" value="confirm" class="btn btn-primary"
+                                    name="delete-booking">Delete</button>
+                            </form>
 
 
-                            </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
+    </div>
 
-        <!-- Account info tab -->
-        <div class="text-black tab-pane fade p-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab"
-            tabindex="0">
-            <h4>Username: {{ user.username }}</h4>
-            <h4>First Name: {{ user.first_name }}</h4>
-            <h4>Second Name: {{ user.last_name }}</h4>
-            <h4>Email: {{ user.email }}</h4>
-            <h4>Password: ***********</h4>
+    <!-- Account info tab -->
+    <div class="text-black tab-pane fade pt-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab"
+        tabindex="0">
 
-            <a href="{% url 'account_change_password' %}">Change Password</a>
-        </div>
+        <table class="table fs-5">
+            <thead class="bg-b text-white">
+                <tr>
+                    <th>Username:</th>
+                    <th>First Name:</th>
+                    <th>Last Name:</th>
+                    <th>Email:</th>
+                    <th>Password:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>**********</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="fs-5">You can changed your password yourself, but for other account changes send us an email and
+            we will complete them for you:</p>
+        <a href="{% url 'account_change_password' %}"><button class="btn btn-lg">Change Password</button></a>
+        <a href="{% url 'myaccount:contact' %}"><button class="btn btn-lg">Contact Us</button></a>
+    </div>
 
 
     </div>

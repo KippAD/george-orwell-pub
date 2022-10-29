@@ -19,16 +19,24 @@
     <!-- Data table plugin -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css" />
 
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   
+
 </head>
 
 <body class="d-flex flex-column h-100">
 
     <header>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
 
         <div class="container-fluid p-0 fixed-top bg-white">
 
@@ -69,7 +77,8 @@
                             <!-- Adjusts the link to login/logout depending on user authentication -->
                             {% if user.is_authenticated %}
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="{% url 'account_logout' %}" data-bs-toggle="modal" data-bs-target="#signOutModal">sign-out</a>
+                                <a class="nav-link" href="{% url 'account_logout' %}" data-bs-toggle="modal"
+                                    data-bs-target="#signOutModal">sign-out</a>
                             </li>
                             {% else %}
                             <li class="nav-item me-3">
@@ -88,9 +97,11 @@
                     </div>
 
                     <div id="socialMedia" class="col-6 col-lg-2 text-end social-media">
-                        <a class="d-inline-block ms-2" aria-current="page" href="#"><i class="fa-brands fa-square-twitter"></i></a>
+                        <a class="d-inline-block ms-2" aria-current="page" href="#"><i
+                                class="fa-brands fa-square-twitter"></i></a>
                         <a class="d-inline-block" href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                        <a class="d-inline-block" aria-current="page" href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                        <a class="d-inline-block" aria-current="page" href="#"><i
+                                class="fa-brands fa-square-instagram"></i></a>
                     </div>
 
                 </div>
@@ -101,12 +112,14 @@
     </header>
 
     {% block content %}
-        <!-- All other content Goes here -->
+    <!-- All other content Goes here -->
     {% endblock content %}
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 d-flex align-items-center justify-content-end">
-        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5"><p class="mb-0">Designed by Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p></a>
+        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5">
+            <p class="mb-0">Designed by Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p>
+        </a>
         <p class="text-white fs-5 text-end me-5 mb-0">Animal Farm Co. <i class="fa-regular fa-copyright"></i></p>
     </footer>
 
@@ -116,22 +129,24 @@
     </script>
 
     <!-- Sign out bootstrap Modal -->
-    <div class="modal fade" id="signOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signOutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="signOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="signOutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content user-form w-100">
-            <div class="modal-header form-header text-center">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <p class="fs-5">
-                Are you sure that you want to log out?
-            </p>
+            <div class="modal-content user-form w-100">
+                <div class="modal-header form-header text-center">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fs-5">
+                        Are you sure that you want to log out?
+                    </p>
 
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="{% url 'myaccount:logout' %}"><button type="submit" value="confirm" class="btn btn-primary">Sign-out</button></a>    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'myaccount:logout' %}"><button type="submit" value="confirm"
+                            class="btn btn-primary">Sign-out</button></a>
 </body>
 
 </html>
