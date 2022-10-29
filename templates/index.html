@@ -200,7 +200,7 @@
                     <p class="text-white fs-5">{{ event.description | striptags }}</p>
                     <p class="text-white fs-5">Date: {{ event.date }}</p>
                     <p class="text-white fs-5">Capacity: {{ event.capacity }}</p>
-                    <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button" class="btn btn-lg">Book Now</button></a>
+                    <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg">Book Now</button></a>
                     <a href="{% url 'events:events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
                 </div>
             </div>

@@ -55,7 +55,7 @@
                                 <!-- Empty data bs target prevents collapsible from being triggered-->
                                 <div class="d-inline">
                                     <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                    <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button"
+                                    <a href="{% url 'bookings:book-event' %}"><button type="button"
                                             class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
                                 </div>
                                 <!-- Buttons only displayed if superuser is logged in  -->
@@ -140,7 +140,7 @@
                         <td>{{ booking.event }}</td>
                         <td>{{ booking.booking_count }}</td>
                         <td>
-                            <a href="{% url 'myaccount:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
+                            <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
                                     class="fa-solid fa-pen"></i></a>
                             <a href="" data-bs-toggle="modal" data-bs-target="#bookingModal"
                                 class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
@@ -165,7 +165,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <form method="post" action="{% url 'myaccount:delete-booking' pk=booking.pk %}">
+                                    <form method="post" action="{% url 'bookings:delete-booking' pk=booking.pk %}">
                                         {% csrf_token %}
                                         {{ form }}
                                         <button type="submit" value="confirm" class="btn btn-primary"

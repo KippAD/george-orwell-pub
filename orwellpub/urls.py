@@ -10,4 +10,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('events/', include('events.urls', namespace='events')),
     path('myaccount/', include('myaccount.urls', namespace='myaccount')),
+    path('bookings/', include('bookings.urls', namespace='bookings')),
 ]

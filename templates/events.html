@@ -34,7 +34,7 @@
                     <div>
                         <div class="d-inline">
                             <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                            <a href="{% url 'events:book-event' slug=event.slug %}"><button type="button"
+                            <a href="{% url 'bookings:book-event' %}"><button type="button"
                                     id="bookingBtn" class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book
                                     Now</button></a>
                         </div>
