@@ -10,34 +10,6 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 
 
-class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
-    """
-    Updates event
-    """
-    model = Booking
-    template_name = "update-booking.html"
-    form_class = BookingForm
-    success_message = "Booking Updated!"
-
-    def get_success_url(self):
-        return reverse("myaccount:account")
-
-
-class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
-    """
-    Deletes booking
-    """
-    model = Booking
-    success_message = "Booking Deleted!"
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super(DeleteBooking, self).delete(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse("myaccount:account")
-
-
 class BookEvent(LoginRequiredMixin, generic.CreateView):
     """
     Books event for user
@@ -67,6 +39,42 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
             else:
                 form.instance.user = user
                 return super().form_valid(form)
+
+
+class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
+    """
+    Updates event
+    """
+    model = Booking
+    template_name = "update-booking.html"
+    form_class = BookingForm
+    success_message = "Booking Updated!"
+
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse("myaccount:admin")
+        else:
+            return reverse("myaccount:account")
+
+
+class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
+    """
+    Deletes booking
+    """
+    model = Booking
+    success_message = "Booking Deleted!"
+    template_name = 'confirm-booking-deletion.html'
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeleteBooking, self).delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse("myaccount:admin")
+        else:
+            return reverse("myaccount:account")
+
 
 
 class BookingSuccessful(generic.TemplateView):

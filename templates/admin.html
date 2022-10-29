@@ -4,15 +4,16 @@
 
 <section class="container account-section w-">
     {% if messages %}
-        {% for message in messages %}
-            <div class="text-center fs-5 alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    <div class="text-center fs-5 alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
+
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="text-black">Admin</h2>
+            <h2 class="text-black fs-3"><strong>Admin</strong></h2>
         </div>
     </div>
 
@@ -38,6 +39,11 @@
         <div class="tab-pane fade show active" id="event-tab-pane" role="tabpanel" aria-labelledby="event-tab"
             tabindex="0">
 
+            <div class="mx-auto pt-5 text-center">
+                <a href="{% url 'events:create-event' %}"><button class="btn btn-lg" type="button">Create Event <i
+                            class="fa-solid fa-plus"></i></button></a>
+            </div>
+
             {% for event in events %}
             <div class="event card w-75 mx-auto" data-bs-toggle="collapse" id="event-collapse"
                 href="#collapse-{{ event.slug }}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -52,26 +58,24 @@
                         <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                         <div class="collapse" id="collapse-{{ event.slug }}">
                             <div>
-                                <!-- Empty data bs target prevents collapsible from being triggered-->
+                                <!-- Empty data bs target prevents collapsible from being triggered -->
                                 <div class="d-inline">
                                     <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                    <a href="{% url 'bookings:book-event' %}"><button type="button"
-                                            class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
+                                    <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg"
+                                            data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
                                 </div>
                                 <!-- Buttons only displayed if superuser is logged in  -->
                                 <div class="d-inline">
-                                    {% if user.is_superuser %}
-                                    <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button"
-                                            class="event-button ignore-collapse btn btn-warning fs-5"
+                                    <a href="{% url 'events:update-event' slug=event.slug%}">
+                                        <button type="button" class="event-button ignore-collapse btn btn-warning fs-5"
                                             data-bs-toggle="collapse" data-bs-target><i
                                                 class="fa-solid fa-pen-to-square"></i></button></a>
                                     <!-- Anchor link without href prevents collapsible from being triggered -->
-                                    <a class="text-black" data-bs-toggle="collapse" data-bs-target><button type="button"
-                                            class="btn btn-danger fs-5" data-bs-toggle="modal"
-                                            data-bs-target="#eventModal">
+                                    <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black">
+                                        <button type="button" class="btn btn-danger fs-5" data-bs-toggle="collapse" data-bs-target>
                                             <i class="fa-regular fa-circle-xmark"></i></a>
-                                    {% endif %}
                                 </div>
+
                             </div>
                         </div>
                         <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
@@ -82,38 +86,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Bootstrap Modal -->
-            <div class="modal fade" id="eventModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content user-form w-100">
-                        <div class="modal-header form-header text-center">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="fs-5">
-                                Are you sure that you would like to delete this event permanently? Remember that you can
-                                change the
-                                post to a draft in the edit menu to remove it from the events display.
-                            </p>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form method="post" action="{% url 'events:delete-event' slug=event.slug %}">
-                                {% csrf_token %}
-                                {{ form }}
-                                <button type="submit" value="confirm" class="btn btn-primary">Delete</button>
-                            </form>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             {% endfor %}
 
         </div>
@@ -142,41 +114,11 @@
                         <td>
                             <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
                                     class="fa-solid fa-pen"></i></a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#bookingModal"
+                            <a href="{% url 'bookings:delete-booking' pk=booking.pk %}"
                                 class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
                         </td>
                     </tr>
-                    <!-- Bootstrap Modal -->
-                    <div class="modal fade" id="bookingModal" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content user-form w-100">
-                                <div class="modal-header form-header text-center">
-                                    <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="fs-5">
-                                        Are you sure that you would like to cancel this booking?
-                                    </p>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <form method="post" action="{% url 'bookings:delete-booking' pk=booking.pk %}">
-                                        {% csrf_token %}
-                                        {{ form }}
-                                        <button type="submit" value="confirm" class="btn btn-primary"
-                                            name="delete-booking">Delete</button>
-                                    </form>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     {% endfor %}
                     <!-- Continuation of table after modal and loop -->
                 <tfoot>
@@ -217,8 +159,8 @@
                         <td>{{ user.is_email }}</td>
                         <td>{{ user.is_staff }}</td>
                         <td>{{ user.last_login | date:"d/m/y"}}</td>
-                        <td> <a href="" class="text-black fs-5"><i class="fa-solid fa-pen"></i></a>
-                            <a href="" class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a></td>
+                        <td> <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a></td>
                     </tr>
                     {% endfor %}
                 <tfoot>

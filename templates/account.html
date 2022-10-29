@@ -60,38 +60,9 @@
                             <td>
                                 <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
                                         class="fa-solid fa-pen"></i></a>
-                                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                    class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+                                <a href="{% url 'bookings:delete-booking' pk=booking.pk %}" class="text-black fs-5"><i class=" fa-solid fa-xmark"></i></i></a>
                             </td>
                         </tr>
-                        <!-- Bootstrap Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content user-form w-100">
-                                    <div class="modal-header form-header text-center">
-                                        <h2 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p class="fs-5">
-                                            Are you sure that you would like to cancel your booking?
-                                        </p>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <form method="post" action="{% url 'bookings:delete-booking' pk=booking.pk %}">
-                                            {% csrf_token %}
-                                            {{ form }}
-                                            <button type="submit" value="confirm" class="btn btn-primary"
-                                                name="delete-booking">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div> 
                             {% endfor %}
                     </tbody>
                 </table>

@@ -70,7 +70,7 @@ class UpdateEvent(SuccessMessageMixin, generic.UpdateView):
     success_message = "Event Updated!"
 
     def get_success_url(self):
-        return reverse("events:events")
+        return reverse("myaccount:admin")
 
 
 class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
@@ -78,6 +78,7 @@ class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
     Deletes event
     """
     model = Event
+    template_name = "confirm-event-deletion.html"
     success_message = "Booking Deleted!"
 
     def delete(self, request, *args, **kwargs):
@@ -85,6 +86,6 @@ class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
         return super(DeleteEvent, self).delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse("events:events")
+        return reverse("myaccount:admin")
 
 
