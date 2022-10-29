@@ -243,6 +243,7 @@ footer {
     border: 2px solid #D3B04D;
     border-radius: 5px;
     margin-top: 10px;
+    padding: 0 10px;
 }
 
 .user-form label, 
@@ -268,6 +269,21 @@ footer {
     font-weight: 700;
     list-style-type: square;
     font-size: 1.5rem;
+}
+
+#id_remember {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+}
+
+a[class="button secondaryAction"],
+a[href="/accounts/password/reset/"] {
+    font-size: 1.8rem;
 }
 
 /* Accordion in events schedule */

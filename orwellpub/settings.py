@@ -171,3 +171,7 @@ AWS_SES_REGION_ENDPOINT = 'email.eu-west-2.amazonaws.com'
 
 # Email recipient
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS')
+
+# Allauth sign up configuration
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True

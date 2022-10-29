@@ -60,10 +60,11 @@ def contact(request):
             message = "\n".join(body.values())
 
             try:
-                send_mail(subject, message, 'georgeorwellpub@outlook.com', ['georgeorwellpub@outlook.com']) 
+                send_mail(subject, message, 'georgeorwellpub@outlook.com', ['georgeorwellpub@outlook.com'])
+                return render(request, "contact-success.html") 
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 
     form = ContactForm()
-    return render(request, "contact-success.html", {'form':form})
+    return render(request, "contact.html", {'form':form})
 
