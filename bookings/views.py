@@ -47,7 +47,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
     form_class = BookingForm
 
     def get_success_url(self):
-        return reverse("events:booking-successful")
+        return reverse("bookings:booking-successful")
 
     # Ensures that total booking is less than capacity of event
     def form_valid(self, form):
@@ -58,16 +58,15 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
         booking = form.instance.booking_count
         capacity = form.instance.event.capacity
 
-        if total_bookings <= capacity and booking <= (capacity - total_bookings):
-            for b in Booking.objects.all():
-                if b.user == user and b.event == event:
-                    return HttpResponseRedirect(reverse('events:existing-booking'))
+        if booking > (capacity - total_bookings):
+            return HttpResponseRedirect(reverse('bookings:event-full')) 
 
-            form.instance.user = user
-            return super().form_valid(form)
-
-        elif total_bookings <= capacity and booking <= (capacity - total_bookings):
-            return HttpResponseRedirect(reverse('events:event-full'))
+        for b in Booking.objects.all():
+            if b.user == user and b.event == event:
+                return HttpResponseRedirect(reverse('bookings:existing-booking'))
+            else:
+                form.instance.user = user
+                return super().form_valid(form)
 
 
 class BookingSuccessful(generic.TemplateView):

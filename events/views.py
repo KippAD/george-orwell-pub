@@ -17,13 +17,34 @@ class HomePage(generic.ListView):
     template_name = "index.html"
 
 
-class EventList(generic.ListView):
-    """
-    Renders the events schedule list
-    """
-    model = Event
-    template_name = "events.html"
-    paginate_by = 6
+class EventPage(View):
+    template_name = 'events.html'
+
+    def get(self, request):
+        events_obj = Event.objects.all()
+        events = []
+
+        for event in events_obj:
+            booking_count = sum(Booking.objects.filter(event=event).values_list('booking_count', flat=True))
+
+            new_dict = {
+                "date": event.date,
+                "title": event.title,
+                "desc": event.description,
+                "price": event.price,
+                "time": event.time,
+                "capacity": event.capacity,
+                "slug": event.slug,
+                "count": booking_count,
+            }
+            events.append(new_dict)
+
+        return render(
+            request,
+            'events.html',
+            {
+                'events': events,
+                })
 
 
 class CreateEvent(generic.CreateView):

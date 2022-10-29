@@ -8,9 +8,13 @@
         <h4 class="fs-2 text-white">Booking Successful!</h4>
       </div>
       <div class="card-body">
-        <h5 class="card-title fs-4">Your booking for event is confirmed</h5>
+        <h5 class="card-title fs-4">Your booking is confirmed</h5>
         <p class="card-text fs-5">To manage your bookings head to you account page</p>
+        {% if user.is_superuser %}
+        <a href="{% url 'myaccount:admin' %}" class="btn btn-lg">Admin Panel</a>
+        {% else %}
         <a href="{% url 'myaccount:account' %}" class="btn btn-lg">Your Account</a>
+        {% endif %}
       </div>
       <div class="card-footer text-muted bg-b">
       </div>

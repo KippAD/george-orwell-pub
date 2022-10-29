@@ -18,3 +18,4 @@ class Booking(models.Model):
             MinValueValidator(1)
         ]
     )
+    
