@@ -22,14 +22,22 @@
     <div class="event card" data-bs-toggle="collapse" id="event-collapse" href="#collapse-{{ event.slug }}"
         role="button" aria-expanded="false" aria-controls="collapseExample">
         <div class="card-body d-flex p-0 text-black">
-            <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
-                <div>
+            <div class="event-date d-none d-md-flex justify-content-center align-items-center fs-4 p-2 text-white">
+                <div id="date-text">
                     {{ event.date | date:"d M y" }}
                 </div>
             </div>
             <div class="container p-3">
-                <h3 class="event-title d-inline fs-4">{{ event.title }}</h3>
-                <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
+                <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
+                <!-- Date for smaller devices -->
+                <div class="event-small container-fluid d-block d-md-none">
+                    <div class="row">
+                        <p class=" offset-3 col-6 fs-5 pt-3 mt-4 small-date">{{ event.date | date:"d M y"}}</p>
+                        <div class=" col-3 w-25 event-arrow my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
+                    </div>
+                </div>
+                <!-- Address hidden on smaller devided -->
+                <p class="d-none event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                 <div class="collapse" id="collapse-{{ event.slug }}">
                     <div>
                         <div class="d-inline">

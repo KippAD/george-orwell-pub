@@ -32,7 +32,7 @@
                 <div id="hero-overlay" class="h-100">
 
                     <nav id="homeNav" class="navbar navbar-expand-lg">
-                        <div class="container p-5 w-70">
+                        <div class="container p-5">
 
                             <!-- Collapse toggle -->
                             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
@@ -68,7 +68,7 @@
                                     <!-- Adjusts the link to login/logout depending on user authentication -->
                                     {% if user.is_authenticated %}
                                     <li class="nav-item me-3">
-                                        <a class="nav-link" href="{% url 'account_logout' %}" data-bs-toggle="modal" data-bs-target="#signOutModal">sign-out</a>
+                                        <a class="nav-link" href="{% url 'account_logout' %}" data-bs-toggle="modal" data-bs-target="#signOutModal">logout</a>
                                     </li>
                                     {% else %}
                                     <li class="nav-item me-3">
@@ -78,7 +78,7 @@
                                 </ul>
                             </div>
 
-                            <div id="socialMedia" class="col-6 col-lg-2 text-end social-media">
+                            <div id="socialMedia" class="col-6 col-lg-3 text-end social-media">
                                 <a class="d-inline-block" aria-current="page" href="#"><i
                                         class="fa-brands fa-square-twitter"></i></a>
                                 <a class="d-inline-block" href="#"><i class="fa-brands fa-square-facebook"></i></a>
@@ -120,7 +120,7 @@
         <div class="row">
             <div class="py-5 col">
                 <div id="about-text" class="w-50 mx-auto">
-                    <h2 class="subheading">About Us</h2>
+                    <h2 class="subheading fs-3">About Us</h2>
                     <span class="w-75 golden-line"></span>
 
                     <p class="fs-5 py-2 text-white">Welcome to the George Orwell. We are an English styled pub based in
@@ -136,16 +136,16 @@
     </div>
 
     <!-- Card panels section -->
-    <div class="container-fluid p-5">
+    <div id="cards-section" class="container-fluid p-5">
 
         <div class="row w-75 mx-auto">
-            <h2 class="text-black subheading">What We Do</h2>
+            <h2 class="text-black subheading fs-3">Our Offer</h2>
             <span class="w-50 golden-line mb-5"></span>
         </div>
 
         <div class="row h-100 justify-content-center">
 
-            <div class="col-9 col-lg-3 mb-5">
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 mb-5">
                 <div class="card h-100">
                     <div class="card-img"
                         style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831152/George%20Orwell%20Pub/beer-tap_k598in.jpg');">
@@ -159,7 +159,7 @@
                 </div>
             </div>
 
-            <div class="col-9 col-lg-3 mb-5">
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 mb-5">
                 <div class="card h-100">
                     <div class="card-img"
                         style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/burger_siyzit.jpg');">
@@ -173,7 +173,7 @@
                 </div>
             </div>
 
-            <div class="col-9 col-lg-3 mb-5">
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 mb-5">
                 <div class="card h-100">
                     <div class="card-img"
                         style="background-image: url('https://res.cloudinary.com/dn8zjehza/image/upload/v1665831151/George%20Orwell%20Pub/cheers_nb8tan.jpg');">
@@ -192,16 +192,17 @@
 
     <!-- Events carousel from bootstrap -->
     <div id="carouselEvent" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner container-fluid">
             {% for event in object_list %}
             <div class="carousel-item active d-flex justify-content-center align-items-center">
-                <div id="event-carousel" class="w-50 h-50 text-center p-5">
-                    <h2>{{ event.title }}</h2>
-                    <p class="text-white fs-5">{{ event.description | striptags }}</p>
+                <div id="event-carousel" class="w-50 h-50 text-center d-flex  flex-column justify-content-center align-items-center">
+                    <h2 class="fs-3">{{ event.title }}</h2>
                     <p class="text-white fs-5">Date: {{ event.date }}</p>
-                    <p class="text-white fs-5">Capacity: {{ event.capacity }}</p>
-                    <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg">Book Now</button></a>
-                    <a href="{% url 'events:events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
+                    <p class="text-white fs-5">Price: {{ event.price }}</p>
+                    <div>
+                        <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg">Book Now</button></a>
+                        <a href="{% url 'events:events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -218,7 +219,7 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 d-flex align-items-center justify-content-end">
-        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5"><p class="mb-0">Designed by Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p></a>
+        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5" target="_blank"><p class="mb-0">Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p></a>
         <p class="text-white fs-5 text-end me-5 mb-0">Animal Farm Co. <i class="fa-regular fa-copyright"></i></p>
     </footer>
 
