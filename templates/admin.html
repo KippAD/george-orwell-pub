@@ -44,54 +44,69 @@
                             class="fa-solid fa-plus"></i></button></a>
             </div>
 
-            {% for event in events %}
-            <div class="event card w-75 mx-auto" data-bs-toggle="collapse" id="event-collapse"
-                href="#collapse-{{ event.slug }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="card-body d-flex p-0 text-black">
-                    <div class="event-date d-flex justify-content-center align-items-center fs-4 p-2 text-white">
-                        <div>
-                            {{ event.date | date:"d M y" }}
-                        </div>
+            <!-- Renders collapsible elements of events -->
+    {% for event in events %}
+    <div class="event card mx-auto" data-bs-toggle="collapse" id="event-collapse" href="#collapse-{{ event.slug }}"
+        role="button" aria-expanded="false" aria-controls="collapseExample">
+        <div class="card-body d-flex p-0 text-black">
+            <div class="event-date d-none d-md-flex justify-content-center align-items-center fs-4 p-2 text-white">
+                <div id="date-text">
+                    {{ event.date | date:"d M y" }}
+                </div>
+            </div>
+            <div class="container p-3 p-xl-4">
+                <div class="d-block d-md-flex justify-content-between">
+                    <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
+                    <div class="col-3 text-end pe-3 my-auto fs-4 d-none d-md-inline-block"><i class="fa-solid fa-chevron-up"></i></div>
+                </div>
+                <!-- Date for smaller devices (disappears on larger viewports)  -->
+                <div class="event-small container-fluid d-block d-md-none">
+                    <div class="row">
+                        <p class=" offset-3 col-6 fs-5 pt-3 mt-4 small-date">{{ event.date | date:"d M y"}}</p>
+                        <div class=" col-3 w-25 my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
                     </div>
-                    <div class="container p-3">
-                        <h3 class="event-title d-inline fs-4">{{ event.title }}</h3>
-                        <p class="event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
-                        <div class="collapse" id="collapse-{{ event.slug }}">
-                            <div>
-                                <!-- Empty data bs target prevents collapsible from being triggered -->
-                                <div class="d-inline">
-                                    <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                    <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg"
-                                            data-bs-toggle="collapse" data-bs-target>Book Now</button></a>
-                                </div>
-                                <!-- Buttons only displayed if superuser is logged in  -->
-                                <div class="d-inline">
-                                    <a href="{% url 'events:update-event' slug=event.slug%}">
-                                        <button type="button" class="event-button ignore-collapse btn btn-warning fs-5"
-                                            data-bs-toggle="collapse" data-bs-target><i
-                                                class="fa-solid fa-pen-to-square"></i></button></a>
-                                    <!-- Anchor link without href prevents collapsible from being triggered -->
-                                    <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black">
-                                        <button type="button" class="btn btn-danger fs-5" data-bs-toggle="collapse" data-bs-target>
-                                            <i class="fa-regular fa-circle-xmark"></i></a>
-                                </div>
-
-                            </div>
+                </div>
+                <!-- Address hidden on smaller devices -->
+                <p class="d-none d-md-block event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
+                <div class="collapse" id="collapse-{{ event.slug }}">
+                    <div>
+                        <div class="d-inline">
+                            <p class="card-text fs-5">{{ event.description | striptags }}</p>
+                            <a href="{% url 'bookings:book-event' %}"><button type="button"
+                                    id="bookingBtn" class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book
+                                    Now</button></a>
                         </div>
-                        <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
-                            <p class="m-0 fs-5"><i class="fa-solid fa-euro-sign"></i> {{ event.price }}</p>
-                            <p class="m-0 fs-5"><i class="fa-solid fa-clock"></i> {{ event.time }}</p>
-                            <p class="m-0 fs-5"><i class="fa-solid fa-user"></i> 32/{{ event.capacity }}</p>
+                        <!-- Buttons only displayed if superuser is logged in  -->
+                        <div class="d-inline">
+                            {% if user.is_superuser %}
+                            <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button"
+                                    class="event-button ignore-collapse btn btn-warning fs-5" data-bs-toggle="collapse"
+                                    data-bs-target><i class="fa-solid fa-pen-to-square"></i></button></a>
+                            <!-- Anchor link without href prevents collapsible from being triggered -->
+                            <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black"><button type="button"
+                                    class="btn btn-danger fs-5" data-bs-toggle="collapse" data-bs-target="">
+                                    <i class="fa-regular fa-circle-xmark"></i></button></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
+                    <p class="m-0 fs-5"><i class="fa-solid fa-euro-sign"></i> {{ event.price }}</p>
+                    <p class="m-0 fs-5"><i class="fa-solid fa-clock"></i> {{ event.time }}</p>
+                    <p class="m-0 fs-5"><i class="fa-solid fa-user"></i> {{ event.capacity }}</p>
+                </div>
             </div>
-            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% endfor %}
 
         </div>
 
         <!-- Booking content for user -->
         <div class="tab-pane fade" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab" tabindex="0">
+            <div class="table-responsive">
             <table id="booking-table" class="display data-table" style="width:100%">
                 <thead>
                     <tr>
@@ -133,11 +148,13 @@
                 </tfoot>
             </table>
         </div>
+        </div>
 
 
         <!-- User info tab -->
         <div class="text-black tab-pane fade" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab"
             tabindex="0">
+            <div class="table-responsive">
             <table id="user-table" class="display data-table" style="width:100%">
                 <thead>
                     <tr>
@@ -175,6 +192,7 @@
                     </tr>
                 </tfoot>
             </table>
+        </div>
         </div>
 </section>
 {% endblock %}

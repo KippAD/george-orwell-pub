@@ -15,5 +15,10 @@ $(document).ready(function () {
   // Fades out messages
   $('.alert').delay(3000).fadeOut(400);
 
+  // Fixes responsive error on account page
+  $('#account-tab').on('click', function() {
+    $('#account-tab-pane').removeClass('d-none');
+  })
+
 
 });

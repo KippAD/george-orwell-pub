@@ -211,7 +211,6 @@ footer {
 /* Custom form styles for allauth templates */
 .form-container {
     min-height: 90vh;
-    padding: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,7 +219,7 @@ footer {
 
 .user-form {
     width: 40%;
-    margin: 10vh auto 0;
+    margin: 15vh auto 0;
     border: 1px solid grey;
     border-radius: 25px;
     overflow: hidden;
@@ -318,6 +317,7 @@ a[href="/accounts/password/reset/"] {
 
 .event h3 {
     padding-left: 0!important;
+    text-align: center;
 }
 
 .event-date {
@@ -373,6 +373,7 @@ a[href="/accounts/password/reset/"] {
     padding-left: 10px;
 }
 
+
 /* Sorting tables */
 
 .data-table {
@@ -406,6 +407,7 @@ a[href="/accounts/password/reset/"] {
 
 .user-feedback-card {
     border-radius: 20px;
+    max-width: 750px;
     overflow: hidden;
 }
 
@@ -458,6 +460,13 @@ a[href="/accounts/password/reset/"] {
         margin: 0;
     }
 
+    .user-form {
+        width: 50%;
+    }
+
+    .account-section {
+        width: 75%!important;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -473,6 +482,10 @@ a[href="/accounts/password/reset/"] {
     .event {
         width: 75%;
         text-align: start;
+    }
+
+    .user-form {
+        width: 65%;
     }
     
 
@@ -507,6 +520,15 @@ a[href="/accounts/password/reset/"] {
         width: 100%!important;
         padding: 0 10%;
     }
+
+    .user-form {
+        width: 75%;
+    }
+
+    .account-section {
+        width: 75%!important;
+    }
+    
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -540,6 +562,17 @@ a[href="/accounts/password/reset/"] {
     .event {
         width: 90%;
         text-align: center;
+    }
+
+    /* User form */
+
+    .user-form {
+        width: 90%;
+    }
+
+    /* Account page */
+    .account-section {
+        width: 100%!important;
     }
 
 }

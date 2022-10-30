@@ -13,10 +13,10 @@
                     Are you sure that you would like to delete this booking permanently? You can update the details from within the account page.
                 </p>
                 {% csrf_token %}
-                {% if user.is_authenticated %}
-                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg">Return to Admin</a>
+                {% if user.is_staff %}
+                <a href="{% url 'myaccount:admin' %}"><button class="btn btn-lg d-inline-block">Return to Admin</button></a>
                 {% else %}
-                <a href="{% url 'myaccount:account' %}" class="btn btn-lg">Return to Account</a>
+                <a href="{% url 'myaccount:account' %}"><button class="btn btn-lg d-inline-block">Return to Account</button></a>
                 {% endif %}
                 <button type="submit" class="btn btn-signup btn-lg">Submit</button>
             </form>

@@ -34,18 +34,17 @@
         <div class="tab-pane fade show active py-5" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
             tabindex="0">
 
-
-            {% if bookings is not defined %}
+            <h3>Any bookings you have can be managed in the table below</h3>
 
             <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
                 tabindex="0">
-
+            <div class="table-responsive-sm">
                 <table class="table fs-5 mb-5">
                     <thead class="bg-b text-white">
                         <tr>
-                            <th>Booking Name:</th>
+                            <th>Name:</th>
                             <th>Event:</th>
-                            <th>Booking Count:</th>
+                            <th>Count:</th>
                             <th>User:</th>
                             <th>Manage:</th>
                         </tr>
@@ -67,31 +66,14 @@
                     </tbody>
                 </table>
             </div>
-
-            {% else %}
-
-            <div class="tab-pane fade show active" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab"
-                tabindex="0">
-
-                <div class="pt-5 mt-5">
-                    <p class="fs-4 text-center">You currently have no bookings</p>
-                </div>
-
-                <div class="w-50 mx-auto text-center">
-                    <a href="{% url 'events:events' %}"><button class="btn btn-lg">View Events</button></a>
-                    <a href="{% url 'myaccount:logout' %}"><button class="btn btn-lg">Sign Out</button></a>
-                </div>
             </div>
-
-            {% endif %}
-
         </div>
     </div>
     
     <!-- Account info tab -->
-    <div class="text-black tab-pane fade pt-5" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab"
+    <div class="text-black tab-pane fade pt-5 d-none" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab"
         tabindex="0">
-
+    <div class="table-responsive">
         <table class="table fs-5">
             <thead class="bg-b text-white">
                 <tr>
@@ -112,6 +94,7 @@
                 </tr>
             </tbody>
         </table>
+    </div>
 
         <p class="fs-5">You can changed your password yourself, but for other account changes send us an email and
             we will complete them for you:</p>

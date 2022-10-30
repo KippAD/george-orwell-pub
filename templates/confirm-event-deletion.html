@@ -3,7 +3,7 @@
 
 <section class="form-container">
     {% if user.is_staff %}
-    <div class="user-form w-25">
+    <div class="user-form">
         <div class="form-header ">
             <h2 class="text-center w-75 mx-auto fs-4">Delete Event</h2>
         </div>
@@ -14,8 +14,8 @@
                     change the post to a draft in the edit menu to remove it from the events display.
                 </p>
                 {% csrf_token %}
-                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg">Return to Admin</a>
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                <a href="{% url 'myaccount:admin' %}"><button class="btn btn-lg d-inline-block">Take Me Back</button></a>
+                <button type="submit" class="btn btn-lg d-inline-block">Submit</button>
             </form>
         </div>
     </div>
