@@ -53,7 +53,7 @@
                     <tbody>
                         {% for booking in bookings %}
                         <tr>
-                            <td>{{ booking.first_name }}{{ user.last_name }}</td>
+                            <td>{{ booking.first_name }} {{ user.last_name }}</td>
                             <td>{{ booking.event.title }}</td>
                             <td>{{ booking.booking_count }}</td>
                             <td>{{ booking.user }}</td>
