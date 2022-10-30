@@ -88,14 +88,21 @@ header {
     border: 5px solid white;
 }
 
-.custom-toggler .navbar-toggler-icon {
+.navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8, %3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
     width: 50px;
     height: 50px;
+    border-radius: none!important;
+    border: none!important;
 }
 
-#blackNav .navbar-toggler {
-    border: none;
+.navbar-toggler:focus {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler {
+     border: 0 !important;
 }
 
 /* Custom navstyles for all other templates */
@@ -471,6 +478,11 @@ a[href="/accounts/password/reset/"] {
 
 /* Large devices (desktops, 992px and up) */
 @media screen and (max-width: 992px) {
+     /* Navbar */
+     .navbar-collapse li {
+        padding-left: 12px;
+    }
+
     #about-picture {
         display: none;
     }
@@ -493,6 +505,11 @@ a[href="/accounts/password/reset/"] {
 
 /* Medium devices (tablets, 768px and up) */
 @media screen and (max-width: 768px) {
+    /* Navbar */
+    .navbar-collapse li {
+        padding-left: 10px;
+    }
+
     #about-text {
         width: 60% !important;
         padding: 25px 0;
@@ -574,5 +591,7 @@ a[href="/accounts/password/reset/"] {
     .account-section {
         width: 100%!important;
     }
+
+
 
 }

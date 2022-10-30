@@ -43,15 +43,41 @@
                 <div class="container-fluid px-5">
 
                     <!-- Collapse toggle -->
-                    <button class="navbar-toggler custom-toggler col-4 col-md-5" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler col-1 order-lg-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#otherNavbar" aria-controls="otherNavbar" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
                         </span>
                     </button>
+                    
+                    <div class="col-3 col-md-4 d-lg-none"></div>
 
+                    <!-- Animal Farm co logo -->
+                    <div class="col-4 col-md-2 py-3 order-lg-2">
+                        <div class="logo-sm mx-auto"></div>
+                    </div>
+
+                    <div id="base-h1" class="text-center d-none d-md-inline-block col-4 col-md-5 col-xl-3 order-lg-3">
+                        <h1 class="text-black fs-4 d-inline">The George Orwell</h1>
+                    </div>
+
+                    <div class="col-4 text-center d-md-none">
+                        <h1 class="text-black fs-4 d-inline">TGO</h1>
+                    </div>
+
+                    <!-- Social media links -->
+                    <div href="https://twitter.com/home" id="socialMedia" class="text-end social-media col-xl-2 order-lg-4">
+                        <a class="d-none d-xl-inline-block" aria-current="page" target="_blank" rel="noopener"
+                        aria-label="Link to twitter (link opens in new tab)"><i
+                                class="fa-brands fa-square-twitter"></i></a>
+                        <a href="https://www.facebook.com/" class="d-none d-xl-inline-block" target="_blank" rel="noopener"
+                        aria-label="Link to facebook page (link opens in new tab)"><i class="fa-brands fa-square-facebook"></i></a>
+                        <a href="https://www.instagram.com/" class="d-none d-xl-inline-block" aria-current="page" target="_blank" rel="noopener"
+                        aria-label="Link to instagram (link opens in new tab)"><i
+                                class="fa-brands fa-square-instagram"></i></a>
+                    </div>
                     <!-- Navbar links -->
-                    <div class="collapse navbar-collapse" id="otherNavbar">
+                    <div class="collapse navbar-collapse order-lg-1" id="otherNavbar">
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li class="nav-item me-lg-3">
                                 <a class="nav-link pr-5" aria-current="page" href="{% url 'home' %}">home</a>
@@ -85,29 +111,6 @@
                             </li>
                             {% endif %}
                         </ul>
-                    </div>
-                    <!-- Animal Farm co logo -->
-                    <div class="col-4 col-md-2 py-3">
-                        <div class="logo-sm mx-auto"></div>
-                    </div>
-
-                    <div id="base-h1" class="text-center d-none d-md-inline-block col-4 col-md-5 col-xl-3">
-                        <h1 class="text-black fs-4 d-inline">The George Orwell</h1>
-                    </div>
-
-                    <div class="col-4 text-center d-md-none">
-                        <h1 class="text-black fs-4 d-inline">TGO</h1>
-                    </div>
-                    <!-- Social media links -->
-                    <div href="https://twitter.com/home" id="socialMedia" class="text-end social-media col-xl-2">
-                        <a class="d-none d-xl-inline-block" aria-current="page" target="_blank" rel="noopener"
-                        aria-label="Link to twitter (link opens in new tab)"><i
-                                class="fa-brands fa-square-twitter"></i></a>
-                        <a href="https://www.facebook.com/" class="d-none d-xl-inline-block" target="_blank" rel="noopener"
-                        aria-label="Link to facebook page (link opens in new tab)"><i class="fa-brands fa-square-facebook"></i></a>
-                        <a href="https://www.instagram.com/" class="d-none d-xl-inline-block" aria-current="page" target="_blank" rel="noopener"
-                        aria-label="Link to instagram (link opens in new tab)"><i
-                                class="fa-brands fa-square-instagram"></i></a>
                     </div>
                 </div>
             </nav>

@@ -1,5 +1,6 @@
 // Changes formatting of the date in events schedule if expanded
 $(document).ready(function () {
+
   // Datatable styles
   $('#booking-table').DataTable();
   $('#booking-table tr:even').css("background-color", "#F4F4F8");
