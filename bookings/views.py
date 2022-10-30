@@ -35,7 +35,7 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
 
         for b in Booking.objects.all():
             if b.user == user and b.event == event:
-                return HttpResponseRedirect(reverse('bookings:exists'))
+                return HttpResponseRedirect(reverse('bookings:booking-exists'))
 
         if booking <= free_space:
             form.instance.user = user
