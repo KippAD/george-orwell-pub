@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic, View
 from .models import Event
 from bookings.models import Booking
 from .forms import EventForm
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -18,6 +17,10 @@ class HomePage(generic.ListView):
 
 
 class EventPage(View):
+    """
+    Loads the event page template and passes in the event model
+    and the booking count from booking model in a new object
+    """
     template_name = 'events.html'
 
     def get(self, request):
@@ -25,7 +28,9 @@ class EventPage(View):
         events = []
 
         for event in events_obj:
-            booking_count = sum(Booking.objects.filter(event=event).values_list('booking_count', flat=True))
+            total = Booking.objects.filter(
+                event=event).values_list('booking_count', flat=True)
+            booking_count = sum(total)
 
             new_dict = {
                 "date": event.date,
@@ -49,7 +54,7 @@ class EventPage(View):
 
 class CreateEvent(generic.CreateView):
     """
-    Creates event
+    Loads event form and creates event
     """
     model = Event
     template_name = "create-event.html"
@@ -62,7 +67,7 @@ class CreateEvent(generic.CreateView):
 
 class UpdateEvent(SuccessMessageMixin, generic.UpdateView):
     """
-    Updates event
+    Loads update event form and updates event
     """
     model = Event
     template_name = "update-event.html"
@@ -75,7 +80,7 @@ class UpdateEvent(SuccessMessageMixin, generic.UpdateView):
 
 class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
     """
-    Deletes event
+    Loads event deletion confirmation and deletes event
     """
     model = Event
     template_name = "confirm-event-deletion.html"
@@ -87,4 +92,3 @@ class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
 
     def get_success_url(self):
         return reverse("myaccount:admin")
-

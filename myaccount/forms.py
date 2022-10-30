@@ -1,8 +1,7 @@
 from django import forms
-from django.conf import settings
-from django.core.mail import send_mail
 
 
+# Contact form for user to send email query to admin
 class ContactForm(forms.Form):
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)

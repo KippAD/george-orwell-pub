@@ -33,6 +33,3 @@ class Event(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
-
-
-

@@ -1,18 +1,18 @@
-from django.shortcuts import get_object_or_404
-from django.views import generic, View
+from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from .models import Booking
 from .forms import BookingForm
 from django.http import HttpResponseRedirect
-from django.core.mail import send_mail
 
 
 class BookEvent(LoginRequiredMixin, generic.CreateView):
     """
-    Books event for user
+    Loads booking form template and ensures that a user can't
+    double book and event or book an event that is already
+    full
     """
     model = Booking
     template_name = "book-event.html"
@@ -26,27 +26,28 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
         user = self.request.user
         event = form.instance.event
 
-        total_bookings = sum(Booking.objects.values_list('booking_count', flat=True))
+        total_bookings = sum(Booking.objects.values_list(
+            'booking_count', flat=True))
         booking = int(form.instance.booking_count)
         capacity = int(form.instance.event.capacity)
-        # +2 is a quick fix to unknown error that prevents bookings when the event has two places left
+        # +2 is short fix for capacity error
         free_space = (capacity - total_bookings) + 2
 
         for b in Booking.objects.all():
             if b.user == user and b.event == event:
-                return HttpResponseRedirect(reverse('bookings:existing-booking'))  
+                return HttpResponseRedirect(reverse('bookings:exists'))
 
         if booking <= free_space:
             form.instance.user = user
             return super().form_valid(form)
         elif booking > free_space:
-            return HttpResponseRedirect(reverse('bookings:event-full')) 
+            return HttpResponseRedirect(reverse('bookings:event-full'))
 
 
-# Check that booking belongs to user
 class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
     """
-    Updates event
+    Updates user's event booking and redirects depending on
+    whether user is staff member
     """
     model = Booking
     template_name = "update-booking.html"
@@ -63,7 +64,7 @@ class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
 # Check who is owner of booking or not redirect to 404
 class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
     """
-    Deletes booking
+    Deletes user's event booking and displays a succes message
     """
     model = Booking
     success_message = "Booking Deleted!"
@@ -72,7 +73,7 @@ class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteBooking, self).delete(request, *args, **kwargs)
-    
+
     def get_success_url(self):
         if self.request.user.is_superuser:
             return reverse("myaccount:admin")
@@ -80,13 +81,12 @@ class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
             return reverse("myaccount:account")
 
 
-
 class BookingSuccessful(generic.TemplateView):
     """Displays success page for booking form"""
     template_name = "successful-booking.html"
 
 
-class ExistingBookingError(generic.TemplateView):
+class BookingExistsError(generic.TemplateView):
     """Displays error page for booking form"""
     template_name = "existing-booking-error.html"
 

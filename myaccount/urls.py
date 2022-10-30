@@ -1,5 +1,4 @@
 from django.urls import path
-from bookings.views import UpdateBooking, DeleteBooking
 from .views import AccountPage, AdminPage, logout_view, contact
 
 

@@ -7,9 +7,9 @@ from events.models import Event
 # Model for bookings
 class Booking(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE,
-                                related_name="event")
+                            related_name="event")
     user = models.ForeignKey(User, on_delete=models.CASCADE,
-                                related_name="user")
+                            related_name="user")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     booking_count = models.IntegerField(
