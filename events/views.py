@@ -88,4 +88,3 @@ class DeleteEvent(SuccessMessageMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse("myaccount:admin")
 
-

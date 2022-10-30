@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -27,20 +27,23 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
         event = form.instance.event
 
         total_bookings = sum(Booking.objects.values_list('booking_count', flat=True))
-        booking = form.instance.booking_count
-        capacity = form.instance.event.capacity
+        booking = int(form.instance.booking_count)
+        capacity = int(form.instance.event.capacity)
+        # +2 is a quick fix to unknown error that prevents bookings when the event has two places left
+        free_space = (capacity - total_bookings) + 2
 
-        if booking <= (capacity - total_bookings):
-            for b in Booking.objects.all():
-                if b.user == user and b.event == event:
-                    return HttpResponseRedirect(reverse('bookings:existing-booking'))
-            
+        for b in Booking.objects.all():
+            if b.user == user and b.event == event:
+                return HttpResponseRedirect(reverse('bookings:existing-booking'))  
+
+        if booking <= free_space:
             form.instance.user = user
             return super().form_valid(form)
-        else:
+        elif booking > free_space:
             return HttpResponseRedirect(reverse('bookings:event-full')) 
 
 
+# Check that booking belongs to user
 class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
     """
     Updates event
@@ -57,6 +60,7 @@ class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
             return reverse("myaccount:account")
 
 
+# Check who is owner of booking or not redirect to 404
 class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
     """
     Deletes booking
@@ -68,7 +72,7 @@ class DeleteBooking(SuccessMessageMixin, generic.DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteBooking, self).delete(request, *args, **kwargs)
-
+    
     def get_success_url(self):
         if self.request.user.is_superuser:
             return reverse("myaccount:admin")
