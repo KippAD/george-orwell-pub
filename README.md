@@ -1,108 +1,95 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The George Orwell Pub
 
-Welcome Kipp AD,
+The George Orwell Pub website is a django based project for a fictional business developed for my fourth milestone project at Code Institute.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Brief
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+The George Orwell Pub website serves as a point of information and booking system for a pub and restaurant based in Montpellier, France. Customers will be able to create an account, view upcoming events, and make bookings. Within their account they will be able to manage these bookings, as well as contact the site Admin with any queries that they might have. 
 
-## Gitpod Reminders
+The objective of the project is to create an aesthetically pleasing design with functionality that allows users to access and interact with content easily, and that allows an Admin to intuitively control the data that the site works with.. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## UX
+#####  User Stories
 
-`python3 -m http.server`
+Admin
+As an admin I can login to an admin panel so that I can manage my website
+As an admin I can create events so that I can notify site visitors of the business schedule
+As an **admin** I can **update existing events** so that **I can keep the schedule up to date**
+As an **admin** I can **delete events** so that **I can cancel events that are no longer going to happen**.
+As an **admin** I can delete bookings so that I can cancel existing bookings if necessary
+As an **admin** I can **delete users** so that **I can remove existing users if necessary**
+As an **admin** I can **view and respond to user queries** so that **I can interact with my clientele**
 
-A blue button should appear to click: _Make Public_,
+Site User
+As a user I can register an account so that I can book my place at events and send site queries.
+As a **user** I can **sign in and out of my account** so that **access to my account and data is limited**
+As as user I can book events so that I can reserve a place at events of my choosing
+As a user I can update my existing bookings so that I can add or remove people on my reservation
+As a user I can delete an existing booking so that I can remove my reservation if I no longer wish to come
+As a **user** I can **join an event waiting list** so that **I can be notified if a fully booked event has more space**.
+As a **user** I can **confirm my bookings** so that **I receive an email with the booking details for future reference**.
+As a **user** I can **request an account deletion** so that I can remove my account from the site**
+As a **user** I can **send a query to the admin** so that **I can contact them with any questions of request I have**
 
-Another blue button should appear to click: _Open Browser_.
+## Agile Development
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+Using the User Stories above the site was developed using AGILE methodology. Components and features in the website were designed in order to meet the criteria of the user stories and each stage of development revolved around resolving each user story incrementally. 
 
-A blue button should appear to click: _Make Public_,
+This meant that each component added to the site could be prioritized by the importance of its corresponding user story.
 
-Another blue button should appear to click: _Open Browser_.
+## Design
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Design Objective
+- The site is attractive and first time users want to return to it.
+- Site actions are intuitive so that a user knows how to interact with content.
+- The site is functional and errors and the user will be appropriately redirected when faced with errors
+- Content is meaningfully organized by its priority
 
-To log into the Heroku toolbelt CLI:
+### Wireframes
+The wireframes for the George Orwell Pub were made with Figma. Designs for multiple viewport sizes were created in order to create a design that would be responsive on various devices.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Desktop
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Tablet
 
-------
+### Mobile
 
-## Release History
+The final design holds true to the original concepts, but as development progressed certain aspects differed. This was usually due to design preference changing as time went on, and certain components looking better in the browser than they did in the wireframe.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Color Scheme/Typography
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+The Color Scheme of the 
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Features
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Existing
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+**Homepage:** The homepage is the first area that the user sees when entering the website. It includes a summary of the business and what it does, as well as clear navigation to other areas of the site and a carousel of upcoming events.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+**Events Page:** The events page displays all upcoming events with the relevant information about them (Date, capacity, price). Each event is a collapsible element, revealing the event description when clicked on - this keeps the content more concise and allows the user to unravel information as they choose to. The user can also book an event by clicking on the Book now button and filling out the form. If an admin is logged in they are able to access full CRUD functionality for each event, as well as creating new events.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+**Booking System:** The booking system allows users to reserve places for events of their choosing. There is full form validation preventing users from making double bookings and also from events becoming overbooked. 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+**Contact Form:** The contact form allows users to send queries to the admin. This form is linked to Amazon Web Services SES, meaning that the user’s messgae will appear in the gmail account of the site.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+**Account Page:** The account page allows users to view, update, and delete their existing bookings. It will also display their account information in a separate tab.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+**Admin Interface:** The admin interface displays all events, bookings, and users where the admin can perform CRUD functionality on each of their models.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+**User Feedback Pages:** Unsuccessful bookings will redirect the user to a page explaining why their submission was rejected. Similarly a successful booking and contact form submission will display a success page.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+**Accounts:** Users can register an account and login/logout. Once authenticated they are able to interact with the sites content.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Future
+Here are some future features that were outside of the project scope on the current iteration of development but could be included to improve the user experience and site in general.
 
-------
+- **Form Submission Email:** User receives an email when an account is created or when a booking is made.
+- **Waiting List:** Users will have the option to join a waiting list for full events and receive an email if there is availability.
+- **Prefilled Booking Form:** Booking form is prefilled with the event and can be replaced with a select form if the user chooses.
+- **Repeating/Self Deleting Event:** Events can be set to repeating so that they automatically appear on the schedule each week, and events in the past self-delete.
 
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+- **Messaging In Browser:** User and admin can message within the website from the account and admin panels respectively.
+- **Menu:** Admin has access to CRUD functionality for a menu.
+- **Admin Interface for User:** Whilst the admin can see users in the admin panel, it redirects the admin to the default django admin dashboard, so CRUD functionality for the user within the website would provide a better experience for the site owner.
