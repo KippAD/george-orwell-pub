@@ -32,6 +32,7 @@ p {
     width: 100vw;
     animation: fadeOut 2s forwards;
     animation-delay: 2s;
+    z-index: 15000;
 }
 
 @keyframes fadeOut {
@@ -271,8 +272,7 @@ footer {
     background-color: #D3B04D;
     border: 2px solid #D3B04D;
     border-radius: 5px;
-    margin-top: 10px;
-    padding: 0 10px;
+    padding: 5px;
 }
 
 .user-form label, 
@@ -557,7 +557,6 @@ a[href="/accounts/password/reset/"] {
     .account-section {
         width: 75%!important;
     }
-    
 }
 
 /* Small devices (landscape phones, 576px and up) */

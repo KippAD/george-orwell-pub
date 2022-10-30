@@ -8,14 +8,16 @@
             <h2 class="text-center w-75 mx-auto fs-4">Delete Event</h2>
         </div>
         <div class="p-5">
-            <form method="post">
-                <p class="fs-5">
-                    Are you sure that you would like to delete this event permanently? Remember that you can
-                    change the post to a draft in the edit menu to remove it from the events display.
-                </p>
+            <p class="fs-5">
+                Are you sure that you would like to delete this event permanently? Remember that you can
+                change the post to a draft in the edit menu to remove it from the events display.
+            </p>
+
+            <form method="post" class="text-center">
                 {% csrf_token %}
-                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg d-inline-block">Take Me Back</a>
-                <button type="submit" class="btn btn-lg d-inline-block">Submit</button>
+                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg d-inline-block">Back <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <button type="submit" class="btn btn-lg d-inline-block">Submit <i class="fa-solid fa-trash-can"></i></button>
+
             </form>
         </div>
     </div>

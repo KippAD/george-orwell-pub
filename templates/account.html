@@ -3,13 +3,6 @@
 {% block content %}
 
 <section class="container account-section w-50">
-    {% if messages %}
-        {% for message in messages %}
-            <div class="text-center fs-5 alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="text-black">My Account</h2>

@@ -1,7 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from events.models import Event
+from django.urls import reverse
 
 
 # Model for bookings
@@ -18,5 +19,3 @@ class Booking(models.Model):
             MinValueValidator(1)
         ]
     )
-
-    objects = UserManager()

@@ -2,15 +2,6 @@
 {% block content %}
 
 <section class="container account-section w-">
-    <!-- Loads django messages -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="text-center fs-5 alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="text-black fs-3"><strong>Admin</strong></h2>
@@ -83,8 +74,8 @@
                                 <div class="d-inline">
                                     {% if user.is_superuser %}
                                     <a href="{% url 'events:update-event' slug=event.slug%}"
-                                        class="event-button ignore-collapse btn btn-warning fs-5"
-                                        data-bs-toggle="collapse" data-bs-target>
+                                        class="event-button ignore-collapse btn btn-warning fs-5"><span
+                                            data-bs-toggle="collapse" data-bs-target></span>
                                         <i class="fa-solid fa-pen-to-square"></i></a>
                                     <!-- Anchor link without href prevents collapsible from being triggered -->
                                     <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black"><button

@@ -21,17 +21,15 @@
 </head>
 
 <body>
-
-    <!-- Loads django messages-->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="text-center fs-5 alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <header>
+        <!-- Loads django messages-->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="container-fluid p-0">
 
             <!-- Hero image and overlay -->
@@ -42,9 +40,9 @@
                         <div class="container p-5">
 
                             <!-- Collapse toggle -->
-                            <button class="navbar-toggler custom-toggler order-lg-1" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#indexNavbar" aria-controls="indexNavbar" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                            <button class="navbar-toggler custom-toggler order-lg-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#indexNavbar" aria-controls="indexNavbar"
+                                aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon">
                                 </span>
                             </button>
