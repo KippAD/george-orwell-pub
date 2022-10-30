@@ -1,8 +1,6 @@
 {% load static %}
-{% load crispy_forms_tags %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
@@ -23,6 +21,15 @@
 </head>
 
 <body>
+
+    <!-- Loads django messages-->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <header>
         <div class="container-fluid p-0">
@@ -68,7 +75,8 @@
                                     <!-- Adjusts the link to login/logout depending on user authentication -->
                                     {% if user.is_authenticated %}
                                     <li class="nav-item me-3">
-                                        <a class="nav-link" href="{% url 'account_logout' %}" data-bs-toggle="modal" data-bs-target="#signOutModal">sign-out</a>
+                                        <a class="nav-link" href="{% url 'account_logout' %}" id="signOut"
+                                            data-bs-toggle="modal" data-bs-target="#signOutModal">sign-out</a>
                                     </li>
                                     {% else %}
                                     <li class="nav-item me-3">
@@ -79,13 +87,16 @@
                             </div>
 
                             <div id="socialMedia" class="col-6 col-lg-3 text-end social-media">
-                                <a class="d-inline-block" aria-current="page" target="_blank" rel="noopener"
-                                aria-label="Link to twitter (link opens in new tab)"><i
+                                <a href="https://twitter.com/home" class="d-inline-block" aria-current="page"
+                                    target="_blank" rel="noopener"
+                                    aria-label="Link to twitter (link opens in new tab)"><i
                                         class="fa-brands fa-square-twitter"></i></a>
-                                <a class="d-inline-block" target="_blank" rel="noopener"
-                                aria-label="Link to facebook(link opens in new tab)"><i class="fa-brands fa-square-facebook"></i></a>
-                                <a class="d-inline-block" aria-current="page" target="_blank" rel="noopener"
-                                aria-label="Link to instagram (link opens in new tab)"><i
+                                <a href="https://www.facebook.com/" class="d-inline-block" target="_blank"
+                                    rel="noopener" aria-label="Link to facebook(link opens in new tab)"><i
+                                        class="fa-brands fa-square-facebook"></i></a>
+                                <a href="https://www.instagram.com/" class="d-inline-block" aria-current="page"
+                                    target="_blank" rel="noopener"
+                                    aria-label="Link to instagram (link opens in new tab)"><i
                                         class="fa-brands fa-square-instagram"></i></a>
                             </div>
 
@@ -131,7 +142,7 @@
                         beverage in the Herault heat.
                         Our beer garden is a perfect place to kick back and relax and enjoy the our popular ciders
                         imported from the UK.</p>
-                    <a href="{% url 'events:events' %}"><button type="button" class="btn btn-primary btn-lg">Events Schedule</button></a>
+                    <a href="{% url 'events:events' %}" class="btn btn-primary btn-lg">Events Schedule</a>
                 </div>
             </div>
             <div class="col p-0" id="about-picture"></div>
@@ -198,13 +209,14 @@
         <div class="carousel-inner container-fluid">
             {% for event in object_list %}
             <div class="carousel-item active d-flex justify-content-center align-items-center">
-                <div id="event-carousel" class="w-50 h-50 text-center d-flex  flex-column justify-content-center align-items-center">
+                <div id="event-carousel"
+                    class="w-50 h-50 text-center d-flex  flex-column justify-content-center align-items-center">
                     <h2 class="fs-3">{{ event.title }}</h2>
                     <p class="text-white fs-5">Date: {{ event.date }}</p>
                     <p class="text-white fs-5">Price: {{ event.price }}</p>
                     <div>
-                        <a href="{% url 'bookings:book-event' %}"><button type="button" class="btn btn-lg">Book Now</button></a>
-                        <a href="{% url 'events:events' %}"><button type="button" class="btn btn-lg">All Events</button></a>
+                        <a href="{% url 'bookings:book-event' %}" class="btn btn-lg">Book Now</a>
+                        <a href="{% url 'events:events' %}" class="btn btn-lg">All Events</a>
                     </div>
                 </div>
             </div>
@@ -222,7 +234,9 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 d-flex align-items-center justify-content-end">
-        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5" target="_blank"><p class="mb-0">Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p></a>
+        <a href="https://github.com/KippAD" class="text-white fs-5 flex-grow-1 text-start ms-5" target="_blank">
+            <p class="mb-0">Kipp Archer-Dennis <i class="fa-brands fa-github"></i></p>
+        </a>
         <p class="text-white fs-5 text-end me-5 mb-0">Animal Farm Co. <i class="fa-regular fa-copyright"></i></p>
     </footer>
 
@@ -232,23 +246,27 @@
     </script>
 
     <!-- Sign out bootstrap Modal -->
-    <div class="modal fade" id="signOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signOutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="signOutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="signOut" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content user-form w-100">
-            <div class="modal-header form-header text-center">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content user-form w-100">
+                <div class="modal-header form-header text-center">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fs-5">
+                        Are you sure that you want to log out?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'myaccount:logout' %}">
+                        <button type="submit" value="confirm" class="btn btn-primary">Sign-out</button>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
-            <p class="fs-5">
-                Are you sure that you want to log out?
-            </p>
-
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="{% url 'myaccount:logout' %}"><button type="submit" value="confirm" class="btn btn-primary">Sign-out</button></a>                
+        </div>
 </body>
 
 </html>
-

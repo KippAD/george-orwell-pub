@@ -139,6 +139,14 @@ Here are some future features that were outside of the project scope on the curr
 - **Menu:** Admin has access to CRUD functionality for a menu.
 - **Admin Interface for User:** Whilst the admin can see users in the admin panel, it redirects the admin to the default django admin dashboard, so CRUD functionality for the user within the website would provide a better experience for the site owner.
 
+## Testing 
+
+**Python**
+All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site. PEP8 warnings from the IDE have all been resolved in the custom code.
+
+**HTML**
+There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. All were removed, however the validator still shows many errors relating to jinja that were intentionally unresolved.
+
 ## Reflection 
 
 This project was particularly challenging for myself coming off the back of a leave of absence and integrating technologies that I had never used before. Getting to grips with Bootstrap and Django meant that at times it was hard to develop the project that matched the agile project board. Similarly, I had to be a lot more flexible with the intended components and features because when I developed the scope of the project I did not have any reference point of working with these technologies before - this did mean sacrificing on what I actually wanted to develop in order to meet the deadline. It was a steep learning curve, but in future projects I will have a much greater understanding of how to plan and implement the required aspects to a standard that I am more content with.

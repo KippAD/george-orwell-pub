@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!-- Form for updating a booking -->
 <section class="form-container">
     {% if user.is_authenticated %}
     <div class="user-form w-50">
@@ -20,7 +20,7 @@
     <div style="height: 80vh; padding: 30vh;">
         <h2 class="text-black">Please Login</h2>
         <p>To make a booking you must be logged in.</p>
-        <a class="nav-link" href="{% url 'account_login' %}"><button class="btn btn-large">Sign In</button></a>
+        <a class="nav-link" href="{% url 'account_login' %}" class="btn btn-large">Sign In</a>
     </div>
 
     {% endif %}

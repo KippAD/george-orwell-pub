@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <section class="container account-section w-">
+    <!-- Loads django messages -->
     {% if messages %}
-    {% for message in messages %}
-    <div class="text-center fs-5 alert alert-{{ message.tags }}">
-        {{ message }}
-    </div>
-    {% endfor %}
+        {% for message in messages %}
+            <div class="text-center fs-5 alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endif %}
 
     <div class="row">
@@ -40,114 +40,119 @@
             tabindex="0">
 
             <div class="mx-auto pt-5 text-center">
-                <a href="{% url 'events:create-event' %}"><button class="btn btn-lg" type="button">Create Event <i
-                            class="fa-solid fa-plus"></i></button></a>
+                <a href="{% url 'events:create-event' %}" class="btn btn-lg">Create Event <i
+                        class="fa-solid fa-plus"></i></a>
             </div>
 
             <!-- Renders collapsible elements of events -->
-    {% for event in events %}
-    <div class="event card mx-auto" data-bs-toggle="collapse" id="event-collapse" href="#collapse-{{ event.slug }}"
-        role="button" aria-expanded="false" aria-controls="collapseExample">
-        <div class="card-body d-flex p-0 text-black">
-            <div class="event-date d-none d-md-flex justify-content-center align-items-center fs-4 p-2 text-white">
-                <div id="date-text">
-                    {{ event.date | date:"d M y" }}
-                </div>
-            </div>
-            <div class="container p-3 p-xl-4">
-                <div class="d-block d-md-flex justify-content-between">
-                    <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
-                    <div class="col-3 text-end pe-3 my-auto fs-4 d-none d-md-inline-block"><i class="fa-solid fa-chevron-up"></i></div>
-                </div>
-                <!-- Date for smaller devices (disappears on larger viewports)  -->
-                <div class="event-small container-fluid d-block d-md-none">
-                    <div class="row">
-                        <p class=" offset-3 col-6 fs-5 pt-3 mt-4 small-date">{{ event.date | date:"d M y"}}</p>
-                        <div class=" col-3 w-25 my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
-                    </div>
-                </div>
-                <!-- Address hidden on smaller devices -->
-                <p class="d-none d-md-block event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
-                <div class="collapse" id="collapse-{{ event.slug }}">
-                    <div>
-                        <div class="d-inline">
-                            <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                            <a href="{% url 'bookings:book-event' %}"><button type="button"
-                                    id="bookingBtn" class="btn btn-lg" data-bs-toggle="collapse" data-bs-target>Book
-                                    Now</button></a>
-                        </div>
-                        <!-- Buttons only displayed if superuser is logged in  -->
-                        <div class="d-inline">
-                            {% if user.is_superuser %}
-                            <a href="{% url 'events:update-event' slug=event.slug%}"><button type="button"
-                                    class="event-button ignore-collapse btn btn-warning fs-5" data-bs-toggle="collapse"
-                                    data-bs-target><i class="fa-solid fa-pen-to-square"></i></button></a>
-                            <!-- Anchor link without href prevents collapsible from being triggered -->
-                            <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black"><button type="button"
-                                    class="btn btn-danger fs-5" data-bs-toggle="collapse" data-bs-target="">
-                                    <i class="fa-regular fa-circle-xmark"></i></button></a>
-                            {% endif %}
+            {% for event in events %}
+            <div class="event card mx-auto" data-bs-toggle="collapse" id="event-collapse"
+                href="#collapse-{{ event.slug }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="card-body d-flex p-0 text-black">
+                    <div
+                        class="event-date d-none d-md-flex justify-content-center align-items-center fs-4 p-2 text-white">
+                        <div id="date-text">
+                            {{ event.date | date:"d M y" }}
                         </div>
                     </div>
-                </div>
-                <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
-                    <p class="m-0 fs-5"><i class="fa-solid fa-euro-sign"></i> {{ event.price }}</p>
-                    <p class="m-0 fs-5"><i class="fa-solid fa-clock"></i> {{ event.time }}</p>
-                    <p class="m-0 fs-5"><i class="fa-solid fa-user"></i> {{ event.capacity }}</p>
+                    <div class="container p-3 p-xl-4">
+                        <div class="d-block d-md-flex justify-content-between">
+                            <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
+                            <div class="col-3 text-end pe-3 my-auto fs-4 d-none d-md-inline-block"><i
+                                    class="fa-solid fa-chevron-up"></i></div>
+                        </div>
+                        <!-- Date for smaller devices (disappears on larger viewports)  -->
+                        <div class="event-small container-fluid d-block d-md-none">
+                            <div class="row">
+                                <p class=" offset-3 col-6 fs-5 pt-3 mt-4 small-date">{{ event.date | date:"d M y"}}</p>
+                                <div class=" col-3 w-25 my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
+                            </div>
+                        </div>
+                        <!-- Address hidden on smaller devices -->
+                        <p class="d-none d-md-block event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 -
+                            Montpellier</p>
+                        <div class="collapse" id="collapse-{{ event.slug }}">
+                            <div>
+                                <div class="d-inline">
+                                    <p class="card-text fs-5">{{ event.description | striptags }}</p>
+                                    <a href="{% url 'bookings:book-event' %}" class="btn btn-lg"
+                                        data-bs-toggle="collapse" data-bs-target>Book
+                                        Now</a>
+                                </div>
+                                <!-- Buttons only displayed if superuser is logged in  -->
+                                <div class="d-inline">
+                                    {% if user.is_superuser %}
+                                    <a href="{% url 'events:update-event' slug=event.slug%}"
+                                        class="event-button ignore-collapse btn btn-warning fs-5"
+                                        data-bs-toggle="collapse" data-bs-target>
+                                        <i class="fa-solid fa-pen-to-square"></i></a>
+                                    <!-- Anchor link without href prevents collapsible from being triggered -->
+                                    <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black"><button
+                                            type="button" class="btn btn-danger fs-5" data-bs-toggle="collapse"
+                                            data-bs-target="">
+                                            <i class="fa-regular fa-circle-xmark"></i></button></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-icons d-flex justify-content-between align-items-end mt-3 w-75">
+                            <p class="m-0 fs-5"><i class="fa-solid fa-euro-sign"></i> {{ event.price }}</p>
+                            <p class="m-0 fs-5"><i class="fa-solid fa-clock"></i> {{ event.time }}</p>
+                            <p class="m-0 fs-5"><i class="fa-solid fa-user"></i> {{ event.capacity }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    
-    {% endfor %}
+
+            {% endfor %}
 
         </div>
 
         <!-- Booking content for user -->
         <div class="tab-pane fade" id="booking-tab-pane" role="tabpanel" aria-labelledby="booking-tab" tabindex="0">
             <div class="table-responsive">
-            <table id="booking-table" class="display data-table" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>First Name:</th>
-                        <th>Last Name:</th>
-                        <th>Username:</th>
-                        <th>Event:</th>
-                        <th>Booking Count:</th>
-                        <th>Modify:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for booking in bookings %}
-                    <tr>
-                        <td>{{ booking.first_name }}</td>
-                        <td>{{ booking.last_name }}</td>
-                        <td>{{ booking.user }}</td>
-                        <td>{{ booking.event }}</td>
-                        <td>{{ booking.booking_count }}</td>
-                        <td>
-                            <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
-                                    class="fa-solid fa-pen"></i></a>
-                            <a href="{% url 'bookings:delete-booking' pk=booking.pk %}"
-                                class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
-                        </td>
-                    </tr>
-                    
-                    {% endfor %}
-                    <!-- Continuation of table after modal and loop -->
-                <tfoot>
-                    <tr>
-                        <th>First Name:</th>
-                        <th>Last Name:</th>
-                        <th>Username:</th>
-                        <th>Event:</th>
-                        <th>Booking Count:</th>
-                        <th>Modify:</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+                <table id="booking-table" class="display data-table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                            <th>Username:</th>
+                            <th>Event:</th>
+                            <th>Booking Count:</th>
+                            <th>Modify:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.first_name }}</td>
+                            <td>{{ booking.last_name }}</td>
+                            <td>{{ booking.user }}</td>
+                            <td>{{ booking.event }}</td>
+                            <td>{{ booking.booking_count }}</td>
+                            <td>
+                                <a href="{% url 'bookings:update-booking' pk=booking.pk %}" class="text-black fs-5"><i
+                                        class="fa-solid fa-pen"></i></a>
+                                <a href="{% url 'bookings:delete-booking' pk=booking.pk %}"
+                                    class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                        <!-- Continuation of table after modal and loop -->
+                    <tfoot>
+                        <tr>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                            <th>Username:</th>
+                            <th>Event:</th>
+                            <th>Booking Count:</th>
+                            <th>Modify:</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
 
 
@@ -155,44 +160,46 @@
         <div class="text-black tab-pane fade" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab"
             tabindex="0">
             <div class="table-responsive">
-            <table id="user-table" class="display data-table" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Username:</th>
-                        <th>First Name:</th>
-                        <th>Last Name:</th>
-                        <th>Email</th>
-                        <th>Staff:</th>
-                        <th>Last Login:</th>
-                        <th>Modify:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.first_name }}</td>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.is_email }}</td>
-                        <td>{{ user.is_staff }}</td>
-                        <td>{{ user.last_login | date:"d/m/y"}}</td>
-                        <td> <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5"><i class="fa-solid fa-pen"></i></a>
-                            <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5 px-3"><i class=" fa-solid fa-xmark"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                <tfoot>
-                    <tr>
-                        <th>Username:</th>
-                        <th>First Name:</th>
-                        <th>Last Name:</th>
-                        <th>Email</th>
-                        <th>Staff:</th>
-                        <th>Last Login:</th>
-                        <th>Modify:</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+                <table id="user-table" class="display data-table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Username:</th>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                            <th>Email</th>
+                            <th>Staff:</th>
+                            <th>Last Login:</th>
+                            <th>Modify:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.is_email }}</td>
+                            <td>{{ user.is_staff }}</td>
+                            <td>{{ user.last_login | date:"d/m/y"}}</td>
+                            <td> <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5"><i
+                                        class="fa-solid fa-pen"></i></a>
+                                <a href="{% url 'admin:auth_user_changelist' %}" class="text-black fs-5 px-3"><i
+                                        class=" fa-solid fa-xmark"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    <tfoot>
+                        <tr>
+                            <th>Username:</th>
+                            <th>First Name:</th>
+                            <th>Last Name:</th>
+                            <th>Email</th>
+                            <th>Staff:</th>
+                            <th>Last Login:</th>
+                            <th>Modify:</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
 </section>
 {% endblock %}

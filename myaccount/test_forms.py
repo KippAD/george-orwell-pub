@@ -9,13 +9,13 @@ class TestContactForm(TestCase):
         form = ContactForm(date={'first_name': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('first_name', form.errors.keys())
-    
+
     # Tests that last name field cannot be empty input
     def test_last_name_is_required(self):
         form = ContactForm(date={'first_name': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('first_name', form.errors.keys())
-    
+
     # Tests that email field cannot be empty input
     def test_email_is_required(self):
         form = ContactForm(date={'email': ''})

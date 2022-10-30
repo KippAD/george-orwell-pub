@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!-- Confirm booking deletion message -->
 <section class="form-container">
     {% if user.is_authenticated %}
     <div class="user-form w-25">
@@ -14,9 +14,9 @@
                 </p>
                 {% csrf_token %}
                 {% if user.is_staff %}
-                <a href="{% url 'myaccount:admin' %}"><button class="btn btn-lg d-inline-block">Return to Admin</button></a>
+                    <a href="{% url 'myaccount:admin' %}" class="btn btn-lg d-inline-block">Return to Admin</a>
                 {% else %}
-                <a href="{% url 'myaccount:account' %}"><button class="btn btn-lg d-inline-block">Return to Account</button></a>
+                    <a href="{% url 'myaccount:account' %}" class="btn btn-lg d-inline-block">Return to Account</a>
                 {% endif %}
                 <button type="submit" class="btn btn-signup btn-lg">Submit</button>
             </form>
@@ -27,7 +27,7 @@
     <div style="height: 80vh; padding: 30vh;">
         <h2 class="text-black">Oops</h2>
         <p>It appears you are in the wrong place!</p>
-        <a class="nav-link" href="{% url 'home' %}"><button class="btn btn-large">Home </button></a>
+        <a href="{% url 'home' %}" class="nav-link btn btn-large">Home</a>
     </div>
 
     {% endif %}

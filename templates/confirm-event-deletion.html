@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!-- Confirm event deletion message -->
 <section class="form-container">
     {% if user.is_staff %}
     <div class="user-form">
@@ -14,7 +14,7 @@
                     change the post to a draft in the edit menu to remove it from the events display.
                 </p>
                 {% csrf_token %}
-                <a href="{% url 'myaccount:admin' %}"><button class="btn btn-lg d-inline-block">Take Me Back</button></a>
+                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg d-inline-block">Take Me Back</a>
                 <button type="submit" class="btn btn-lg d-inline-block">Submit</button>
             </form>
         </div>
@@ -24,7 +24,7 @@
     <div style="height: 80vh; padding: 30vh;">
         <h2 class="text-black">Oops</h2>
         <p>It appears you are in the wrong place!</p>
-        <a class="nav-link" href="{% url 'home' %}"><button class="btn btn-large">Home </button></a>
+        <a href="{% url 'home' %}" class="nav-link btn btn-large">Home</a>
     </div>
 
     {% endif %}
