@@ -30,15 +30,15 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
         booking = form.instance.booking_count
         capacity = form.instance.event.capacity
 
-        if booking > (capacity - total_bookings):
+        if booking <= (capacity - total_bookings):
+            for b in Booking.objects.all():
+                if b.user == user and b.event == event:
+                    return HttpResponseRedirect(reverse('bookings:existing-booking'))
+            
+            form.instance.user = user
+            return super().form_valid(form)
+        else:
             return HttpResponseRedirect(reverse('bookings:event-full')) 
-
-        for b in Booking.objects.all():
-            if b.user == user and b.event == event:
-                return HttpResponseRedirect(reverse('bookings:existing-booking'))
-            else:
-                form.instance.user = user
-                return super().form_valid(form)
 
 
 class UpdateBooking(SuccessMessageMixin, generic.UpdateView):
