@@ -336,6 +336,15 @@ a[href="/accounts/password/reset/"] {
     color: #454242;
 }
 
+.fa-chevron-up {
+    transition: all 0.3s ease;
+}
+
+.card[aria-expanded="false"] .fa-chevron-up {
+    transform: rotate(180deg);
+}
+
+
 .schedule-icons > * {
     font-family: Montserrat, sans-serif;
     font-weight: 700;
@@ -492,14 +501,6 @@ a[href="/accounts/password/reset/"] {
         color: #ffffff;
         padding: 5px;
         border-radius: 5px;
-    }
-
-    .fa-chevron-up {
-        transition: all 0.3s ease;
-    }
-
-    .card[aria-expanded="false"] .fa-chevron-up {
-        transform: rotate(180deg);
     }
 
     .schedule-icons {

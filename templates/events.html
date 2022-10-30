@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="events-section d-flex flex-column justify-content-start align-items-center">
+<section class="events-section mb-5 d-flex flex-column justify-content-start align-items-center">
     {% if messages %}
         {% for message in messages %}
             <div class="text-center fs-5 alert alert-{{ message.tags }}">
@@ -28,15 +28,18 @@
                 </div>
             </div>
             <div class="container p-3 p-xl-4">
-                <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
-                <!-- Date for smaller devices -->
+                <div class="d-flex justify-content-between">
+                    <h3 class="event-title px-3 d-inline-block fs-4">{{ event.title }}</h3>
+                    <div class="col-3 text-end pe-3 my-auto fs-4 d-none d-md-inline-block"><i class="fa-solid fa-chevron-up"></i></div>
+                </div>
+                <!-- Date for smaller devices (disappears on larger viewports)  -->
                 <div class="event-small container-fluid d-block d-md-none">
                     <div class="row">
                         <p class=" offset-3 col-6 fs-5 pt-3 mt-4 small-date">{{ event.date | date:"d M y"}}</p>
-                        <div class=" col-3 w-25 event-arrow my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
+                        <div class=" col-3 w-25 my-auto fs-4"><i class="fa-solid fa-chevron-up"></i></div>
                     </div>
                 </div>
-                <!-- Address hidden on smaller devided -->
+                <!-- Address hidden on smaller devices -->
                 <p class="d-none d-md-block event-address fs-5 m-0">The George Orwell, Rue de Victoire, 34140 - Montpellier</p>
                 <div class="collapse" id="collapse-{{ event.slug }}">
                     <div>
