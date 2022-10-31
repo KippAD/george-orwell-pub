@@ -1,15 +1,15 @@
-# The George Orwell Pub
+# **The George Orwell Pub**
 
-<img  src="static/images/home.png" alt="Wireframes of the project" width="45%">
-<img  src="static/images/events.png" alt="Wireframes of the project" width="45%">
+<img  src="static/images/home.png" alt="Wireframes of the project" width="100%">
+<img  src="static/images/events.png" alt="Wireframes of the project" width="100%">
 
-The George Orwell Pub website is a django based project for a fictional business developed for my fourth milestone project at Code Institute.
+The George Orwell Pub website is a django based application for a fictional business in Montpellier, France. This business and its business needs was invented solely for the developement of my fourth milestone project at Code Institute.
 
 ## Brief
 
-The George Orwell Pub website serves as a point of information and booking system for a pub and restaurant based in Montpellier, France. Customers will be able to create an account, view upcoming events, and make bookings. Within their account they will be able to manage these bookings, as well as contact the site Admin with any queries that they might have. 
+The George Orwell Pub application serves as business site and booking system for a pub and restaurant based in Montpellier, France. Customers will be able to create an account, view upcoming events, and make bookings. Within their account they will be able to manage these bookings, as well as contact the site Admin with any queries that they might have. 
 
-The objective of the project is to create an aesthetically pleasing design with functionality that allows users to access and interact with content easily, and that allows an Admin to intuitively control the data that the site works with.. 
+The objective of the project is to create an aesthetically pleasing design, with functionality that allows users to access and interact with content easily, and that allows an Admin to intuitively control the data that the site works with. 
 
 ## UX
 
@@ -18,28 +18,28 @@ Users of the George Orwell Pub website would most likely be young adults in and 
 ###  User Stories
 
 **Epic: Site Management**
-- As an **admin** I can **login to an admin panel** so that I can manage my website
-- As an **admin** I can **create events** so that I can notify site visitors of the business schedule
+- As an **admin** I can **login to an admin panel** so that **I can manage my website**
+- As an **admin** I can **create events** so that **I can notify site visitors of the business schedule**
 - As an **admin** I can **update existing events** so that **I can keep the schedule up to date**
-- As an **admin** I can **delete events** so that **I can cancel events that are no longer going to happen**.
-- As an **admin** I can **delete bookings** so that I can cancel existing bookings if necessary
+- As an **admin** I can **delete events** so that **I can cancel events that are no longer going to happen**
+- As an **admin** I can **delete bookings** so that **I can cancel existing bookings if necessary**
 - As an **admin** I can **delete users** so that **I can remove existing users if necessary**
 - As an **admin** I can **view and respond to user queries** so that **I can interact with my clientele**
 
 **Epic: Event Booking**
-- As a **user** I can **register an account** so that I can book my place at events and send site queries.
+- As a **user** I can **register an account** so that **I can book my place at events**
 - As a **user** I can **sign in and out of my account** so that **access to my account and data is limited**
-- As a **user** I can **book events** so that I can reserve a place at events of my choosing
-- As a **user** I can **update my existing bookings** so that I can add or remove people on my reservation
-- As a **user** I can **delete an existing booking** so that I can remove my reservation if I no longer wish to come
+- As a **user** I can **book events** so that **I can reserve a place at events of my choosing**
+- As a **user** I can **update my existing bookings** so that **I can add or remove people on my reservation**
+- As a **user** I can **delete an existing booking** so **that I can remove my reservation if I no longer wish to come**
 
 **Epic: Account Management**
-- As a **user** I can **request an account deletion** so that I can remove my account from the site**
+- As a **user** I can **request an account deletion** so that **I can remove my account from the site**
 - As a **user** I can **send a query to the admin** so that **I can contact them with any questions of request I have**
 
 ## Agile Development
 
-Using the User Stories above the site was developed using AGILE methodology. Components and features in the website were designed in order to meet the criteria of the user stories and each stage of development revolved around resolving each user story incrementally. 
+With the User Stories above, the site was developed using AGILE methodology. Components and features in the website were designed in order to meet the criteria of the user stories, so each stage of development revolved around resolving each user story incrementally. 
 
 <img  src="static/images/project-board.png" alt="Agile project board" width="100%">
 
@@ -50,7 +50,7 @@ This meant that each component added to the site could be prioritized by the imp
 ### Design Objective
 - The site is attractive and first time users want to return to it.
 - Site actions are intuitive so that a user knows how to interact with content.
-- The site is functional and errors and the user will be appropriately redirected when faced with errors
+- The site is functional and the user will be appropriately redirected when faced with errors
 - Content is meaningfully organized by its priority
 
 ### Wireframes
@@ -73,13 +73,13 @@ The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 <img  src="static/images/home-page-1.png" alt="Home page" width="34%">
 <img  src="static/images/home-page-2.png" alt="About us section" width="30%">
 
-**Homepage:** The homepage is the first area that the user sees when entering the website. It includes a summary of the business and what it does, as well as clear navigation to other areas of the site and a carousel of upcoming events.
+**Homepage:** The homepage is the first area that the user sees when entering the website. It includes a summary of the business and what it does, clear navigation to other areas of the site, and a carousel of upcoming events.
 
 ---
 
 <img  src="static/images/events.png" alt="About us section" width="50%">
 
-**Events Page:** The events page displays all upcoming events with the relevant information about them (Date, capacity, price). Each event is a collapsible element, revealing the event description when clicked on - this keeps the content more concise and allows the user to unravel information as they choose to. The user can also book an event by clicking on the Book now button and filling out the form. If an admin is logged in they are able to access full CRUD functionality for each event, as well as creating new events.
+**Events Page:** The events page displays a schedule of all upcoming events and the relevant information about them (date, capacity, price). Each event is a collapsible element, revealing the event description when clicked on - this keeps the content more concise and allows the user to unravel information as they choose to. The user can also book an event by clicking on the book now button and filling out the form. If an admin is logged in they are able to access full CRUD functionality for each event.
 
 ---
 
@@ -95,7 +95,7 @@ The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 <img  src="static/images/contact-success.png" alt="Contact success" width="30%">
 <img  src="static/images/contact-email.png" alt="Contact email" width="20%">
 
-**Contact Form:** The contact form allows users to send queries to the admin. This form is linked to Amazon Web Services SES, meaning that the user’s messgae will appear in the gmail account of the site.
+**Contact Form:** The contact form allows users to send queries to the admin. This form is linked to Amazon Web Services SES, meaning that the user’s message will appear in the gmail account of the site.
 
 ---
 
@@ -128,28 +128,27 @@ The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 ---
 
 ## Future
-Here are some future features that were outside of the project scope on the current iteration of development but could be included to improve the user experience and site in general.
+Here are some future features that were outside of the project scope on the current iteration of development, but could be included to improve the user experience and site in general.
 
 - **Form Submission Email:** User receives an email when an account is created or when a booking is made.
 - **Waiting List:** Users will have the option to join a waiting list for full events and receive an email if there is availability.
 - **Prefilled Booking Form:** Booking form is prefilled with the event and can be replaced with a select form if the user chooses.
 - **Repeating/Self Deleting Event:** Events can be set to repeating so that they automatically appear on the schedule each week, and events in the past self-delete.
-
 - **Messaging In Browser:** User and admin can message within the website from the account and admin panels respectively.
 - **Menu:** Admin has access to CRUD functionality for a menu.
-- **Admin Interface for User:** Whilst the admin can see users in the admin panel, it redirects the admin to the default django admin dashboard, so CRUD functionality for the user within the website would provide a better experience for the site owner.
+- **Admin Interface for User:** Whilst the admin can see users in the admin panel, it redirects the admin to the default django admin dashboard, so CRUD functionality for the user within the custom UI would provide a better experience for the site owner.
 
 ## Testing 
 
 ### **Python**
-All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code. The contact form functionality has been tested to ensure that it works.
+All of the model forms are validated with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code. The contact form functionality has been tested to ensure that it works.
 
 ---
 
 <img  src="static/images/html-warnings.png" alt="W3C HTML" width="80%">
 
 ### **HTML**
-There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. The validator shows many errors relating to jinja that are intentionally unresolved, but all other warnings were fixed.
+There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. The validator shows many errors relating to Jinja that are intentionally unresolved, but all other warnings were fixed.
 
 ---
 
@@ -171,7 +170,7 @@ The website is responsive and has been tested accross all viewport sizes of a gr
 - Ipad Mini causes some other spacing issues
 - Tests exclude Galaxy Fold (Viewport width of 280px)
 
-Testing the responsiveness included checking that every link worked and every component behaved as expected, as well as ensuring that the app design was maintained on smaller devices. Throughout the process all bugs found were resolved, and now all responsiveness is retained accross the tested devices and all actions work as expected.
+Testing the responsiveness included checking that every link worked and every component behaved as expected, as well as ensuring that the app design was maintained on smaller devices. Throughout the process all bugs that were found were resolved, and now responsiveness is retained accross the tested devices.
 
 --
 
