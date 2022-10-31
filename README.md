@@ -79,60 +79,87 @@ The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 
 ### **Existing**
 
-<img  src="static/images/home-page-1.png" alt="Home page" width="34%">
-<img  src="static/images/home-page-2.png" alt="About us section" width="30%">
+
+<p>
+  <img  src="static/images/home-page-1.png" alt="Home page" style="display: inline;" width="34%">
+  <img  src="static/images/home-page-2.png" alt="About us section" style="display: inline;" width="30%">
+</p>
 
 **Homepage:** The homepage is the first area that the user sees when entering the website. It includes a summary of the business and what it does, clear navigation to other areas of the site, and a carousel of upcoming events.
 
 ---
 
+#### **Events Page:**
+
 <img  src="static/images/events.png" alt="About us section" width="50%">
 
-**Events Page:** The events page displays a schedule of all upcoming events and the relevant information about them (date, capacity, price). Each event is a collapsible element, revealing the event description when clicked on - this keeps the content more concise and allows the user to unravel information as they choose to. The user can also book an event by clicking on the book now button and filling out the form. If an admin is logged in they are able to access full CRUD functionality for each event.
+The events page displays a schedule of all upcoming events and the relevant information about them (date, capacity, price). Each event is a collapsible element, revealing the event description when clicked on - this keeps the content more concise and allows the user to unravel information as they choose to. The user can also book an event by clicking on the book now button and filling out the form. If an admin is logged in they are able to access full CRUD functionality for each event.
 
 ---
 
-<img  src="static/images/event-card.png" alt="Booking event card" width="30%">
-<img  src="static/images/booking-form.png" alt="Booking form" width="30%">
-<img  src="static/images/booking-account.png" alt="Account page" width="30%">
+#### **Booking System:** 
 
-**Booking System:** The booking system allows users to reserve places for events of their choosing. There is full form validation preventing users from making double bookings and also from events becoming overbooked. 
+<p>
+  <img  src="static/images/event-card.png" alt="Booking event card" width="30%">
+  <img  src="static/images/booking-form.png" alt="Booking form" width="30%">
+  <img  src="static/images/booking-account.png" alt="Account page" width="30%">
+</p>
 
----
-
-<img  src="static/images/contact-form.png" alt="Contact form" width="25%">
-<img  src="static/images/contact-success.png" alt="Contact success" width="30%">
-<img  src="static/images/contact-email.png" alt="Contact email" width="20%">
-
-**Contact Form:** The contact form allows users to send queries to the admin. This form is linked to Amazon Web Services SES, meaning that the user’s message will appear in the gmail account of the site.
+The booking system allows users to reserve places for events of their choosing. There is full form validation preventing users from making double bookings and also from events becoming overbooked. 
 
 ---
 
-<img  src="static/images/account-1.png" alt="Account bookings tab" width="45%">
-<img  src="static/images/account-2.png" alt="Account info tab" width="45%">
+#### **Contact Form:** 
 
-**Account Page:** The account page allows users to view, update, and delete their existing bookings. It will also display their account information in a separate tab.
+<p>
+  <img  src="static/images/contact-form.png" alt="Contact form" width="25%">
+  <img  src="static/images/contact-success.png" alt="Contact success" width="30%">
+  <img  src="static/images/contact-email.png" alt="Contact email" width="20%">
+</p>
 
----
-
-<img  src="static/images/admin-events.png" alt="Admin events panel" width="30%">
-<img  src="static/images/admin-bookings.png" alt="Admin bookings panels" width="30%">
-<img  src="static/images/admin-user.png" alt="Admin user panel" width="30%">
-
-**Admin Interface:** The admin interface displays all events, bookings, and users where the admin can perform CRUD functionality on each of their models.
+The contact form allows users to send queries to the admin. This form is linked to Amazon Web Services SES, meaning that the user’s message will appear in the gmail account of the site.
 
 ---
 
-<img  src="static/images/admin-events.png" alt="Admin events panel" width="30%">
-<img  src="static/images/admin-bookings.png" alt="Admin bookings panels" width="30%">
+#### **Account Page:** 
 
-**User Feedback Pages:** Unsuccessful bookings will redirect the user to a page explaining why their submission was rejected. Similarly a successful booking and contact form submission will display a success page.
+<p>
+  <img  src="static/images/account-1.png" alt="Account bookings tab" width="45%">
+  <img  src="static/images/account-2.png" alt="Account info tab" width="45%">
+</p>
+
+The account page allows users to view, update, and delete their existing bookings. It will also display their account information in a separate tab.
 
 ---
+
+#### **Admin Interface:** 
+
+<p>
+  <img  src="static/images/admin-events.png" alt="Admin events panel" width="30%">
+  <img  src="static/images/admin-bookings.png" alt="Admin bookings panels" width="30%">
+  <img  src="static/images/admin-user.png" alt="Admin user panel" width="30%">
+</p>
+
+The admin interface displays all events, bookings, and users where the admin can perform CRUD functionality on each of their models.
+
+---
+
+#### **User Feedback Pages:**
+
+<p>
+  <img  src="static/images/admin-events.png" alt="Admin events panel" width="30%">
+  <img  src="static/images/admin-bookings.png" alt="Admin bookings panels" width="30%">
+</p>
+
+Unsuccessful bookings will redirect the user to a page explaining why their submission was rejected. Similarly a successful booking and contact form submission will display a success page.
+
+---
+
+#### **Accounts:**
 
 <img  src="static/images/sign-up.png" alt="Sign up form" width="60%">
 
-**Accounts:** Users can register an account and login/logout. Once authenticated they are able to interact with the sites content.
+Users can register an account and login/logout. Once authenticated they are able to interact with the sites content.
 
 ---
 
@@ -154,16 +181,18 @@ All of the model forms are validated with automated testing to ensure that corre
 
 ---
 
+### **HTML**
+
 <img  src="static/images/html-warnings.png" alt="W3C HTML" width="80%">
 
-### **HTML**
 There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. The validator shows many errors relating to Jinja that are intentionally unresolved, but all other warnings were fixed.
 
 ---
 
+### **CSS**
+
 <img  src="static/images/css-validator.png" alt="W3C HTML" width="80%">
 
-### **CSS**
 The CSS validator returned a small amount of errors that were mainly typos. Now the validator returns no warnings or errors.
 
 ---
@@ -292,7 +321,7 @@ This repository is hosted on GitHub and can be cloned and further developed by o
 
 [**Date Validation**](https://stackoverflow.com/questions/70558856/django-how-to-prevent-to-accept-future-date) - The Stack Overflow user **Willem Van Onsem** provided a solution to preventing the date field in the event form from accepting past dates which was implemented in my code.
 
-I want to thank Precious Ijege and Rohit Sharma for their help in planning and advice in development of this project. Also to my fellow students on Slack who provided me with support ajd answers for any question or issue that I might have.
+I want to thank Precious Ijege and Rohit Sharma for their help in planning and advice in development of this project. Also to my fellow students on Slack who provided me with support and answers for any question or issue that I might have.
 
 ---
 
