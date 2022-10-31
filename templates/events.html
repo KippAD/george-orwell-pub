@@ -52,10 +52,9 @@
                                     data-bs-toggle="collapse" data-bs-target><i
                                         class="fa-solid fa-pen-to-square"></i></span></a>
                             <!-- Anchor link without href prevents collapsible from being triggered -->
-                            <a href="{% url 'events:delete-event' slug=event.slug %}"
-                                class="text-black btn btn-danger fs-5" data-bs-toggle="collapse" data-bs-target=""><span
-                                    data-bs-toggle="collapse" data-bs-target><i
-                                        class="fa-regular fa-circle-xmark"></i></span></a>
+                            <a href="{% url 'events:delete-event' slug=event.slug%}" type="button"
+                                class="btn btn-danger text-black p-0 fs-5"><i class="fa-regular fa-circle-xmark p-3"
+                                    data-bs-toggle="collapse" data-bs-target=""></i></a>
                             {% endif %}
                         </div>
                     </div>
