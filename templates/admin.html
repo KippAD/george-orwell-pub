@@ -66,15 +66,16 @@
                             <div>
                                 <div class="d-inline">
                                     <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                    <a href="{% url 'bookings:book-event' %}" id="bookingBtn" class="btn btn-lg">
-                                        <span data-bs-toggle="collapse" data-bs-target>Book Now</span></a>
+                                    <a href="{% url 'bookings:book-event' %}" id="bookingBtn" class="btn btn-lg p-0">
+                                        <p class="w-100 h-100 m-0 py-1 px-2" data-bs-toggle="collapse"
+                                            data-bs-target="">Book Now</p>
+                                    </a>
                                 </div>
                                 <!-- Buttons only displayed if superuser is logged in  -->
                                 <div class="d-inline">
                                     {% if user.is_superuser %}
                                     <a href="{% url 'events:update-event' slug=event.slug%}"
-                                        class="event-button ignore-collapse btn btn-warning fs-5"><span
-                                            data-bs-toggle="collapse" data-bs-target></span>
+                                        class="event-button btn btn-warning fs-5"></span>
                                         <i class="fa-solid fa-pen-to-square"></i></a>
                                     <!-- Anchor link without href prevents collapsible from being triggered -->
                                     <a href="{% url 'events:delete-event' slug=event.slug%}" class="text-black"><button
