@@ -41,7 +41,7 @@ Users of the George Orwell Pub website would most likely be young adults in and 
 
 Using the User Stories above the site was developed using AGILE methodology. Components and features in the website were designed in order to meet the criteria of the user stories and each stage of development revolved around resolving each user story incrementally. 
 
-<img  src="static/images/agile-project.png" alt="Agile project board" width="100%">
+<img  src="static/images/project-board.png" alt="Agile project board" width="100%">
 
 This meant that each component added to the site could be prioritized by the importance of its corresponding user story.
 
@@ -141,11 +141,62 @@ Here are some future features that were outside of the project scope on the curr
 
 ## Testing 
 
-**Python**
-All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site. PEP8 warnings from the IDE have all been resolved in the custom code.
+### **Python**
+All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code.
 
-**HTML**
-There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. All were removed, however the validator still shows many errors relating to jinja that were intentionally unresolved.
+---
+
+<img  src="static/images/html-warnings.png" alt="W3C HTML" width="80%">
+
+### **HTML**
+There were various HTML errors that arose in the W3C HTML validator ranging from mispelled href attributes to unclosed elements. The validator shows many errors relating to jinja that are intentionally unresolved, but all other warnings were fixed.
+
+---
+
+<img  src="static/images/css-validator.png" alt="W3C HTML" width="80%">
+
+### **CSS**
+The CSS validator returned a small amount of errors that were mainly typos. Now the validator returns no warnings or errors.
+
+---
+
+### **Responsiveness**
+The website is responsive and has been tested accross all viewport sizes of a greater screen width of 320px. The specific devices are the included templates of Chrome Developer Tools:
+
+<img  src="static/images/devices.png" alt="W3C HTML" width="20%">
+
+**Notes**:
+
+- Event buttons are centered on Ipad Mini
+- Ipad Mini causes some other spacing issues
+- Tests exclude Galaxy Fold (Viewport width of 280px)
+
+All responsiveness is retained accross the tested devices and all actions work as expected.
+
+--
+
+**Browser Testing**
+The website has been tested on the following browsers:
+
+**Chrome** - 
+
+**Mozilla Firefox** -
+
+**Safari** - 
+
+**Opera** - 
+
+The testing process involved manually checking the responsiveness of every sit page on each browser, as well as ensuring that every link and button worked correctly. Similarly each action that worked with the backend was checked against he database to confirm that the application works as expected accross all of the browsers.
+
+--
+
+**Lighthouse Testing**
+
+--
+
+## Bugs
+
+
 
 ## Reflection 
 

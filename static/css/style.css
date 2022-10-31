@@ -316,7 +316,7 @@ a[href='/accounts/password/reset/'] {
 
 /* Accordion in events schedule */
 .events-section {
-    min-height: 100vh;
+    min-height: 90vh;
     padding-top: 15vh;
     background-color: #F0F0F0;
 }
@@ -481,6 +481,14 @@ a[href='/accounts/password/reset/'] {
     .account-section {
         width: 75%!important;
     }
+
+    .admin {
+        width: 100%!important;
+    }
+
+    .admin-event {
+        width: 100%!important;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -499,7 +507,6 @@ a[href='/accounts/password/reset/'] {
     }
 
     .event {
-        width: 75%;
         text-align: start;
     }
 

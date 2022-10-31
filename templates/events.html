@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="events-section mb-5 d-flex flex-column justify-content-start align-items-center">
+<section class="events-section pb-5 d-flex flex-column justify-content-start align-items-center">
     <!-- Create event only displayed if superuser is logged in  -->
     {% if user.is_superuser %}
     <div class="mx-auto">
