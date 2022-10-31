@@ -66,9 +66,8 @@
                             <div>
                                 <div class="d-inline">
                                     <p class="card-text fs-5">{{ event.description | striptags }}</p>
-                                    <a href="{% url 'bookings:book-event' %}" class="btn btn-lg"
-                                        data-bs-toggle="collapse" data-bs-target>Book
-                                        Now</a>
+                                    <a href="{% url 'bookings:book-event' %}" id="bookingBtn" class="btn btn-lg">
+                                        <span data-bs-toggle="collapse" data-bs-target>Book Now</span></a>
                                 </div>
                                 <!-- Buttons only displayed if superuser is logged in  -->
                                 <div class="d-inline">

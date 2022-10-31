@@ -26,12 +26,12 @@ class BookEvent(LoginRequiredMixin, generic.CreateView):
         user = self.request.user
         event = form.instance.event
 
-        total_bookings = sum(Booking.objects.values_list(
-            'booking_count', flat=True))
+        total = Booking.objects.filter(event=event).values_list('booking_count', flat=True)
+        total_bookings = sum(total)
         booking = int(form.instance.booking_count)
         capacity = int(form.instance.event.capacity)
         # +2 is short fix for capacity error
-        free_space = (capacity - total_bookings) + 2
+        free_space = (capacity - total_bookings)
 
         for b in Booking.objects.all():
             if b.user == user and b.event == event:
