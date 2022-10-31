@@ -3,19 +3,24 @@
 <img  src="static/images/home.png" alt="Wireframes of the project" width="100%">
 <img  src="static/images/events.png" alt="Wireframes of the project" width="100%">
 
-The George Orwell Pub website is a django based application for a fictional business in Montpellier, France. This business and its business needs was invented solely for the developement of my fourth milestone project at Code Institute.
+The George Orwell Pub website is a django based application for a fictional business in Montpellier, France. This business was invented solely for the developement of my fourth milestone project at Code Institute.
 
-## Brief
+**Account Logins (Username : Password)**
+
+<img  src="static/images/logins.png" alt="Sample account logins" width="50%">
+
+
+## **Brief**
 
 The George Orwell Pub application serves as business site and booking system for a pub and restaurant based in Montpellier, France. Customers will be able to create an account, view upcoming events, and make bookings. Within their account they will be able to manage these bookings, as well as contact the site Admin with any queries that they might have. 
 
 The objective of the project is to create an aesthetically pleasing design, with functionality that allows users to access and interact with content easily, and that allows an Admin to intuitively control the data that the site works with. 
 
-## UX
+## **UX**
 
 Users of the George Orwell Pub website would most likely be young adults in and around the area - many of which might be regulars that would be revisiting the site to book an event on a weekly basis. This means that navigating through the booking system should be as fast and easy as possible, so that users who only need to make a booking can do so without hassle.
 
-###  User Stories
+###  **User Stories**
 
 **Epic: Site Management**
 - As an **admin** I can **login to an admin panel** so that **I can manage my website**
@@ -37,38 +42,42 @@ Users of the George Orwell Pub website would most likely be young adults in and 
 - As a **user** I can **request an account deletion** so that **I can remove my account from the site**
 - As a **user** I can **send a query to the admin** so that **I can contact them with any questions of request I have**
 
-## Agile Development
+## **Agile Development**
 
 With the User Stories above, the site was developed using AGILE methodology. Components and features in the website were designed in order to meet the criteria of the user stories, so each stage of development revolved around resolving each user story incrementally. 
 
-<img  src="static/images/project-board.png" alt="Agile project board" width="100%">
+<img  src="static/images/project-board.png" alt="Agile project board" width="60%">
+
+[**Project Board**](https://github.com/users/KippAD/projects/5)
 
 This meant that each component added to the site could be prioritized by the importance of its corresponding user story.
 
-## Design
+## **Design**
 
-### Design Objective
+### **Design Objective**
 - The site is attractive and first time users want to return to it.
 - Site actions are intuitive so that a user knows how to interact with content.
-- The site is functional and the user will be appropriately redirected when faced with errors
-- Content is meaningfully organized by its priority
+- The site is functional and the user will be appropriately redirected when faced with errors.
+- Content is meaningfully organized by its priority.
 
-### Wireframes
+### **Wireframes**
+
+<img  src="static/images/wireframes.png" alt="Wireframes of the project" width="80%">
+
+
 The wireframes for the George Orwell Pub were made with Figma. Designs for multiple viewport sizes were created in order to create a design that would be responsive on various devices.
-
-<img  src="static/images/wireframes.png" alt="Wireframes of the project" width="100%">
 
 The final design holds true to the original concepts, but as development progressed certain aspects differed. This was usually due to design preference changing as time went on, and certain components looking better in the browser than they did in the wireframe.
 
-### Color Scheme/Typography
+### **Color Scheme/Typography**
 
-The Color Scheme of the website was generated using [**Coolors**](https://coolors.co/). Outside of the home page most of the colors are black and white - this simple scheme was chosen to represent pen and paper as the business is named after the writer George Orwell. 
+The Color Scheme of the website was generated using [**Coolors**](https://coolors.co/). Outside of the home page most of the colours are black and white - this simple scheme was chosen to represent pen and paper as the business is named after the writer George Orwell. 
 
 The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 
-## Features
+## **Features**
 
-### Existing
+### **Existing**
 
 <img  src="static/images/home-page-1.png" alt="Home page" width="34%">
 <img  src="static/images/home-page-2.png" alt="About us section" width="30%">
@@ -112,22 +121,22 @@ The fonts on the site are Montserrat, Chivo, Istok Web, and Heebo.
 
 **Admin Interface:** The admin interface displays all events, bookings, and users where the admin can perform CRUD functionality on each of their models.
 
--- 
+---
 
 <img  src="static/images/admin-events.png" alt="Admin events panel" width="30%">
 <img  src="static/images/admin-bookings.png" alt="Admin bookings panels" width="30%">
 
 **User Feedback Pages:** Unsuccessful bookings will redirect the user to a page explaining why their submission was rejected. Similarly a successful booking and contact form submission will display a success page.
 
---
+---
 
-<img  src="static/images/admin-events.png" alt="Sign up form" width="80%">
+<img  src="static/images/sign-up.png" alt="Sign up form" width="60%">
 
 **Accounts:** Users can register an account and login/logout. Once authenticated they are able to interact with the sites content.
 
 ---
 
-## Future
+## **Future**
 Here are some future features that were outside of the project scope on the current iteration of development, but could be included to improve the user experience and site in general.
 
 - **Form Submission Email:** User receives an email when an account is created or when a booking is made.
@@ -138,7 +147,7 @@ Here are some future features that were outside of the project scope on the curr
 - **Menu:** Admin has access to CRUD functionality for a menu.
 - **Admin Interface for User:** Whilst the admin can see users in the admin panel, it redirects the admin to the default django admin dashboard, so CRUD functionality for the user within the custom UI would provide a better experience for the site owner.
 
-## Testing 
+## **Testing**
 
 ### **Python**
 All of the model forms are validated with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code. The contact form functionality has been tested to ensure that it works.
@@ -170,11 +179,11 @@ The website is responsive and has been tested accross all viewport sizes of a gr
 - Ipad Mini causes some other spacing issues
 - Tests exclude Galaxy Fold (Viewport width of 280px)
 
-Testing the responsiveness included checking that every link worked and every component behaved as expected, as well as ensuring that the app design was maintained on smaller devices. Throughout the process all bugs that were found were resolved, and now responsiveness is retained accross the tested devices.
+Testing the responsiveness included checking that every link worked and every component behaved as expected, as well as ensuring that the app design was maintained on smaller devices. Throughout the process all bugs that were found were resolved, and now responsiveness is retained accross the tested devices and all actions work as expected.
 
---
+---
 
-**Browser Testing**
+### **Browser Testing**
 The website has been tested on the following browsers:
 
 - **Chrome**
@@ -185,11 +194,11 @@ The website has been tested on the following browsers:
 
 - **Opera**
 
-The testing process involved manually checking the responsiveness of every sit page on each browser, as well as ensuring that every link and button worked correctly. Similarly each action that worked with the backend was checked against he database to confirm that the application works as expected accross all of the browsers.
+The testing process involved manually checking the responsiveness of every sit page on each browser, as well as ensuring that every link and button worked correctly. Similarly each action that worked with the backend was checked against the database to confirm that the application works as expected accross all of the browsers. Although display did vary slightly accross some browsers it never was at the expense of functionality - all functionality worked as intended.
 
---
+---
 
-**Lighthouse Testing**
+### **Lighthouse Testing**
 
 Chrome Developer Tools Lighthouse testing rates the performance, accessibility, best practices and SEO of a website.
 
@@ -203,8 +212,7 @@ Chrome Developer Tools Lighthouse testing rates the performance, accessibility, 
 <img  src="static/images/events-lighthouse-1.png" alt="Lighthouse testing events desktop" width="40%">
 <img  src="static/images/events-lighthouse-2.png" alt="Lighthouse testing events mobile" width="40%">
 
-**Account Page**
-
+---
 
 ## **Bugs**
 
@@ -212,14 +220,15 @@ Chrome Developer Tools Lighthouse testing rates the performance, accessibility, 
 
 - **Booking Capacity** - A persistent bug was that a new booking would be rejected if it was within 2 of the capacity. This meant that there were always two spaces free in an events that could not be taken up. It was eventually resolved with the correct query.
 
-- **Leaked SMTP** - When creating the automatic contact form, the email app password and username were accidentally included in a commit. The email was flooded with scam messages and dodgy emails, so was replaced with a new email to resolve the issue.
+- **Leaked SMTP** - When creating the automatic contact form, the email app password and username were accidentally included in a commit. The email was flooded with scam messages and dodgy emails so was replaced with a new email to resolve the issue.
 
 ### Unresolved
 
-- **User Booking Update** - Users can access another user's booking by the URL - this bug was unfortunately found too late in deployment to resolve before the project was due to be submitted.
+- **User Booking Update** - Users can access another user's booking if they have the URL - this bug was unfortunately found too late in deployment to resolve before the project was due to be submitted.
 
 - **User Reset Password** - Users cannot request an email to reset their password because AWS Simple Email Service requires that every recipient be activated via an email link. This can be resolved by applying to move out of sandbox mode in AWS - if accepted, the code to redirect password resets to email is included in the contact form.
 
+---
 
 ## **Technologies**
 The George Orwell Pub was built with the following technologies:
@@ -236,6 +245,8 @@ The George Orwell Pub was built with the following technologies:
 10. [**Font Awesome**](https://fontawesome.com/) - Icon library used.
 13. [**Coolors**](https://coolors.co/) - Colour pallete generator.
 14. [**Real Favicon Generator**](https://realfavicongenerator.net/) - For favicon creation.
+
+---
 
 ## **Deployment**
 
@@ -269,18 +280,21 @@ This repository is hosted on GitHub and can be cloned and further developed by o
 
 4. The IDE will then populate with the cloned repository files.
 
+---
+
 ## Credits
 
-[**Bootstrap**](https://getbootstrap.com/) - The project UI was built fundamentally with Bootstrap components with custom stylings on top.
+[**Bootstrap**](https://getbootstrap.com/) - The project UI was built with Bootstrap components with custom stylings on top.
 
 [**Data Tables**](https://datatables.net/examples/basic_init/index.html) - The tables in the account and admin page were taken from the Data Table library.
 
-[**ContactForm**](https://ordinarycoders.com/blog/article/build-a-django-contact-form-with-email-backend) - The contact form and the backend code to wire it up to an email was from this tutorial on how to creat a contact form by **OrdinaryCoders**
+[**ContactForm**](https://ordinarycoders.com/blog/article/build-a-django-contact-form-with-email-backend) - The contact form and the backend code to wire it up to an email was from this tutorial on how to create a contact form by **OrdinaryCoders**
 
 [**Date Validation**](https://stackoverflow.com/questions/70558856/django-how-to-prevent-to-accept-future-date) - The Stack Overflow user **Willem Van Onsem** provided a solution to preventing the date field in the event form from accepting past dates which was implemented in my code.
 
 I want to thank Precious Ijege and Rohit Sharma for their help in planning and advice in development of this project. Also to my fellow students on Slack who provided me with support ajd answers for any question or issue that I might have.
 
+---
 
 ## Reflection 
-This project was particularly challenging for myself coming off the back of a leave of absence and integrating technologies that I had never used before. Getting to grips with Bootstrap and Django meant that at times it was hard to develop the project that matched the agile project board. Similarly, I had to be a lot more flexible with the intended components and features because when I developed the scope of the project I did not have any reference point of working with these technologies before - this did mean sacrificing on what I actually wanted to develop in order to meet the deadline. It was a steep learning curve, but in future projects I will have a much greater understanding of how to plan and implement the required aspects to a standard that I am more content with.
+I found this project particularly challenging coming off the back of a leave of absence and integrating technologies that I found much more difficult to learn. Getting to grips with Bootstrap and Django meant that at times it was hard to develop the project by following the agile project board. Similarly, I had to be a lot more flexible with the intended components and features because when I developed the scope of the project I did not have any reference point of working with these technologies before - later on this did mean sacrificing on what I actually wanted to develop in order to meet the deadline. It was a steep learning curve, but in future projects I will have a much greater understanding of how to plan and implement the required aspects to a standard that I am more content with. Overall I am happy with the result of my project and satisfied with my improvement in Django over the development cycle.
