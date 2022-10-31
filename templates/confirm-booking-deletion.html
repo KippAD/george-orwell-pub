@@ -16,13 +16,13 @@
             <form method="post" class="text-center">
                 {% csrf_token %}
                 {% if user.is_staff %}
-                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg d-inline-block">Back <i
+                <a href="{% url 'myaccount:admin' %}" class="btn btn-lg">Back <i
                         class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 {% else %}
-                <a href="{% url 'myaccount:account' %}" class="btn btn-lg d-inline-block">Back <i
+                <a href="{% url 'myaccount:account' %}" class="btn btn-lg">Back <i
                         class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 {% endif %}
-                <button type="submit" class="btn btn-signup btn-lg">Delete <i
+                <button type="submit" class="btn btn-signup btn-lg d-inline">Delete <i
                         class="fa-solid fa-trash-can"></i></button>
             </form>
         </div>
