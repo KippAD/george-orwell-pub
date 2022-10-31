@@ -142,7 +142,7 @@ Here are some future features that were outside of the project scope on the curr
 ## Testing 
 
 ### **Python**
-All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code.
+All of the site forms are validated, with automated testing to ensure that correct inputs are given. CRUD functionality on the both booking and events have been manually tested in the deployed site - and all actions affecting the database work as expected. PEP8 warnings from the IDE have all been resolved in the custom code. The contact form functionality has been tested to ensure that it works.
 
 ---
 
@@ -171,20 +171,20 @@ The website is responsive and has been tested accross all viewport sizes of a gr
 - Ipad Mini causes some other spacing issues
 - Tests exclude Galaxy Fold (Viewport width of 280px)
 
-All responsiveness is retained accross the tested devices and all actions work as expected.
+Testing the responsiveness included checking that every link worked and every component behaved as expected, as well as ensuring that the app design was maintained on smaller devices. Throughout the process all bugs found were resolved, and now all responsiveness is retained accross the tested devices and all actions work as expected.
 
 --
 
 **Browser Testing**
 The website has been tested on the following browsers:
 
-**Chrome** - 
+- **Chrome**
 
-**Mozilla Firefox** -
+- **Mozilla Firefox**
 
-**Safari** - 
+- **Safari**
 
-**Opera** - 
+- **Opera**
 
 The testing process involved manually checking the responsiveness of every sit page on each browser, as well as ensuring that every link and button worked correctly. Similarly each action that worked with the backend was checked against he database to confirm that the application works as expected accross all of the browsers.
 
@@ -192,12 +192,96 @@ The testing process involved manually checking the responsiveness of every sit p
 
 **Lighthouse Testing**
 
---
+Chrome Developer Tools Lighthouse testing rates the performance, accessibility, best practices and SEO of a website.
 
-## Bugs
+**Home Page**
 
+<img  src="static/images/home-lighthouse-1.png" alt="Lighthouse testing home desktop" width="40%">
+<img  src="static/images/home-lighthouse-2.png" alt="Lighthouse testing home mobile" width="40%">
+
+**Events Page**
+
+<img  src="static/images/events-lighthouse-1.png" alt="Lighthouse testing events desktop" width="40%">
+<img  src="static/images/events-lighthouse-2.png" alt="Lighthouse testing events mobile" width="40%">
+
+**Account Page**
+
+
+## **Bugs**
+
+### Resolved
+
+- **Booking Capacity** - A persistent bug was that a new booking would be rejected if it was within 2 of the capacity. This meant that there were always two spaces free in an events that could not be taken up. It was eventually resolved with the correct query.
+
+- **Leaked SMTP** - When creating the automatic contact form, the email app password and username were accidentally included in a commit. The email was flooded with scam messages and dodgy emails, so was replaced with a new email to resolve the issue.
+
+### Unresolved
+
+- **User Booking Update** - Users can access another user's booking by the URL - this bug was unfortunately found too late in deployment to resolve before the project was due to be submitted.
+
+- **User Reset Password** - Users cannot request an email to reset their password because AWS Simple Email Service requires that every recipient be activated via an email link. This can be resolved by applying to move out of sandbox mode in AWS - if accepted, the code to redirect password resets to email is included in the contact form.
+
+
+## **Technologies**
+The George Orwell Pub was built with the following technologies:
+
+1.  [**Django**](https://www.djangoproject.com/) - Web framework used to develop application.
+2.  [**Bootstrap**](https://getbootstrap.com/) - Front end library used to build the site UI.
+2.  [**Python**](https://www.python.org/) - Used for the backend.
+3.  [**HTML**](https://en.wikipedia.org/wiki/HTML5) - Content and semantic meaning.
+4.  [**CSS**](https://en.wikipedia.org/wiki/CSS) - Custom styling and responsiveness.
+5.  [**JQuery**](https://jquery.com/) - Javascript library used for custom interactivity.
+6.  [**Gitpod**](https://gitpod.io) - The IDE used for development.
+7.  [**Heroku**](https://dashboard.heroku.com/apps) - Project hosting.
+9.  [**Figma**](https://figma.com/) - Used for site design.
+10. [**Font Awesome**](https://fontawesome.com/) - Icon library used.
+13. [**Coolors**](https://coolors.co/) - Colour pallete generator.
+14. [**Real Favicon Generator**](https://realfavicongenerator.net/) - For favicon creation.
+
+## **Deployment**
+
+### **To deploy the project**
+Heroku was used to host the George Orwell Pub website:
+
+1. Sign in to Heroku and navigate to the Heroku Dashboard.
+
+2. Click **New** in the top right of the browser, and then **Create New App**.
+
+3. Once created, head over to **Settings** and then **Reveal Config Vars**.
+
+4. Withing your config vars, fill out the key and value pairs from you env.py file so that Heroku can reference their values.
+
+5. Now you can add the necessary build packs in the **Settings** panel.
+
+6. In the **Deploy** tab, find **Connect to Github**.
+
+7. In the search bar look for the chosen repository and click **Connect**. You can also choose to **Enable Automatic Deploys**.
+
+8. The deployed site can now be viewed.
+
+## Cloning Project
+This repository is hosted on GitHub and can be cloned and further developed by other developers:
+
+1. Head to the repository and open the **Code** drop down menu.
+
+2. Within the **clone** box, copy the https url.
+
+3. Within your IDE run the command **git clone** followed by the https url in the terminal.
+
+4. The IDE will then populate with the cloned repository files.
+
+## Credits
+
+[**Bootstrap**](https://getbootstrap.com/) - The project UI was built fundamentally with Bootstrap components with custom stylings on top.
+
+[**Data Tables**](https://datatables.net/examples/basic_init/index.html) - The tables in the account and admin page were taken from the Data Table library.
+
+[**ContactForm**](https://ordinarycoders.com/blog/article/build-a-django-contact-form-with-email-backend) - The contact form and the backend code to wire it up to an email was from this tutorial on how to creat a contact form by **OrdinaryCoders**
+
+[**Date Validation**](https://stackoverflow.com/questions/70558856/django-how-to-prevent-to-accept-future-date) - The Stack Overflow user **Willem Van Onsem** provided a solution to preventing the date field in the event form from accepting past dates which was implemented in my code.
+
+I want to thank Precious Ijege and Rohit Sharma for their help in planning and advice in development of this project. Also to my fellow students on Slack who provided me with support ajd answers for any question or issue that I might have.
 
 
 ## Reflection 
-
 This project was particularly challenging for myself coming off the back of a leave of absence and integrating technologies that I had never used before. Getting to grips with Bootstrap and Django meant that at times it was hard to develop the project that matched the agile project board. Similarly, I had to be a lot more flexible with the intended components and features because when I developed the scope of the project I did not have any reference point of working with these technologies before - this did mean sacrificing on what I actually wanted to develop in order to meet the deadline. It was a steep learning curve, but in future projects I will have a much greater understanding of how to plan and implement the required aspects to a standard that I am more content with.
